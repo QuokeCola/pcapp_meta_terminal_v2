@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D04D497623E0A90B00C8510C /* Meta_terminal.icns in Resources */ = {isa = PBXBuildFile; fileRef = D04D497423E0A90B00C8510C /* Meta_terminal.icns */; };
 		D069648423E029D600D2E39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069648323E029D600D2E39B /* AppDelegate.swift */; };
 		D069648623E029D600D2E39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D069648523E029D600D2E39B /* Assets.xcassets */; };
 		D069648923E029D600D2E39B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D069648723E029D600D2E39B /* MainMenu.xib */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D04D497423E0A90B00C8510C /* Meta_terminal.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Meta_terminal.icns; sourceTree = "<group>"; };
 		D06140C323E09DDA0080F592 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D069648023E029D600D2E39B /* Terminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Terminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D069648323E029D600D2E39B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		D069648223E029D600D2E39B /* Terminal */ = {
 			isa = PBXGroup;
 			children = (
+				D04D497423E0A90B00C8510C /* Meta_terminal.icns */,
 				D06964A123E041DF00D2E39B /* ORSSerialPort.xcodeproj */,
 				D069648323E029D600D2E39B /* AppDelegate.swift */,
 				D069648523E029D600D2E39B /* Assets.xcassets */,
@@ -206,6 +209,7 @@
 				D069649C23E02FAC00D2E39B /* Icon-chassis.png in Resources */,
 				D069648923E029D600D2E39B /* MainMenu.xib in Resources */,
 				D069649E23E02FAC00D2E39B /* Icon-Terminal.tiff in Resources */,
+				D04D497623E0A90B00C8510C /* Meta_terminal.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
