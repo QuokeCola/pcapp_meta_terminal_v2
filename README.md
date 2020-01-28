@@ -1,5 +1,7 @@
 # Meta_Terminal_Rebuild
-Using Xcode with Object-C to rebuild the original meta_terminal (Matlab)
+Using Xcode with Swift to rebuild the original meta_terminal (Matlab)
+
+remember `git submodule update --init --recursive` to get ORSSerial Module
 
 ## ScreenShots
 ![alt text](ScreenShots/ScreenShots-TerminalView.png "Terminal View")
