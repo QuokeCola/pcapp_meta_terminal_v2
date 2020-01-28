@@ -10,15 +10,50 @@
 		D069648423E029D600D2E39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069648323E029D600D2E39B /* AppDelegate.swift */; };
 		D069648623E029D600D2E39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D069648523E029D600D2E39B /* Assets.xcassets */; };
 		D069648923E029D600D2E39B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D069648723E029D600D2E39B /* MainMenu.xib */; };
+		D069649C23E02FAC00D2E39B /* Icon-chassis.png in Resources */ = {isa = PBXBuildFile; fileRef = D069649923E02FAC00D2E39B /* Icon-chassis.png */; };
+		D069649D23E02FAC00D2E39B /* Icon-Gimbal.png in Resources */ = {isa = PBXBuildFile; fileRef = D069649A23E02FAC00D2E39B /* Icon-Gimbal.png */; };
+		D069649E23E02FAC00D2E39B /* Icon-Terminal.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D069649B23E02FAC00D2E39B /* Icon-Terminal.tiff */; };
+		D06964AD23E041EF00D2E39B /* ORSSerial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06964A723E041DF00D2E39B /* ORSSerial.framework */; };
+		D06964B023E06CB600D2E39B /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06964AF23E06CB600D2E39B /* MainController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D06964A623E041DF00D2E39B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D06964A123E041DF00D2E39B /* ORSSerialPort.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9DCA89121A2BB106009285EB;
+			remoteInfo = ORSSerial;
+		};
+		D06964A823E041DF00D2E39B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D06964A123E041DF00D2E39B /* ORSSerialPort.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D7472131B6D7767002D8B10;
+			remoteInfo = "ORSSerialPort Tests";
+		};
+		D06964AA23E041E900D2E39B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D06964A123E041DF00D2E39B /* ORSSerialPort.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DCA89111A2BB106009285EB;
+			remoteInfo = ORSSerial;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		D06140C323E09DDA0080F592 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D069648023E029D600D2E39B /* Terminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Terminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D069648323E029D600D2E39B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D069648523E029D600D2E39B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D069648823E029D600D2E39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D069648A23E029D600D2E39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D069648B23E029D600D2E39B /* Terminal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Terminal.entitlements; sourceTree = "<group>"; };
+		D069649923E02FAC00D2E39B /* Icon-chassis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-chassis.png"; sourceTree = "<group>"; };
+		D069649A23E02FAC00D2E39B /* Icon-Gimbal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Gimbal.png"; sourceTree = "<group>"; };
+		D069649B23E02FAC00D2E39B /* Icon-Terminal.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Icon-Terminal.tiff"; sourceTree = "<group>"; };
+		D06964A123E041DF00D2E39B /* ORSSerialPort.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ORSSerialPort.xcodeproj; path = "Frameworks/ORSSerialPort/Framework Project/ORSSerialPort.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		D06964AF23E06CB600D2E39B /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D06964AD23E041EF00D2E39B /* ORSSerial.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,8 +71,10 @@
 		D069647723E029D600D2E39B = {
 			isa = PBXGroup;
 			children = (
+				D06140C323E09DDA0080F592 /* README.md */,
 				D069648223E029D600D2E39B /* Terminal */,
 				D069648123E029D600D2E39B /* Products */,
+				D06964AC23E041EF00D2E39B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,13 +89,34 @@
 		D069648223E029D600D2E39B /* Terminal */ = {
 			isa = PBXGroup;
 			children = (
+				D06964A123E041DF00D2E39B /* ORSSerialPort.xcodeproj */,
 				D069648323E029D600D2E39B /* AppDelegate.swift */,
 				D069648523E029D600D2E39B /* Assets.xcassets */,
 				D069648723E029D600D2E39B /* MainMenu.xib */,
+				D06964AF23E06CB600D2E39B /* MainController.swift */,
+				D069649923E02FAC00D2E39B /* Icon-chassis.png */,
+				D069649A23E02FAC00D2E39B /* Icon-Gimbal.png */,
+				D069649B23E02FAC00D2E39B /* Icon-Terminal.tiff */,
 				D069648A23E029D600D2E39B /* Info.plist */,
 				D069648B23E029D600D2E39B /* Terminal.entitlements */,
 			);
 			path = Terminal;
+			sourceTree = "<group>";
+		};
+		D06964A223E041DF00D2E39B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D06964A723E041DF00D2E39B /* ORSSerial.framework */,
+				D06964A923E041DF00D2E39B /* ORSSerialPort Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D06964AC23E041EF00D2E39B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +133,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D06964AB23E041E900D2E39B /* PBXTargetDependency */,
 			);
 			name = Terminal;
 			productName = Terminal;
@@ -106,6 +166,12 @@
 			mainGroup = D069647723E029D600D2E39B;
 			productRefGroup = D069648123E029D600D2E39B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D06964A223E041DF00D2E39B /* Products */;
+					ProjectRef = D06964A123E041DF00D2E39B /* ORSSerialPort.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D069647F23E029D600D2E39B /* Terminal */,
@@ -113,13 +179,33 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		D06964A723E041DF00D2E39B /* ORSSerial.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ORSSerial.framework;
+			remoteRef = D06964A623E041DF00D2E39B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D06964A923E041DF00D2E39B /* ORSSerialPort Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ORSSerialPort Tests.xctest";
+			remoteRef = D06964A823E041DF00D2E39B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		D069647E23E029D600D2E39B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D069649D23E02FAC00D2E39B /* Icon-Gimbal.png in Resources */,
 				D069648623E029D600D2E39B /* Assets.xcassets in Resources */,
+				D069649C23E02FAC00D2E39B /* Icon-chassis.png in Resources */,
 				D069648923E029D600D2E39B /* MainMenu.xib in Resources */,
+				D069649E23E02FAC00D2E39B /* Icon-Terminal.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,11 +216,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D06964B023E06CB600D2E39B /* MainController.swift in Sources */,
 				D069648423E029D600D2E39B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D06964AB23E041E900D2E39B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ORSSerial;
+			targetProxy = D06964AA23E041E900D2E39B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D069648723E029D600D2E39B /* MainMenu.xib */ = {
