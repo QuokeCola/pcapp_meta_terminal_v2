@@ -16,6 +16,8 @@
 		D069649E23E02FAC00D2E39B /* Icon-Terminal.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D069649B23E02FAC00D2E39B /* Icon-Terminal.tiff */; };
 		D06964AD23E041EF00D2E39B /* ORSSerial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06964A723E041DF00D2E39B /* ORSSerial.framework */; };
 		D06964B023E06CB600D2E39B /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06964AF23E06CB600D2E39B /* MainController.swift */; };
+		D0AE298123E0AF960087CA92 /* ScreenShots-TerminalView.png in Resources */ = {isa = PBXBuildFile; fileRef = D0AE298023E0AF960087CA92 /* ScreenShots-TerminalView.png */; };
+		D0AE298323E0AFA30087CA92 /* ScreenShots-PortSelector.png in Resources */ = {isa = PBXBuildFile; fileRef = D0AE298223E0AFA30087CA92 /* ScreenShots-PortSelector.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		D069649B23E02FAC00D2E39B /* Icon-Terminal.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Icon-Terminal.tiff"; sourceTree = "<group>"; };
 		D06964A123E041DF00D2E39B /* ORSSerialPort.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ORSSerialPort.xcodeproj; path = "Frameworks/ORSSerialPort/Framework Project/ORSSerialPort.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		D06964AF23E06CB600D2E39B /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		D0AE298023E0AF960087CA92 /* ScreenShots-TerminalView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-TerminalView.png"; sourceTree = "<group>"; };
+		D0AE298223E0AFA30087CA92 /* ScreenShots-PortSelector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-PortSelector.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,7 @@
 		D069647723E029D600D2E39B = {
 			isa = PBXGroup;
 			children = (
+				D0AE297C23E0AEAF0087CA92 /* ScreenShots */,
 				D06140C323E09DDA0080F592 /* README.md */,
 				D069648223E029D600D2E39B /* Terminal */,
 				D069648123E029D600D2E39B /* Products */,
@@ -120,6 +125,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0AE297C23E0AEAF0087CA92 /* ScreenShots */ = {
+			isa = PBXGroup;
+			children = (
+				D0AE298023E0AF960087CA92 /* ScreenShots-TerminalView.png */,
+				D0AE298223E0AFA30087CA92 /* ScreenShots-PortSelector.png */,
+			);
+			path = ScreenShots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +221,8 @@
 				D069649D23E02FAC00D2E39B /* Icon-Gimbal.png in Resources */,
 				D069648623E029D600D2E39B /* Assets.xcassets in Resources */,
 				D069649C23E02FAC00D2E39B /* Icon-chassis.png in Resources */,
+				D0AE298323E0AFA30087CA92 /* ScreenShots-PortSelector.png in Resources */,
+				D0AE298123E0AF960087CA92 /* ScreenShots-TerminalView.png in Resources */,
 				D069648923E029D600D2E39B /* MainMenu.xib in Resources */,
 				D069649E23E02FAC00D2E39B /* Icon-Terminal.tiff in Resources */,
 				D04D497623E0A90B00C8510C /* Meta_terminal.icns in Resources */,

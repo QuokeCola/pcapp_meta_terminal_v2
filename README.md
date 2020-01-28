@@ -1,6 +1,10 @@
 # Meta_Terminal_Rebuild
 Using Xcode with Object-C to rebuild the original meta_terminal (Matlab)
 
+## ScreenShots
+![alt text](ScreenShots/ScreenShots-TerminalView.png "Terminal View")
+![alt text](ScreenShots/ScreenShots-PortSelector.png "Port Selector")
+
 ## Tasks
 
 ### Main Frame
