@@ -68,14 +68,53 @@ class MainController: NSObject, ORSSerialPortDelegate {
     
     @IBAction func HelloBtnClk(_ sender: Any) {
         if let port = self.serialPort {
-            let command = "hello\n\r".data(using: String.Encoding.ascii)!
-            let request = ORSSerialRequest(dataToSend: command, userInfo: nil, timeoutInterval: 0.5, responseDescriptor: nil)
-            port.send(request)
+            let command = "hello\r".data(using: String.Encoding.ascii)!
+            port.send(command)
         }
     }
+    @IBAction func StatsBtnClk(_ sender: Any) {
+        if let port = self.serialPort {
+            let command = "stats\r".data(using: String.Encoding.ascii)!
+            port.send(command)
+        }
+    }
+    @IBAction func MemBtnClk(_ sender: Any) {
+        if let port = self.serialPort {
+            let command = "mem\r".data(using: String.Encoding.ascii)!
+            port.send(command)
+        }
+    }
+    @IBAction func SystimeBtnClk(_ sender: Any) {
+        if let port = self.serialPort {
+            let command = "systime\r".data(using: String.Encoding.ascii)!
+            port.send(command)
+        }
+    }
+    @IBAction func ThreadsBtnClk(_ sender: Any) {
+        if let port = self.serialPort {
+            let command = "threads\r".data(using: String.Encoding.ascii)!
+            port.send(command)
+        }
+    }
+    @IBAction func SendBtnClk(_ sender: Any) {
+        if let port = self.serialPort {
+            let commandstr = CommandTextField.stringValue + "\r"
+            let command = commandstr.data(using: String.Encoding.ascii)!
+            port.send(command)
+        }
+    }
+    @IBAction func ReturnPressedinTextField(_ sender: Any) {
+        SendBtnClk(sender)
+    }
+    
+    @IBOutlet weak var CommandTextField: NSTextField!
     @IBOutlet var ShellView: NSTextView!
+    @IBOutlet weak var ShellScroller: NSScrollView!
+    
+    /***--------------------Gimbal Interface-----------------------***/
     
 
+    
     /***--------------------Serial Config-----------------------***/
     @objc let serialPortManager = ORSSerialPortManager.shared()
     @objc dynamic var shouldAddLineEnding = false
@@ -87,7 +126,7 @@ class MainController: NSObject, ORSSerialPortDelegate {
             serialPort?.baudRate = 115200
             serialPort?.parity = .none
             serialPort?.numberOfStopBits = 1
-            serialPort?.usesRTSCTSFlowControl = true
+            serialPort?.usesRTSCTSFlowControl = false
         }
     }
     
@@ -99,24 +138,19 @@ class MainController: NSObject, ORSSerialPortDelegate {
         self.ConnectButton.title = "Connect"
     }
     
-    func serialPort(_ serialPort: ORSSerialPort, didReceiveResponse responseData: Data, to request: ORSSerialRequest) {
-        if let string = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue) {
-            print(string as String)
-            self.ShellView.textStorage?.mutableString.append(string as String)
-            self.ShellView.needsDisplay = true
-        }
-    }
-    
-    func serialPort(_ serialPort: ORSSerialPort, requestDidTimeout request: ORSSerialRequest) {
-        print("Command timed out!")
-    }
-    
+    // serial port recieve action (In a loop)
     func serialPort(_ serialPort: ORSSerialPort, didReceive data: Data) {
-        if let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
-            print(string as String)
-            self.ShellView.textStorage?.mutableString.append(string as String)
-            self.ShellView.needsDisplay = true
+        if (TabViews.selectedTabViewItem == TabViews.tabViewItem(at: 0)) { // Current view is at Terminal
+            if let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
+                print(string as String)
+                self.ShellView.textStorage?.mutableString.append(string as String)
+                self.ShellView.needsDisplay = true
+            }
+            self.ShellView.scrollToEndOfDocument(self.ShellView)
+        } else if(TabViews.selectedTabViewItem == TabViews.tabViewItem(at: 1)) {
+
         }
+        
     }
     
     func serialPortWasRemovedFromSystem(_ serialPort: ORSSerialPort) {
