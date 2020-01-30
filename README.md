@@ -18,11 +18,11 @@ remember `git submodule update --init --recursive` to get ORSSerial Module
 
 - [x]  Real time rx message show
 
-- [ ] Fix the command timeout problem (Command Sent but ORSSerial does not recieve, did not appear in minicom nor old meta-terminal using matlab)
+- [x] Fix the command timeout problem (Command Sent but ORSSerial does not recieve, did not appear in minicom nor old meta-terminal using matlab)
 
-- [ ] Build Terminal
+- [x] Build Terminal
 
-- [ ] Setting up different view
+- [x] Setting up different view
 
 ### Gimbal
 - [ ] Gimbal PID Params Setup
