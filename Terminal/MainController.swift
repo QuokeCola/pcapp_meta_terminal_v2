@@ -45,6 +45,11 @@ class MainController: NSObject, ORSSerialPortDelegate {
         GimbalBackGround.material = NSVisualEffectView.Material.ultraDark
         ChassisBackGround.material = NSVisualEffectView.Material.ultraDark
         TabViews.selectTabViewItem(at: 0)
+        
+        // Stop the Gimbal Chart View.
+        GimbalMainChartView.isPaused = true
+        GimbalSecondChartView.isPaused = true
+        GimbalThirdChartView.isPaused = true
     }
     
     @IBAction func GimbalBtnClk(_ sender: Any) {
@@ -52,13 +57,43 @@ class MainController: NSObject, ORSSerialPortDelegate {
         GimbalBackGround.material = NSVisualEffectView.Material.dark
         ChassisBackGround.material = NSVisualEffectView.Material.ultraDark
         TabViews.selectTabViewItem(at: 1)
+        
+        // Initialize three views
+        yawVelocityChart.scaleMode = .aspectFill
+        yawCurrentChart.scaleMode = .aspectFill
+        yawAngleChart.scaleMode = .aspectFill
+        
+        GimbalMainChartView.showsFPS = true
+        GimbalMainChartView.showsNodeCount = true
+        GimbalSecondChartView.showsFPS = true
+        GimbalSecondChartView.showsNodeCount = true
+        GimbalThirdChartView.showsFPS = true
+        GimbalThirdChartView.showsNodeCount = true
+        
+        // Start the Gimbal Chart View.
+        GimbalMainChartView.isPaused = false
+        GimbalSecondChartView.isPaused = false
+        GimbalThirdChartView.isPaused = false
+        
+        GimbalMainChartView.presentScene(yawVelocityChart)
+        GimbalSecondChartView.presentScene(yawAngleChart)
+        GimbalThirdChartView.presentScene(yawCurrentChart)
+
+
     }
     
     @IBAction func ChassisBtnClk(_ sender: Any) {
+        
+        // Stop the Gimbal Chart View.
+        GimbalMainChartView.isPaused = true
+        GimbalSecondChartView.isPaused = true
+        GimbalThirdChartView.isPaused = true
+        
         TerminalBackGround.material = NSVisualEffectView.Material.ultraDark
         GimbalBackGround.material = NSVisualEffectView.Material.ultraDark
         ChassisBackGround.material = NSVisualEffectView.Material.dark
         TabViews.selectTabViewItem(at: 2)
+        
     }
     
     /***--------------------Terminal Interface-----------------------***/
@@ -73,30 +108,35 @@ class MainController: NSObject, ORSSerialPortDelegate {
             port.send(command)
         }
     }
+    
     @IBAction func StatsBtnClk(_ sender: Any) {
         if let port = self.serialPort {
             let command = "stats\r".data(using: String.Encoding.ascii)!
             port.send(command)
         }
     }
+    
     @IBAction func MemBtnClk(_ sender: Any) {
         if let port = self.serialPort {
             let command = "mem\r".data(using: String.Encoding.ascii)!
             port.send(command)
         }
     }
+    
     @IBAction func SystimeBtnClk(_ sender: Any) {
         if let port = self.serialPort {
             let command = "systime\r".data(using: String.Encoding.ascii)!
             port.send(command)
         }
     }
+    
     @IBAction func ThreadsBtnClk(_ sender: Any) {
         if let port = self.serialPort {
             let command = "threads\r".data(using: String.Encoding.ascii)!
             port.send(command)
         }
     }
+    
     @IBAction func SendBtnClk(_ sender: Any) {
         if let port = self.serialPort {
             let commandstr = CommandTextField.stringValue + "\r"
@@ -104,6 +144,7 @@ class MainController: NSObject, ORSSerialPortDelegate {
             port.send(command)
         }
     }
+    
     @IBAction func ReturnPressedinTextField(_ sender: Any) {
         SendBtnClk(sender)
     }
@@ -114,29 +155,18 @@ class MainController: NSObject, ORSSerialPortDelegate {
     
     /***--------------------Gimbal Interface-----------------------***/
     
-    @IBOutlet weak var MainChartView: SKView!
-    @IBOutlet weak var SecondChartView: SKView!
+    @IBOutlet weak var GimbalMainChartView: SKView!
+    @IBOutlet weak var GimbalSecondChartView: SKView!
+    @IBOutlet weak var GimbalThirdChartView: SKView!
     
     lazy var time = 0
     lazy var testdata: Float = 0.0
     
-    lazy var CurrentChart = PlotChart(size: MainChartView.bounds.size)
-    //lazy var AngleChart = SKScene(size: SecondChartView.bounds.size)
-    @IBAction func MotorEnableBtnClk(_ sender: Any) {
-        CurrentChart.backgroundColor = .blue
-        //AngleChart.backgroundColor = .black
-        MainChartView.showsFPS = true
-        MainChartView.presentScene(CurrentChart)
-    }
-    @IBAction func Btn(_ sender: Any) {
-        //CurrentChart.backgroundColor = .blue
-        //AngleChart.backgroundColor = .black
-        //CurrentChart.size = SecondChartView.bounds.size
-        //AngleChart.size = MainChartView.bounds.size
-        //MainChartView.presentScene(AngleChart)
-        //SecondChartView.presentScene(CurrentChart)
-    }
-    
+    lazy var yawVelocityChart = PlotChart(size: GimbalMainChartView.bounds.size)
+    lazy var yawAngleChart = PlotChart(size: GimbalSecondChartView.bounds.size)
+    lazy var yawCurrentChart = PlotChart(size: GimbalThirdChartView.bounds.size)
+
+
     /***--------------------Serial Config-----------------------***/
     @objc let serialPortManager = ORSSerialPortManager.shared()
     @objc dynamic var shouldAddLineEnding = false

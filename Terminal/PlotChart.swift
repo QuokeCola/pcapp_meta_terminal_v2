@@ -22,6 +22,7 @@ class PlotChart: SKScene {
         self.real_data.push(DataPoint: PlotChart.Points(Data: RealData_, Time: Time_))
         self.dataChanged = true
     }
+    
     /***----------------------Data Plot-----------------------***/
     override func didMove(to view: SKView) {
         if(self.dataChanged) {
