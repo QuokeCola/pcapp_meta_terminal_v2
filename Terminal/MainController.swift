@@ -8,6 +8,7 @@
 
 import Cocoa
 import ORSSerial
+import SpriteKit
 
 class MainController: NSObject, ORSSerialPortDelegate {
     
@@ -113,7 +114,28 @@ class MainController: NSObject, ORSSerialPortDelegate {
     
     /***--------------------Gimbal Interface-----------------------***/
     
-
+    @IBOutlet weak var MainChartView: SKView!
+    @IBOutlet weak var SecondChartView: SKView!
+    
+    lazy var time = 0
+    lazy var testdata: Float = 0.0
+    
+    lazy var CurrentChart = PlotChart(size: MainChartView.bounds.size)
+    //lazy var AngleChart = SKScene(size: SecondChartView.bounds.size)
+    @IBAction func MotorEnableBtnClk(_ sender: Any) {
+        CurrentChart.backgroundColor = .blue
+        //AngleChart.backgroundColor = .black
+        MainChartView.showsFPS = true
+        MainChartView.presentScene(CurrentChart)
+    }
+    @IBAction func Btn(_ sender: Any) {
+        //CurrentChart.backgroundColor = .blue
+        //AngleChart.backgroundColor = .black
+        //CurrentChart.size = SecondChartView.bounds.size
+        //AngleChart.size = MainChartView.bounds.size
+        //MainChartView.presentScene(AngleChart)
+        //SecondChartView.presentScene(CurrentChart)
+    }
     
     /***--------------------Serial Config-----------------------***/
     @objc let serialPortManager = ORSSerialPortManager.shared()
@@ -142,15 +164,12 @@ class MainController: NSObject, ORSSerialPortDelegate {
     func serialPort(_ serialPort: ORSSerialPort, didReceive data: Data) {
         if (TabViews.selectedTabViewItem == TabViews.tabViewItem(at: 0)) { // Current view is at Terminal
             if let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
-                print(string as String)
                 self.ShellView.textStorage?.mutableString.append(string as String)
                 self.ShellView.needsDisplay = true
             }
             self.ShellView.scrollToEndOfDocument(self.ShellView)
         } else if(TabViews.selectedTabViewItem == TabViews.tabViewItem(at: 1)) {
-
         }
-        
     }
     
     func serialPortWasRemovedFromSystem(_ serialPort: ORSSerialPort) {

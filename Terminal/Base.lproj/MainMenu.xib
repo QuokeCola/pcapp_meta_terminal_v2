@@ -21,6 +21,8 @@
                 <outlet property="CommandTextField" destination="9nm-Dz-UtH" id="kby-BW-2Q7"/>
                 <outlet property="ConnectButton" destination="AYb-88-C1G" id="ssi-Uh-Y4v"/>
                 <outlet property="GimbalBackGround" destination="oBO-A9-zsR" id="eDO-Xo-H1L"/>
+                <outlet property="MainChartView" destination="4rd-d5-Gqr" id="0bg-Oh-e4T"/>
+                <outlet property="SecondChartView" destination="eJ2-xR-eYe" id="tYA-lt-2at"/>
                 <outlet property="ShellScroller" destination="38G-Dc-okx" id="osN-Cs-eNm"/>
                 <outlet property="ShellView" destination="E9w-dF-MJi" id="Y1w-cR-Uzb"/>
                 <outlet property="TabViews" destination="Ip1-8O-QCx" id="rLe-1U-qks"/>
@@ -808,7 +810,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Terminal" identifier="Terminal" id="Okh-Gv-lyC">
-                                <view key="view" ambiguous="YES" id="Ix2-nd-ZH7">
+                                <view key="view" id="Ix2-nd-ZH7">
                                     <rect key="frame" x="0.0" y="0.0" width="906" height="699"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -929,7 +931,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Gimbal" identifier="Gimbal" id="gFG-2f-mPd">
-                                <view key="view" id="K4P-ig-anV">
+                                <view key="view" ambiguous="YES" id="K4P-ig-anV">
                                     <rect key="frame" x="0.0" y="0.0" width="906" height="699"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -947,6 +949,9 @@
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
+                                                        <connections>
+                                                            <action selector="MotorEnableBtnClk:" target="njD-zZ-H8I" id="PwI-oK-wWD"/>
+                                                        </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFd-OP-hmQ">
                                                         <rect key="frame" x="109" y="49" width="128" height="32"/>
@@ -963,6 +968,9 @@
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
+                                                        <connections>
+                                                            <action selector="Btn:" target="njD-zZ-H8I" id="lRe-sD-VeQ"/>
+                                                        </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fZE-26-ahA">
                                                         <rect key="frame" x="14" y="49" width="95" height="32"/>
@@ -1059,6 +1067,14 @@
                                                 </subviews>
                                             </view>
                                         </box>
+                                        <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4rd-d5-Gqr" customClass="SKView">
+                                            <rect key="frame" x="27" y="35" width="568" height="516"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                        </customView>
+                                        <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eJ2-xR-eYe" customClass="SKView">
+                                            <rect key="frame" x="621" y="367" width="265" height="184"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        </customView>
                                     </subviews>
                                 </view>
                             </tabViewItem>

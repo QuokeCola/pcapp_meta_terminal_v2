@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D04D497623E0A90B00C8510C /* Meta_terminal.icns in Resources */ = {isa = PBXBuildFile; fileRef = D04D497423E0A90B00C8510C /* Meta_terminal.icns */; };
+		D059372D23E29BBB00B530B0 /* PlotChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D059372C23E29BBB00B530B0 /* PlotChart.swift */; };
 		D069648423E029D600D2E39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069648323E029D600D2E39B /* AppDelegate.swift */; };
 		D069648623E029D600D2E39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D069648523E029D600D2E39B /* Assets.xcassets */; };
 		D069648923E029D600D2E39B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D069648723E029D600D2E39B /* MainMenu.xib */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		D04D497423E0A90B00C8510C /* Meta_terminal.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Meta_terminal.icns; sourceTree = "<group>"; };
+		D059372C23E29BBB00B530B0 /* PlotChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotChart.swift; sourceTree = "<group>"; };
 		D06140C323E09DDA0080F592 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D069648023E029D600D2E39B /* Terminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Terminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D069648323E029D600D2E39B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				D069649B23E02FAC00D2E39B /* Icon-Terminal.tiff */,
 				D069648A23E029D600D2E39B /* Info.plist */,
 				D069648B23E029D600D2E39B /* Terminal.entitlements */,
+				D059372C23E29BBB00B530B0 /* PlotChart.swift */,
 			);
 			path = Terminal;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D06964B023E06CB600D2E39B /* MainController.swift in Sources */,
+				D059372D23E29BBB00B530B0 /* PlotChart.swift in Sources */,
 				D069648423E029D600D2E39B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
