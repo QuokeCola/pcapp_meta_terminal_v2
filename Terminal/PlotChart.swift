@@ -69,7 +69,7 @@ class PlotChart: SKScene {
         self.dataChanged = false
     }
     
-    /***----------------------Add Data------------------------***/
+    /***----------------------Data Management------------------------***/
     func AddData(RealData_: Float, TargetData_: Float, Time_: Int) {
         if(self.target_data.isFull()){
             self.target_data.pop()
@@ -78,6 +78,13 @@ class PlotChart: SKScene {
         self.target_data.push(DataPoint: PlotChart.Points(Data: TargetData_, Time: Time_))
         self.real_data.push(DataPoint: PlotChart.Points(Data: RealData_, Time: Time_))
         self.dataChanged = true
+    }
+    
+    func ClearData() {
+        while(!self.target_data.isEmpty()) {
+            self.target_data.pop()
+            self.real_data.pop()
+        }
     }
     
     /***--------------------Data Storage----------------------***/
