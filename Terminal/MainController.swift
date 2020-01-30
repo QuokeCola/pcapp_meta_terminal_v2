@@ -27,7 +27,6 @@ class MainController: NSObject, ORSSerialPortDelegate {
     
     @IBAction func ConnectButtonClk(_ sender: Any) {
         if let port = self.serialPort {
-            print(port.isOpen)
             if(port.isOpen == true) {
                 port.close()
                 port.delegate = nil
@@ -159,8 +158,10 @@ class MainController: NSObject, ORSSerialPortDelegate {
     @IBOutlet weak var GimbalSecondChartView: SKView!
     @IBOutlet weak var GimbalThirdChartView: SKView!
     
+    // TODO: remove these test data
     lazy var time = 0
     lazy var testdata: Float = 0.0
+    // to here
     
     lazy var yawVelocityChart = PlotChart(size: GimbalMainChartView.bounds.size)
     lazy var yawAngleChart = PlotChart(size: GimbalSecondChartView.bounds.size)
@@ -199,6 +200,13 @@ class MainController: NSObject, ORSSerialPortDelegate {
             }
             self.ShellView.scrollToEndOfDocument(self.ShellView)
         } else if(TabViews.selectedTabViewItem == TabViews.tabViewItem(at: 1)) {
+            // This is only for test
+            time += 100
+            testdata = Float(time/100 % 100)
+            // TODO: Add feedback data reveal here
+            yawVelocityChart.AddData(RealData_: testdata, TargetData_: 50, Time_: time)
+            yawAngleChart.AddData(RealData_: testdata, TargetData_: 50, Time_: time)
+            yawCurrentChart.AddData(RealData_: testdata, TargetData_: 50, Time_: time)
         }
     }
     

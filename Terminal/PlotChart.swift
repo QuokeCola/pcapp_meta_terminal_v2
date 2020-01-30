@@ -11,8 +11,65 @@ import SpriteKit
 
 class PlotChart: SKScene {
     
+    /***----------------------Data Plot-----------------------***/
     
-    /***----------------------Data Add------------------------***/
+    // Initialize the plot
+    override func didMove(to view: SKView) {
+        self.backgroundColor = SKColor.white
+        self.dataChanged = false
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        
+        let realdatapath = CGMutablePath()
+        let targetdatapath = CGMutablePath()
+        // Initialize
+        removeAllChildren()
+        // Set start point
+        let realdata = real_data.getData()
+        let targetdata = target_data.getData()
+            
+        // Plot data, add time scale later
+        if(realdata.count != 0){
+            // Get data
+            
+            let latest_data = realdata[0]
+            var index = 0
+            realdatapath.move(to: CGPoint(x: 0.0, y: 0.0))
+            targetdatapath.move(to: CGPoint(x: 0.0, y: 0.0))
+            
+            while (latest_data.Time - realdata[index].Time < time_reveal && index < realdata.count - 1) {
+                let pointx = CGFloat(Float((realdata[index].Time) - latest_data.Time)/Float(time_reveal)) * self.size.width
+                
+                let realdatapointy = CGFloat((realdata[index].Data)/Float(Max_Value)) * self.size.height
+                let targetdatapointy = CGFloat((targetdata[index].Data)/Float(Max_Value)) * self.size.height
+                
+                let realdatapoint = CGPoint(x: pointx, y: realdatapointy)
+                let targetdatapoint = CGPoint(x: pointx, y: targetdatapointy)
+                realdatapath.addLine(to: realdatapoint)
+                targetdatapath.addLine(to: targetdatapoint)
+                index = index + 1
+            }
+        }
+        // Set line Style
+        let realdatachartpath = SKShapeNode(path: realdatapath)
+        realdatachartpath.lineWidth = 2
+        realdatachartpath.strokeColor = .systemBlue
+        
+        let targetdatachartpath = SKShapeNode(path: targetdatapath)
+        targetdatachartpath.lineWidth = 2
+        targetdatachartpath.strokeColor = .systemOrange
+        
+        // Show path
+        addChild(realdatachartpath)
+        addChild(targetdatachartpath)
+        
+        realdatachartpath.position = CGPoint(x: 0, y: 0)
+        targetdatachartpath.position = CGPoint(x: 0, y: 0)
+        self.dataChanged = false
+    }
+    
+    /***----------------------Add Data------------------------***/
     func AddData(RealData_: Float, TargetData_: Float, Time_: Int) {
         if(self.target_data.isFull()){
             self.target_data.pop()
@@ -23,19 +80,10 @@ class PlotChart: SKScene {
         self.dataChanged = true
     }
     
-    /***----------------------Data Plot-----------------------***/
-    override func didMove(to view: SKView) {
-        if(self.dataChanged) {
-            
-            self.dataChanged = false
-            print("datachanged")
-        }
-    }
-    override func update(_ currentTime: TimeInterval) {
-        
-    }
     /***--------------------Data Storage----------------------***/
     
+    var time_reveal = 20000
+    var Max_Value = 200
     var dataChanged: Bool = false
     // A Basic Point
     struct Points {
@@ -111,6 +159,6 @@ class PlotChart: SKScene {
         }
     }
     // Two Data Variables Stored
-    var real_data = Data(300)
-    var target_data = Data(300)
+    var real_data = Data(1000)
+    var target_data = Data(1000)
 }
