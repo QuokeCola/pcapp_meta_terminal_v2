@@ -99,6 +99,9 @@ class MainController: NSObject, ORSSerialPortDelegate {
     
     @IBAction func ShellClearBtnClk(_ sender: Any) {
         ShellView.string = ""
+        yawAngleChart.ClearData()
+        yawVelocityChart.ClearData()
+        yawCurrentChart.ClearData()
     }
     
     @IBAction func HelloBtnClk(_ sender: Any) {

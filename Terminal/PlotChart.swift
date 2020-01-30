@@ -29,18 +29,20 @@ class PlotChart: SKScene {
         let realdata = real_data.getData()
         let targetdata = target_data.getData()
         
-        var ABS_Datarange = self.dataRange.MaxValue - self.dataRange.MinValue
+        let ABS_Datarange = self.dataRange.MaxValue - self.dataRange.MinValue
         
         // Plot data, add time scale later
         if(realdata.count != 0){
-            // Get data
             
+            // Get data
             let latest_data = realdata[realdata.count-1]
+            
+            // Initialize Inedex and paths
             var index = realdata.count - 1
             realdatapath.move(to: CGPoint(x: self.size.width, y: 0.0))
             targetdatapath.move(to: CGPoint(x: self.size.width, y: 0.0))
             
-            while (latest_data.Time - realdata[index].Time < time_reveal && index > 0) {
+            while (abs(latest_data.Time - realdata[index].Time) < time_reveal && index > 0) {
                 
                 let pointx = CGFloat(Float((realdata[index].Time) - latest_data.Time)/Float(time_reveal)) * self.size.width + self.size.width
                 print(pointx)
@@ -84,10 +86,13 @@ class PlotChart: SKScene {
     }
     
     func ClearData() {
-        while(!self.target_data.isEmpty()) {
-            self.target_data.pop()
-            self.real_data.pop()
-        }
+        // initialize the datasets
+        self.target_data.front = 0
+        self.target_data.rear = -1
+        self.target_data.size = 0
+        self.real_data.front = 0
+        self.real_data.rear = -1
+        self.real_data.size = 0
     }
     
     /***--------------------Data Storage----------------------***/
