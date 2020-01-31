@@ -89,12 +89,15 @@ class MainController: NSObject, ORSSerialPortDelegate {
         GimbalSecondChartView.isPaused = false
         GimbalThirdChartView.isPaused = false
         
-        GimbalMainChartView.presentScene(yawVelocityChart)
-        GimbalSecondChartView.presentScene(yawAngleChart)
-        GimbalThirdChartView.presentScene(yawCurrentChart)
-
+        selectGimbalViews()
         if let port = self.serialPort {
-            let command = "g_enable_fb 1 0\r".data(using: String.Encoding.ascii)!
+            var commandString = "g_enable_fb 0 0\r"
+            if(MotorSelector.selectedItem == MotorSelector.item(at: 0)) {
+                commandString = "g_enable_fb 1 0\r"
+            } else if(MotorSelector.selectedItem == MotorSelector.item(at: 1)){
+                commandString = "g_enable_fb 0 1\r"
+            }
+            let command = commandString.data(using: String.Encoding.ascii)!
             port.send(command)
         }
     }
