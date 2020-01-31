@@ -4,6 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
@@ -24,6 +25,9 @@
                 <outlet property="GimbalMainChartView" destination="4rd-d5-Gqr" id="0bg-Oh-e4T"/>
                 <outlet property="GimbalSecondChartView" destination="eJ2-xR-eYe" id="tYA-lt-2at"/>
                 <outlet property="GimbalThirdChartView" destination="fs5-YG-j7C" id="eBv-CZ-kvp"/>
+                <outlet property="MainViewSelector" destination="aNI-h4-Zmd" id="aZI-v7-pX9"/>
+                <outlet property="MotorSelector" destination="oEb-oZ-PAY" id="wRW-Cb-TeX"/>
+                <outlet property="PIDSelector" destination="aNI-h4-Zmd" id="1r9-b7-mTw"/>
                 <outlet property="ShellScroller" destination="38G-Dc-okx" id="osN-Cs-eNm"/>
                 <outlet property="ShellView" destination="E9w-dF-MJi" id="Y1w-cR-Uzb"/>
                 <outlet property="TabViews" destination="Ip1-8O-QCx" id="rLe-1U-qks"/>
@@ -838,50 +842,76 @@
                                                 <action selector="SendBtnClk:" target="njD-zZ-H8I" id="gw5-6d-Kd8"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VY2-Rm-ecu">
-                                            <rect key="frame" x="14" y="13" width="82" height="32"/>
+                                        <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bzJ-Ls-69x">
+                                            <rect key="frame" x="20" y="20" width="361" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Hello" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NlG-3b-M3M">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="HelloBtnClk:" target="njD-zZ-H8I" id="q4F-Gg-RIc"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5g-gT-e6B">
-                                            <rect key="frame" x="96" y="13" width="82" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Stats" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GVH-op-Zs8">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="StatsBtnClk:" target="njD-zZ-H8I" id="LNe-Pp-1VV"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T9s-58-WiG">
-                                            <rect key="frame" x="728" y="13" width="82" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Systime" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ytv-kw-2lA">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="SystimeBtnClk:" target="njD-zZ-H8I" id="5JC-dV-zZr"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rgz-jb-y4o">
-                                            <rect key="frame" x="810" y="13" width="82" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                            <buttonCell key="cell" type="push" title="threads" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NJI-Bd-hbJ">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="ThreadsBtnClk:" target="njD-zZ-H8I" id="7jk-Ca-qyF"/>
-                                            </connections>
-                                        </button>
+                                            <subviews>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VY2-Rm-ecu">
+                                                    <rect key="frame" x="-6" y="-7" width="71" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Hello" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NlG-3b-M3M">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="HelloBtnClk:" target="njD-zZ-H8I" id="q4F-Gg-RIc"/>
+                                                    </connections>
+                                                </button>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c5g-gT-e6B">
+                                                    <rect key="frame" x="61" y="-7" width="72" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Stats" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GVH-op-Zs8">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="StatsBtnClk:" target="njD-zZ-H8I" id="LNe-Pp-1VV"/>
+                                                    </connections>
+                                                </button>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oIE-sw-K3g">
+                                                    <rect key="frame" x="129" y="-7" width="70" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Mem" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nyP-nZ-StY">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="MemBtnClk:" target="njD-zZ-H8I" id="YwO-IZ-ieh"/>
+                                                    </connections>
+                                                </button>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T9s-58-WiG">
+                                                    <rect key="frame" x="195" y="-7" width="89" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Systime" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ytv-kw-2lA">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="SystimeBtnClk:" target="njD-zZ-H8I" id="5JC-dV-zZr"/>
+                                                    </connections>
+                                                </button>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rgz-jb-y4o">
+                                                    <rect key="frame" x="280" y="-7" width="87" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="threads" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NJI-Bd-hbJ">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="ThreadsBtnClk:" target="njD-zZ-H8I" id="7jk-Ca-qyF"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <visibilityPriorities>
+                                                <integer value="1000"/>
+                                                <integer value="1000"/>
+                                                <integer value="1000"/>
+                                                <integer value="1000"/>
+                                                <real value="1000"/>
+                                            </visibilityPriorities>
+                                            <customSpacing>
+                                                <real value="3.4028234663852886e+38"/>
+                                                <real value="3.4028234663852886e+38"/>
+                                                <real value="3.4028234663852886e+38"/>
+                                                <real value="3.4028234663852886e+38"/>
+                                                <real value="3.4028234663852886e+38"/>
+                                            </customSpacing>
+                                        </stackView>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mmf-Af-Lqs">
                                             <rect key="frame" x="774" y="653" width="118" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -920,17 +950,6 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oIE-sw-K3g">
-                                            <rect key="frame" x="412" y="13" width="82" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Mem" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nyP-nZ-StY">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="MemBtnClk:" target="njD-zZ-H8I" id="YwO-IZ-ieh"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -1002,6 +1021,9 @@
                                                                 </items>
                                                             </menu>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <action selector="MotorSelect:" target="njD-zZ-H8I" id="nqg-oj-ZEb"/>
+                                                        </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNI-h4-Zmd">
                                                         <rect key="frame" x="18" y="17" width="110" height="26"/>
@@ -1019,6 +1041,9 @@
                                                                 </items>
                                                             </menu>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <action selector="PIDSelect:" target="njD-zZ-H8I" id="Wdl-gm-wIB"/>
+                                                        </connections>
                                                     </popUpButton>
                                                 </subviews>
                                             </view>

@@ -17,6 +17,7 @@ class PlotChart: SKScene {
     override func didMove(to view: SKView) {
         self.backgroundColor = SKColor.white
         self.dataChanged = false
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -45,7 +46,6 @@ class PlotChart: SKScene {
             while (abs(latest_data.Time - realdata[index].Time) < time_reveal && index > 0) {
                 
                 let pointx = CGFloat(Float((realdata[index].Time) - latest_data.Time)/Float(time_reveal)) * self.size.width + self.size.width
-                print(pointx)
                 let realdatapointy = CGFloat((realdata[index].Data)/Float(ABS_Datarange)) * self.size.height
                 let targetdatapointy = CGFloat((targetdata[index].Data)/Float(ABS_Datarange)) * self.size.height
                 
@@ -58,19 +58,29 @@ class PlotChart: SKScene {
         }
         // Set line Style
         let realdatachartpath = SKShapeNode(path: realdatapath)
-        realdatachartpath.lineWidth = 2
+        realdatachartpath.lineWidth = 1
         realdatachartpath.strokeColor = .systemBlue
         
         let targetdatachartpath = SKShapeNode(path: targetdatapath)
-        targetdatachartpath.lineWidth = 2
+        targetdatachartpath.lineWidth = 1
         targetdatachartpath.strokeColor = .systemOrange
+        
+        let titlebar = SKLabelNode(text: title)
+        titlebar.verticalAlignmentMode = .bottom;
+        titlebar.horizontalAlignmentMode = .left
+        titlebar.fontColor = SKColor.black
+        titlebar.fontName = "System Regular"
+        titlebar.fontSize = 10
+        titlebar.position = CGPoint(x: 5.0, y: 3.0)
+        addChild(titlebar)
         
         // Show path
         addChild(realdatachartpath)
         addChild(targetdatachartpath)
-        
+
         realdatachartpath.position = CGPoint(x: 0, y: self.size.height*0.5)
         targetdatachartpath.position = CGPoint(x: 0, y: self.size.height*0.5)
+
         self.dataChanged = false
     }
     
@@ -97,6 +107,7 @@ class PlotChart: SKScene {
     
     /***--------------------Data Storage----------------------***/
     
+    var title = "chart"
     var time_reveal = 20000
     var dataChanged: Bool = false
     struct dataRange_t {
