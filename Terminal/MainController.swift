@@ -312,6 +312,17 @@ class MainController: NSObject, ORSSerialPortDelegate {
             }
         }
     }
+    var YAWTargetVelocityCell = [NSCell]()
+    @IBOutlet weak var targetContent: NSTextField!
+    @IBOutlet weak var targetTime: NSTextField!
+    @IBOutlet weak var targetDataStorageColumn: NSTableColumn!
+    
+    @IBOutlet weak var TableView: NSTableView!
+    @IBAction func addTargetBtnClk(_ sender: Any) {
+        if let TargetData = Float(targetContent.stringValue) {
+            TableView.dataSource = 
+        }
+    }
     
     struct PIDParams_t {
         var kp: Float
