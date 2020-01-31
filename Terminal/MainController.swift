@@ -306,9 +306,9 @@ class MainController: NSObject, ORSSerialPortDelegate {
                 yawCurrentChart.time_reveal = revealTime * 1000
                 yawVelocityChart.time_reveal = revealTime * 1000
                 
-                pitchAngleChart.time_reveal = revealTime
-                pitchCurrentChart.time_reveal = revealTime
-                pitchVelocityChart.time_reveal = revealTime
+                pitchAngleChart.time_reveal = revealTime * 1000
+                pitchCurrentChart.time_reveal = revealTime * 1000
+                pitchVelocityChart.time_reveal = revealTime * 1000
             }
         }
     }
