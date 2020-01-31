@@ -304,6 +304,21 @@ class MainController: NSObject, ORSSerialPortDelegate {
         
     }
     
+    @IBOutlet weak var RevealTime: NSTextField!
+    @IBAction func SetTime(_ sender: Any) {
+        if(isPureFloat(string: RevealTime.stringValue)) {
+            if let revealTime = Int(RevealTime.stringValue) {
+                
+                yawAngleChart.time_reveal = revealTime * 1000
+                yawCurrentChart.time_reveal = revealTime * 1000
+                yawVelocityChart.time_reveal = revealTime * 1000
+                
+                pitchAngleChart.time_reveal = revealTime
+                pitchCurrentChart.time_reveal = revealTime
+                pitchVelocityChart.time_reveal = revealTime
+            }
+        }
+    }
     /***--------------------Serial Config-----------------------***/
     @objc let serialPortManager = ORSSerialPortManager.shared()
     @objc dynamic var shouldAddLineEnding = false
