@@ -6,6 +6,7 @@ remember `git submodule update --init --recursive` to get ORSSerial Module
 ## ScreenShots
 ![alt text](ScreenShots/ScreenShots-TerminalView.png "Terminal View")
 ![alt text](ScreenShots/ScreenShots-PortSelector.png "Port Selector")
+![alt text](ScreenShots/ScreenShots-PlotViews "Port Selector")
 
 ## Tasks
 
@@ -27,7 +28,7 @@ remember `git submodule update --init --recursive` to get ORSSerial Module
 ### Gimbal
 - [ ] Gimbal PID Params Setup
 
-- [ ] Gimbal Curve
+- [x] Gimbal Curve
 
 ### Chassis
 - [ ] Chassis Motor PID Params Setup, respectively

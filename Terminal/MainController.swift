@@ -206,15 +206,37 @@ class MainController: NSObject, ORSSerialPortDelegate {
             }
         }
         // switch Views
-        selectViews()
+        selectGimbalViews()
     }
     @IBOutlet weak var PIDSelector: NSPopUpButton!
     
     @IBAction func PIDSelect(_ sender: Any) {
-        selectViews()
+        selectGimbalViews()
     }
     
-    func selectViews() {
+    @IBOutlet weak var EnableAHRSBtn: NSButton!
+    
+    @IBAction func EnableAHRSBtnClk(_ sender: Any) {
+        var commandString: String
+        if let port = serialPort {
+            if(EnableAHRSBtn.state == .on) {
+                commandString = "g_ahrs_e 1\r\n"
+            } else {
+                commandString = "g_ahrs_e 0\r\n"
+            }
+            let command = commandString.data(using: String.Encoding.ascii)!
+            port.send(command)
+        }
+    }
+    
+    @IBAction func SetFrontABtnClk(_ sender: Any) {
+        if let port = serialPort {
+            let command = "g_fix\r\n".data(using: String.Encoding.ascii)!
+            port.send(command)
+        }
+    }
+    
+    func selectGimbalViews() {
         if (MotorSelector.selectedItem == MotorSelector.item(at: 0)) {  // YAW
             if (PIDSelector.selectedItem == PIDSelector.item(at: 0)) {
                 

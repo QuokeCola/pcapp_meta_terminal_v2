@@ -60,6 +60,7 @@
 		D069649B23E02FAC00D2E39B /* Icon-Terminal.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Icon-Terminal.tiff"; sourceTree = "<group>"; };
 		D06964A123E041DF00D2E39B /* ORSSerialPort.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ORSSerialPort.xcodeproj; path = "Frameworks/ORSSerialPort/Framework Project/ORSSerialPort.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		D06964AF23E06CB600D2E39B /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		D06A8FE823E4054B00232FE4 /* ScreenShots-PlotViews.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-PlotViews.png"; sourceTree = "<group>"; };
 		D0AE298023E0AF960087CA92 /* ScreenShots-TerminalView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-TerminalView.png"; sourceTree = "<group>"; };
 		D0AE298223E0AFA30087CA92 /* ScreenShots-PortSelector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-PortSelector.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +136,7 @@
 			children = (
 				D0AE298023E0AF960087CA92 /* ScreenShots-TerminalView.png */,
 				D0AE298223E0AFA30087CA92 /* ScreenShots-PortSelector.png */,
+				D06A8FE823E4054B00232FE4 /* ScreenShots-PlotViews.png */,
 			);
 			path = ScreenShots;
 			sourceTree = "<group>";
@@ -396,6 +398,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Meta.Terminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
@@ -417,6 +420,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Meta.Terminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
