@@ -77,13 +77,6 @@ class MainController: NSObject, ORSSerialPortDelegate {
         pitchAngleChart.title = "Angle"
         pitchCurrentChart.title = "Current"
         
-        GimbalMainChartView.showsFPS = true
-        GimbalMainChartView.showsNodeCount = true
-        GimbalSecondChartView.showsFPS = true
-        GimbalSecondChartView.showsNodeCount = true
-        GimbalThirdChartView.showsFPS = true
-        GimbalThirdChartView.showsNodeCount = true
-        
         // Start the Gimbal Chart View.
         GimbalMainChartView.isPaused = false
         GimbalSecondChartView.isPaused = false
@@ -318,6 +311,14 @@ class MainController: NSObject, ORSSerialPortDelegate {
                 pitchVelocityChart.time_reveal = revealTime
             }
         }
+    }
+    
+    struct PIDParams_t {
+        var kp: Float
+        var ki: Float
+        var kd: Float
+        var i_limit: Float
+        var out_limit: Float
     }
     /***--------------------Serial Config-----------------------***/
     @objc let serialPortManager = ORSSerialPortManager.shared()

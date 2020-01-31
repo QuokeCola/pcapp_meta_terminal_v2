@@ -83,7 +83,7 @@ class PlotChart: SKScene {
         // Plot the chart background
         let basic_line_digit = String(Int(dataRange.ABSDataRange())).count
         var basic_seperation: Double = 1
-        if(dataRange.ABSDataRange()/pow(10.0, Float(basic_line_digit-1)) > 2.0) {
+        if(dataRange.ABSDataRange()/pow(10.0, Float(basic_line_digit-1)) > 3.0) {
             basic_seperation = pow(Double(10), Double(basic_line_digit - 1))
         } else {
             basic_seperation = pow(Double(10), Double(basic_line_digit - 2))
