@@ -10,10 +10,7 @@ import Cocoa
 import ORSSerial
 import SpriteKit
 
-class MainController: NSObject, ORSSerialPortDelegate {
-    
-
-    @IBOutlet weak var window: NSWindow!
+class MainController: NSWindow, ORSSerialPortDelegate {
     
     @IBOutlet weak var ConnectButton: NSButton!
     

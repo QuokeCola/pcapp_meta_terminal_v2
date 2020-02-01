@@ -11,13 +11,13 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    @IBOutlet weak var window: NSWindow!
+    @IBOutlet weak var window: MainController!
     /***--------------------Initialzie-----------------------***/
     func applicationDidFinishLaunching(_ aNotification: Notification) {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        window.updateTargetData()// Insert code here to tear down your application
     }
 }
 
