@@ -30,7 +30,12 @@ class TargetTableView: NSTableView {
     
     func swapData(originalIndex: Int, newIndex: Int){
         self.delegate = nil
-        Data.insert(Data[originalIndex], at: newIndex)
+        if(newIndex == Data.count - 1) {
+            Data.append(Data[originalIndex])
+        } else {
+            Data.insert(Data[originalIndex], at: newIndex)
+        }
+
         if(originalIndex > newIndex) {
             Data.remove(at: originalIndex + 1)
         } else {
@@ -85,6 +90,8 @@ extension TargetTableView: NSTableViewDataSource {
         if originalRow < newRow {
             newRow = row - 1
         }
+        print(row)
+        print(newRow)
         tableView.beginUpdates()
         tableView.moveRow(at: originalRow, to: newRow)
         tableView.endUpdates()
