@@ -9,8 +9,7 @@
 import Cocoa
 
 class TargetTableView: NSTableView {
-//    let kUTTypePlainText: CFString
-//    let dataPasteBoardType = NSPasteboard.PasteboardType(rawValue: "kUTTypePlainText")
+    
     private var dataPasteBoardType = NSPasteboard.PasteboardType(rawValue: "private.TargetTableRow")
     struct targetData_t {
         var Target: Float
@@ -28,7 +27,7 @@ class TargetTableView: NSTableView {
         self.reloadData()
     }
     
-    func swapData(originalIndex: Int, newIndex: Int){
+    fileprivate func swapData(originalIndex: Int, newIndex: Int){
         self.delegate = nil
         if(newIndex == Data.count - 1) {
             Data.append(Data[originalIndex])
@@ -90,8 +89,6 @@ extension TargetTableView: NSTableViewDataSource {
         if originalRow < newRow {
             newRow = row - 1
         }
-        print(row)
-        print(newRow)
         tableView.beginUpdates()
         tableView.moveRow(at: originalRow, to: newRow)
         tableView.endUpdates()

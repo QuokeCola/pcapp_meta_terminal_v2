@@ -203,7 +203,6 @@ class MainController: NSWindow, ORSSerialPortDelegate {
     }
     
     @IBOutlet weak var EnableAHRSBtn: NSButton!
-    
     @IBAction func EnableAHRSBtnClk(_ sender: Any) {
         var commandString: String
         if let port = serialPort {
@@ -223,9 +222,9 @@ class MainController: NSWindow, ORSSerialPortDelegate {
             port.send(command)
         }
     }
+    
     var yawTargetAngleData = [TargetTableView.targetData_t]()
     var yawTargetVelocityData = [TargetTableView.targetData_t]()
-    
     var pitchTargetAngleData = [TargetTableView.targetData_t]()
     var pitchTargetVelocityData = [TargetTableView.targetData_t]()
     
