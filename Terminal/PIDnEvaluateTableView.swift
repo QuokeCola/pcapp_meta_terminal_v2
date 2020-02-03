@@ -12,41 +12,119 @@ class PIDnEvaluateTableView: NSTableView {
 
     private var dataPasteBoardType = NSPasteboard.PasteboardType(rawValue: "private.PIDTableRow")
     
+    enum DataIdentifier_t {
+        case YAWV
+        case YAWA
+        case PITCHV
+        case PITCHA
+    }
+    
+    var dataIdentifier: DataIdentifier_t = DataIdentifier_t.YAWV
+    
     struct PIDnEvalData_t {
         var pidparam: MainController.PIDParams_t
         var StandardDifference: Float
         var AverageDifference: Float
     }
-    fileprivate var Data = [PIDnEvalData_t]()
+    fileprivate var yawVelocityData = [PIDnEvalData_t]()
+    fileprivate var pitchVelocityData = [PIDnEvalData_t]()
+    fileprivate var yawAngleData = [PIDnEvalData_t]()
+    fileprivate var pitchAngleData = [PIDnEvalData_t]()
     
+    func switchDataSource(identifier: DataIdentifier_t) {
+        self.dataIdentifier = identifier
+        self.reloadData()
+    }
     func addData(DataItem: PIDnEvalData_t) {
-        Data.append(DataItem)
+        switch dataIdentifier {
+        case .YAWV:
+            self.yawVelocityData.append(DataItem)
+        case .YAWA:
+            self.yawAngleData.append(DataItem)
+        case .PITCHV:
+            self.pitchVelocityData.append(DataItem)
+        case .PITCHA:
+            self.pitchAngleData.append(DataItem)
+        }
         self.reloadData()
     }
     
-    func loadData(DataSource: Array<PIDnEvalData_t>) {
-        Data = DataSource
+    func loadData(DataSource: Array<PIDnEvalData_t>, DataTarget: DataIdentifier_t) {
+        switch DataTarget {
+        case .YAWV:
+            self.yawVelocityData = DataSource
+        case .YAWA:
+            self.yawAngleData = DataSource
+        case .PITCHV:
+            self.pitchVelocityData = DataSource
+        case .PITCHA:
+            self.pitchAngleData = DataSource
+        }
         self.reloadData()
     }
     
     fileprivate func swapData(originalIndex: Int, newIndex: Int) {
         self.delegate = nil
-        if(newIndex == Data.count - 1) {
-            Data.append(Data[originalIndex])
-        } else {
-            Data.insert(Data[originalIndex], at: newIndex)
+        switch dataIdentifier {
+        case .YAWV:
+            if(newIndex == yawVelocityData.count - 1) {
+                yawVelocityData.append(yawVelocityData[originalIndex])
+            } else {
+                yawVelocityData.insert(yawVelocityData[originalIndex], at: newIndex)
+            }
+            if(originalIndex > newIndex) {
+                yawVelocityData.remove(at: originalIndex + 1)
+            } else {
+                yawVelocityData.remove(at: originalIndex)
+            }
+        case .YAWA:
+            if(newIndex == yawAngleData.count - 1) {
+                yawAngleData.append(yawAngleData[originalIndex])
+            } else {
+                yawAngleData.insert(yawAngleData[originalIndex], at: newIndex)
+            }
+            if(originalIndex > newIndex) {
+                yawAngleData.remove(at: originalIndex + 1)
+            } else {
+                yawAngleData.remove(at: originalIndex)
+            }
+        case .PITCHV:
+            if(newIndex == pitchVelocityData.count - 1) {
+                pitchVelocityData.append(pitchVelocityData[originalIndex])
+            } else {
+                pitchVelocityData.insert(pitchVelocityData[originalIndex], at: newIndex)
+            }
+            if(originalIndex > newIndex) {
+                pitchVelocityData.remove(at: originalIndex + 1)
+            } else {
+                pitchVelocityData.remove(at: originalIndex)
+            }
+        case .PITCHA:
+            if(newIndex == pitchAngleData.count - 1) {
+                pitchAngleData.append(pitchAngleData[originalIndex])
+            } else {
+                pitchAngleData.insert(pitchAngleData[originalIndex], at: newIndex)
+            }
+            if(originalIndex > newIndex) {
+                pitchAngleData.remove(at: originalIndex + 1)
+            } else {
+                pitchAngleData.remove(at: originalIndex)
+            }
         }
-        if(originalIndex > newIndex) {
-            Data.remove(at: originalIndex + 1)
-        } else {
-            Data.remove(at: originalIndex)
-        }
-        
         self.delegate = self
         self.reloadData()
     }
     func returnData() -> Array<PIDnEvalData_t> {
-        return Data
+        switch dataIdentifier {
+        case .YAWV:
+            return self.yawVelocityData
+        case .YAWA:
+            return self.yawAngleData
+        case .PITCHV:
+            return self.pitchVelocityData
+        case .PITCHA:
+            return self.pitchAngleData
+        }
     }
     
     override func draw(_ dirtyRect: NSRect) {
@@ -56,15 +134,27 @@ class PIDnEvaluateTableView: NSTableView {
         self.registerForDraggedTypes([dataPasteBoardType])
         // Drawing code here.
     }
-    
 }
+
 extension PIDnEvaluateTableView: NSTableViewDataSource {
+    
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return Data.count
+        switch dataIdentifier {
+        case .YAWV:
+            return self.yawVelocityData.count
+        case .YAWA:
+            return self.yawAngleData.count
+        case .PITCHV:
+            return self.pitchVelocityData.count
+        case .PITCHA:
+            return self.pitchAngleData.count
+        }
     }
+    
     // Dragging
     func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
-        let DraggingData = String(Data[row].pidparam.kp) + "," + String(Data[row].pidparam.ki) + "," + String(Data[row].pidparam.kd) + "," + String(Data[row].pidparam.i_limit) + "," + String(Data[row].pidparam.out_limit) + "," + String(Data[row].AverageDifference) + "," + String(Data[row].StandardDifference) + "," + String(row) // This is for dragging data out of window in the future.
+        let DraggingData = String(row)
+//        let DraggingData = String(Data[row].pidparam.kp) + "," + String(Data[row].pidparam.ki) + "," + String(Data[row].pidparam.kd) + "," + String(Data[row].pidparam.i_limit) + "," + String(Data[row].pidparam.out_limit) + "," + String(Data[row].AverageDifference) + "," + String(Data[row].StandardDifference) + "," + String(row) // This is for dragging data out of window in the future.
         let pastboardItem = NSPasteboardItem()
         pastboardItem.setString(DraggingData, forType: dataPasteBoardType)
         return pastboardItem
@@ -83,7 +173,7 @@ extension PIDnEvaluateTableView: NSTableViewDataSource {
         guard
             let item = info.draggingPasteboard().pasteboardItems?.first,
             let rawDataString = item.string(forType: dataPasteBoardType),
-            let originalRow = Int(rawDataString.split(separator: ",")[7])
+            let originalRow = Int(rawDataString)
             else { return false }
         var newRow = row
         if originalRow < newRow {
@@ -111,6 +201,17 @@ extension PIDnEvaluateTableView: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var cellIdentifier: String = ""
         var string: String = ""
+        var Data = [PIDnEvalData_t]()
+        switch dataIdentifier {
+        case .YAWV:
+            Data = self.yawVelocityData
+        case .YAWA:
+            Data = self.yawAngleData
+        case .PITCHV:
+            Data = self.pitchVelocityData
+        case .PITCHA:
+            Data = self.pitchAngleData
+        }
         if (tableColumn == tableView.tableColumns[0]) {
             cellIdentifier = CellIdentifiers.kpCell
             string = String(Data[row].pidparam.kp)

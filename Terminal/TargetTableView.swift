@@ -10,43 +10,123 @@ import Cocoa
 
 class TargetTableView: NSTableView {
     
+    enum DataIdentifier_t {
+        case YAWV
+        case YAWA
+        case PITCHV
+        case PITCHA
+    }
+    
+    var dataIdentifier: DataIdentifier_t = .YAWV
+    
     private var dataPasteBoardType = NSPasteboard.PasteboardType(rawValue: "private.TargetTableRow")
+    
     struct targetData_t {
         var Target: Float
         var MaintainTime: Float
     }
-    fileprivate var Data = [targetData_t]()
+    
+    fileprivate var yawVelocityData = [targetData_t]()
+    fileprivate var yawAngleData = [targetData_t]()
+    fileprivate var pitchVelocityData = [targetData_t]()
+    fileprivate var pitchAngleData = [targetData_t]()
+    
+    func switchDataSource(identifier: DataIdentifier_t) {
+        self.dataIdentifier = identifier
+        self.reloadData()
+    }
     
     func addData(DataItem: targetData_t) {
-        Data.append(DataItem)
+        switch dataIdentifier {
+        case .YAWV:
+            self.yawVelocityData.append(DataItem)
+        case .YAWA:
+            self.yawAngleData.append(DataItem)
+        case .PITCHV:
+            self.pitchVelocityData.append(DataItem)
+        case .PITCHA:
+            self.pitchAngleData.append(DataItem)
+        }
         self.reloadData()
     }
     
-    func loadData(DataSource: Array<targetData_t>) {
-        Data = DataSource
+        func loadData(DataSource: Array<targetData_t>, DataTarget: DataIdentifier_t) {
+        switch DataTarget {
+        case .YAWV:
+            self.yawVelocityData = DataSource
+        case .YAWA:
+            self.yawAngleData = DataSource
+        case .PITCHV:
+            self.pitchVelocityData = DataSource
+        case .PITCHA:
+            self.pitchAngleData = DataSource
+        }
         self.reloadData()
     }
     
-    fileprivate func swapData(originalIndex: Int, newIndex: Int){
+    fileprivate func swapData(originalIndex: Int, newIndex: Int) {
         self.delegate = nil
-        if(newIndex == Data.count - 1) {
-            Data.append(Data[originalIndex])
-        } else {
-            Data.insert(Data[originalIndex], at: newIndex)
+        switch dataIdentifier {
+        case .YAWV:
+            if(newIndex == yawVelocityData.count - 1) {
+                yawVelocityData.append(yawVelocityData[originalIndex])
+            } else {
+                yawVelocityData.insert(yawVelocityData[originalIndex], at: newIndex)
+            }
+            if(originalIndex > newIndex) {
+                yawVelocityData.remove(at: originalIndex + 1)
+            } else {
+                yawVelocityData.remove(at: originalIndex)
+            }
+        case .YAWA:
+            if(newIndex == yawAngleData.count - 1) {
+                yawAngleData.append(yawAngleData[originalIndex])
+            } else {
+                yawAngleData.insert(yawAngleData[originalIndex], at: newIndex)
+            }
+            if(originalIndex > newIndex) {
+                yawAngleData.remove(at: originalIndex + 1)
+            } else {
+                yawAngleData.remove(at: originalIndex)
+            }
+        case .PITCHV:
+            if(newIndex == pitchVelocityData.count - 1) {
+                pitchVelocityData.append(pitchVelocityData[originalIndex])
+            } else {
+                pitchVelocityData.insert(pitchVelocityData[originalIndex], at: newIndex)
+            }
+            if(originalIndex > newIndex) {
+                pitchVelocityData.remove(at: originalIndex + 1)
+            } else {
+                pitchVelocityData.remove(at: originalIndex)
+            }
+        case .PITCHA:
+            if(newIndex == pitchAngleData.count - 1) {
+                pitchAngleData.append(pitchAngleData[originalIndex])
+            } else {
+                pitchAngleData.insert(pitchAngleData[originalIndex], at: newIndex)
+            }
+            if(originalIndex > newIndex) {
+                pitchAngleData.remove(at: originalIndex + 1)
+            } else {
+                pitchAngleData.remove(at: originalIndex)
+            }
         }
-
-        if(originalIndex > newIndex) {
-            Data.remove(at: originalIndex + 1)
-        } else {
-            Data.remove(at: originalIndex)
-        }
-        
         self.delegate = self
         self.reloadData()
     }
     
     func returnData() -> Array<targetData_t> {
-        return Data
+        switch dataIdentifier {
+        case .YAWV:
+            return self.yawVelocityData
+        case .YAWA:
+            return self.yawAngleData
+        case .PITCHV:
+            return self.pitchVelocityData
+        case .PITCHA:
+            return self.pitchAngleData
+        }
     }
     
     override func draw(_ dirtyRect: NSRect) {
@@ -56,18 +136,29 @@ class TargetTableView: NSTableView {
         self.registerForDraggedTypes([dataPasteBoardType])
         // Drawing code here.
     }
-    
 }
+    
 extension TargetTableView: NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return Data.count
+        switch dataIdentifier {
+        case .YAWV:
+            print(self.yawVelocityData.count)
+            return self.yawVelocityData.count
+        case .YAWA:
+            return self.yawAngleData.count
+        case .PITCHV:
+            return self.pitchVelocityData.count
+        case .PITCHA:
+            return self.pitchAngleData.count
+        }
     }
     
     func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
-        let DraggingData = String(Data[row].Target)+","+String(Data[row].MaintainTime) + "," + String(row)
+//        let DraggingData = String(Data[row].Target)+","+String(Data[row].MaintainTime) + "," + String(row)
+        let DraggingIndex = String(row)
         let pasteboardItem = NSPasteboardItem()
-        pasteboardItem.setString(DraggingData, forType: dataPasteBoardType)
+        pasteboardItem.setString(DraggingIndex, forType: dataPasteBoardType)
         return pasteboardItem
     }
     
@@ -83,7 +174,8 @@ extension TargetTableView: NSTableViewDataSource {
         guard
             let item = info.draggingPasteboard().pasteboardItems?.first,
             let rawDataString  = item.string(forType: dataPasteBoardType),
-            let originalRow = Int(rawDataString.split(separator: ",")[2])
+            //let originalRow = Int(rawDataString.split(separator: ",")[2])
+            let originalRow = Int(rawDataString)
             else { return false }
         var newRow = row
         if originalRow < newRow {
@@ -108,14 +200,37 @@ extension TargetTableView: NSTableViewDelegate {
         if (tableColumn == tableView.tableColumns[0]) {
             cellIdentifier = CellIdentifiers.TargetCell
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                cell.textField?.stringValue = String(Data[row].Target)
+                var string = ""
+                switch dataIdentifier {
+                case .YAWV:
+                    string = String(yawVelocityData[row].Target)
+                case .YAWA:
+                    string = String(yawAngleData[row].Target)
+                case .PITCHV:
+                    string = String(pitchVelocityData[row].Target)
+                case .PITCHA:
+                    string = String(pitchAngleData[row].Target)
+                }
+                cell.textField?.stringValue = string
                 cell.textField?.textColor = NSColor.black
                 return cell
             }
         } else if (tableColumn == tableView.tableColumns[1]) {
             cellIdentifier = CellIdentifiers.TimeCell
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                cell.textField?.stringValue = String(Data[row].MaintainTime)
+                var string = ""
+                switch dataIdentifier {
+                case .YAWV:
+                    string = String(yawVelocityData[row].MaintainTime)
+                case .YAWA:
+                    string = String(yawAngleData[row].MaintainTime)
+                case .PITCHV:
+                    string = String(pitchVelocityData[row].MaintainTime)
+                case .PITCHA:
+                    string = String(pitchAngleData[row].MaintainTime)
+                }
+                cell.textField?.stringValue = string
+                cell.textField?.textColor = NSColor.black
                 return cell
             }
         }
@@ -124,9 +239,27 @@ extension TargetTableView: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if(tableColumn == tableView.tableColumns[0]) {
-            return Data[row].Target
+            switch dataIdentifier {
+            case .YAWV:
+                return self.yawVelocityData[row].Target
+            case .YAWA:
+                return self.yawAngleData[row].Target
+            case .PITCHV:
+                return self.pitchVelocityData[row].Target
+            case .PITCHA:
+                return self.pitchAngleData[row].Target
+            }
         } else if (tableColumn == tableView.tableColumns[1]) {
-            return Data[row].MaintainTime
+            switch dataIdentifier {
+            case .YAWV:
+                return self.yawVelocityData[row].MaintainTime
+            case .YAWA:
+                return self.yawAngleData[row].MaintainTime
+            case .PITCHV:
+                return self.pitchVelocityData[row].MaintainTime
+            case .PITCHA:
+                return self.pitchAngleData[row].MaintainTime
+            }
         }
         return nil
     }

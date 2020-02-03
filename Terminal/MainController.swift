@@ -74,6 +74,7 @@ class MainController: NSWindow, ORSSerialPortDelegate {
         pitchAngleChart.title = "Angle"
         pitchCurrentChart.title = "Current"
         
+        
         // Start the Gimbal Chart View.
         GimbalMainChartView.isPaused = false
         GimbalSecondChartView.isPaused = false
@@ -240,7 +241,7 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                 GimbalSecondChartView.presentScene(yawAngleChart)
                 GimbalThirdChartView.presentScene(yawCurrentChart)
                 
-                targetTableView.loadData(DataSource: yawTargetVelocityData)
+                self.setDataSource(Source: .YAWV)
                 
             } else if (PIDSelector.selectedItem == PIDSelector.item(at: 1)) {  // Main: Angle
                 
@@ -252,7 +253,7 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                 GimbalSecondChartView.presentScene(yawVelocityChart)
                 GimbalThirdChartView.presentScene(yawCurrentChart)
                 
-                targetTableView.loadData(DataSource: yawTargetAngleData)
+                self.setDataSource(Source: .YAWA)
                 
             } else if (PIDSelector.selectedItem == PIDSelector.item(at: 2)) {   // Main: Current
                 yawVelocityChart.size = self.GimbalThirdChartView.bounds.size
@@ -274,7 +275,8 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                 GimbalSecondChartView.presentScene(pitchAngleChart)
                 GimbalThirdChartView.presentScene(pitchCurrentChart)
                 
-                targetTableView.loadData(DataSource: pitchTargetVelocityData)
+                self.setDataSource(Source: .PITCHV)
+            
             } else if (PIDSelector.selectedItem == PIDSelector.item(at: 1)) {   // Main: Angle
                 
                 pitchVelocityChart.size = self.GimbalSecondChartView.bounds.size
@@ -285,7 +287,8 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                 GimbalSecondChartView.presentScene(pitchVelocityChart)
                 GimbalThirdChartView.presentScene(pitchCurrentChart)
                 
-                targetTableView.loadData(DataSource: pitchTargetAngleData)
+                self.setDataSource(Source: .PITCHA)
+                
             } else if (PIDSelector.selectedItem == PIDSelector.item(at: 2)) {   // Main: Current
                 pitchVelocityChart.size = self.GimbalThirdChartView.bounds.size
                 pitchAngleChart.size = self.GimbalSecondChartView.bounds.size
@@ -321,12 +324,12 @@ class MainController: NSWindow, ORSSerialPortDelegate {
     @IBOutlet weak var targetTime: NSTextField!
     
     @IBOutlet weak var targetTableView: TargetTableView!
+    @IBOutlet weak var DataEvaluateView: PIDnEvaluateTableView!
     
     @IBAction func addTargetBtnClk(_ sender: Any) {
         if let target = Float(targetContent.stringValue) {
             if let maintaintime = Float(targetTime.stringValue) {
                 targetTableView.addData(DataItem: TargetTableView.targetData_t(Target: target, MaintainTime: maintaintime))
-                updateTargetData()
             } else {
                 print("Value illegal")
             }
@@ -338,18 +341,36 @@ class MainController: NSWindow, ORSSerialPortDelegate {
     func updateTargetData() {
         if(MotorSelector.selectedItem == MotorSelector.item(at: 0)) {    // YAW
             if(PIDSelector.selectedItem == PIDSelector.item(at: 0)) {   // Velocity
+                self.setDataSource(Source: .YAWV)
                 yawTargetVelocityData = targetTableView.returnData()
             } else if(PIDSelector.selectedItem == PIDSelector.item(at: 1)) { // Angle
+                self.setDataSource(Source: .YAWA)
                 yawTargetAngleData = targetTableView.returnData()
             }
         } else if(MotorSelector.selectedItem == MotorSelector.item(at: 1)) {    // PITCH
             if(PIDSelector.selectedItem == PIDSelector.item(at: 0)) {   // Velocity
+                self.setDataSource(Source: .PITCHV)
                 pitchTargetVelocityData = targetTableView.returnData()
             } else if(PIDSelector.selectedItem == PIDSelector.item(at: 1)) { // Angle
+                self.setDataSource(Source: .PITCHA)
                 pitchTargetAngleData = targetTableView.returnData()
             }
         } else if(MotorSelector.selectedItem == MotorSelector.item(at: 2)) {    //Loader
             
+        }
+    }
+    
+    func setDataSource(Source: TargetTableView.DataIdentifier_t) {
+        targetTableView.switchDataSource(identifier: Source)
+        switch Source {
+        case .YAWV:
+            DataEvaluateView.switchDataSource(identifier: .YAWV)
+        case .YAWA:
+            DataEvaluateView.switchDataSource(identifier: .YAWA)
+        case .PITCHV:
+            DataEvaluateView.switchDataSource(identifier: .PITCHV)
+        case .PITCHA:
+            DataEvaluateView.switchDataSource(identifier: .PITCHA)
         }
     }
     
