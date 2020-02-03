@@ -319,10 +319,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         
     }
     
-    @IBOutlet weak var RevealTime: NSTextField!
-    @IBAction func SetTime(_ sender: Any) {
-        if(isPureFloat(string: RevealTime.stringValue)) {
-            if let revealTime = Int(RevealTime.stringValue) {
+    @IBOutlet weak var GimbalRevealTime: NSTextField!
+    @IBAction func GimbalSetRevealTime(_ sender: Any) {
+        if(isPureFloat(string: GimbalRevealTime.stringValue)) {
+            if let revealTime = Int(GimbalRevealTime.stringValue) {
                 
                 yawAngleChart.time_reveal = revealTime * 1000
                 yawCurrentChart.time_reveal = revealTime * 1000
@@ -341,6 +341,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
     @IBOutlet weak var targetTableView: GimbalTargetTableView!
     @IBOutlet weak var GimbalDataEvaluateView: PIDnEvaluateTableView!
     
+    @IBOutlet weak var GimbalAddTargetButton: NSButton!
     @IBAction func addTargetBtnClk(_ sender: Any) {
         if let target = Float(GimbalTargetContent.stringValue) {
             if let maintaintime = Float(GimbalTargetTime.stringValue) {
@@ -495,11 +496,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
             if let port = serialPort {
                 let command = "g_enable 0 0\r\n".data(using: String.Encoding.ascii)!
                 port.send(command)
-                GimbalRunBtn.isEnabled = true
-                MotorSelector.isEnabled = true
-                PIDSelector.isEnabled = true
                 GimbalTargetTime.isEnabled = true
                 GimbalTargetContent.isEnabled = true
+                MotorSelector.isEnabled = true
+                PIDSelector.isEnabled = true
+                GimbalPIDSetButton.isEnabled = true
+                GimbalkpTextField.isEnabled = true
+                GimbalkiTextField.isEnabled = true
+                GimbalkdTextField.isEnabled = true
+                Gimbali_limitTextField.isEnabled = true
+                Gimbalout_limitTestField.isEnabled = true
+                GimbalAddTargetButton.isEnabled = true
+                GimbalRunBtn.isEnabled = true
                 GimbalCurrentRunningTest?.RunStatus = .RunFinished
             }
         } else {
@@ -521,7 +529,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                     MotorSelector.isEnabled = false
                     PIDSelector.isEnabled = false
                     ProgressBar.doubleValue = 0.0
+                    GimbalTargetTime.isEnabled = false
+                    GimbalTargetContent.isEnabled = false
                     GimbalPIDSetButton.isEnabled = false
+                    GimbalkpTextField.isEnabled = false
+                    GimbalkiTextField.isEnabled = false
+                    GimbalkdTextField.isEnabled = false
+                    Gimbali_limitTextField.isEnabled = false
+                    Gimbalout_limitTestField.isEnabled = false
+                    GimbalAddTargetButton.isEnabled = false
                 }
             } else if MotorSelector.selectedItem == MotorSelector.item(at: 1) {
                 if let port = serialPort {
@@ -532,6 +548,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                     GimbalTargetTime.isEnabled = false
                     GimbalTargetContent.isEnabled = false
                     GimbalPIDSetButton.isEnabled = false
+                    GimbalkpTextField.isEnabled = false
+                    GimbalkiTextField.isEnabled = false
+                    GimbalkdTextField.isEnabled = false
+                    Gimbali_limitTextField.isEnabled = false
+                    Gimbalout_limitTestField.isEnabled = false
+                    GimbalAddTargetButton.isEnabled = false
                 }
             }
         } else {
@@ -543,9 +565,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
             
         }
     }
+    @IBOutlet weak var DisplayModeSelector: NSPopUpButton!
     
+    @IBAction func DisplayModeSelect(_ sender: Any) {
+        if(DisplayModeSelector.selectedItem == DisplayModeSelector.item(at: 0)) {
+            DisplayMode = .Continuous
+        } else {
+            DisplayMode = .Auto
+        }
+    }
     @IBOutlet weak var ProgressBar: NSProgressIndicator!
-    
+    enum displayMode {
+        case Continuous
+        case Auto
+    }
+    var DisplayMode: displayMode = .Continuous
+    var current_running_data = [Float]()
     /***--------------------Serial Config-----------------------***/
     @objc let serialPortManager = ORSSerialPortManager.shared()
     @objc dynamic var shouldAddLineEnding = false
@@ -603,14 +638,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                 }
                 // Add data to plot
                 if (isValidData) {
-                    if(dividedData[0] == "!gy") {
-                        yawVelocityChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Int(dividedData[1])!)
-                        yawAngleChart.AddData(RealData_: Float(dividedData[2])!, TargetData_: Float(dividedData[3])!, Time_: Int(dividedData[1])!)
-                        yawCurrentChart.AddData(RealData_: Float(dividedData[6])!, TargetData_: Float(dividedData[7])!, Time_: Int(dividedData[1])!)
-                    } else if (dividedData[0] == "!gp") {
-                        pitchVelocityChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Int(dividedData[1])!)
-                        pitchAngleChart.AddData(RealData_: Float(dividedData[2])!, TargetData_: Float(dividedData[3])!, Time_: Int(dividedData[1])!)
-                        pitchCurrentChart.AddData(RealData_: Float(Int(dividedData[6])!), TargetData_: Float(Int(dividedData[7])!), Time_: Int(dividedData[1])!)
+                    if ((DisplayMode == .Continuous)||((DisplayMode == .Auto) && (GimbalCurrentRunningTest?.RunStatus == .isRunning))) {
+                        if(dividedData[0] == "!gy") {
+                            yawVelocityChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Int(dividedData[1])!)
+                            yawAngleChart.AddData(RealData_: Float(dividedData[2])!, TargetData_: Float(dividedData[3])!, Time_: Int(dividedData[1])!)
+                            yawCurrentChart.AddData(RealData_: Float(dividedData[6])!, TargetData_: Float(dividedData[7])!, Time_: Int(dividedData[1])!)
+                        } else if (dividedData[0] == "!gp") {
+                            pitchVelocityChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Int(dividedData[1])!)
+                            pitchAngleChart.AddData(RealData_: Float(dividedData[2])!, TargetData_: Float(dividedData[3])!, Time_: Int(dividedData[1])!)
+                            pitchCurrentChart.AddData(RealData_: Float(Int(dividedData[6])!), TargetData_: Float(Int(dividedData[7])!), Time_: Int(dividedData[1])!)
+                        }
                     }
                     if let gimbalrunningsession = GimbalCurrentRunningTest {
                         switch gimbalrunningsession.RunStatus {
@@ -619,6 +656,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                             GimbalCurrentRunningTest?.startTime = Int(dividedData[1])!
                             GimbalCurrentRunningTest?.target = targetTableView.returnData()
                             GimbalRunFullTime = (GimbalCurrentRunningTest?.fullTime())!
+                            if(DisplayMode == .Auto) {
+                                GimbalRevealTime.stringValue = String(Int(GimbalRunFullTime/1000))
+                                GimbalSetRevealTime(Any?.self)
+                            }
                             if let port = self.serialPort {
                                 var commandString = "\r\n"
                                 switch targetTableView.dataIdentifier {
@@ -685,6 +726,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                                     MotorSelector.isEnabled = true
                                     PIDSelector.isEnabled = true
                                     GimbalPIDSetButton.isEnabled = true
+                                    GimbalkpTextField.isEnabled = true
+                                    GimbalkiTextField.isEnabled = true
+                                    GimbalkdTextField.isEnabled = true
+                                    Gimbali_limitTextField.isEnabled = true
+                                    Gimbalout_limitTestField.isEnabled = true
+                                    GimbalAddTargetButton.isEnabled = true
                                     self.GimbalCurrentRunningTest?.RunStatus = .RunFinished
                                 }
                             }

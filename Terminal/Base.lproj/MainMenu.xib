@@ -15,12 +15,15 @@
                 <outlet property="ChassisBackGround" destination="QZe-I9-Pcz" id="wOc-rW-VFe"/>
                 <outlet property="CommandTextField" destination="9nm-Dz-UtH" id="Wd1-zS-BDK"/>
                 <outlet property="ConnectButton" destination="AYb-88-C1G" id="pBm-oO-12h"/>
+                <outlet property="DisplayModeSelector" destination="7rg-04-ydG" id="1b6-SK-uYF"/>
                 <outlet property="EnableAHRSBtn" destination="lbC-LW-4nn" id="rU0-aT-9rt"/>
+                <outlet property="GimbalAddTargetButton" destination="4qk-kn-2Jm" id="Dbc-VZ-nlp"/>
                 <outlet property="GimbalBackGround" destination="oBO-A9-zsR" id="kxD-jW-pN4"/>
                 <outlet property="GimbalDataEvaluateView" destination="BNo-j3-mHh" id="wHu-ZL-F72"/>
                 <outlet property="GimbalMainChartView" destination="4rd-d5-Gqr" id="o7o-ic-fxm"/>
                 <outlet property="GimbalMotorEnableButton" destination="ELk-qh-8d4" id="E5t-SJ-YUG"/>
                 <outlet property="GimbalPIDSetButton" destination="fxH-sh-KHI" id="4iV-Y4-5pj"/>
+                <outlet property="GimbalRevealTime" destination="Q1S-Ym-aBm" id="m3a-Ki-5by"/>
                 <outlet property="GimbalRunBtn" destination="Ym7-S1-ds2" id="TnM-vO-QHS"/>
                 <outlet property="GimbalSecondChartView" destination="eJ2-xR-eYe" id="her-b1-oGa"/>
                 <outlet property="GimbalTargetContent" destination="p3a-xJ-Goq" id="vnz-OE-zN8"/>
@@ -34,7 +37,6 @@
                 <outlet property="MotorSelector" destination="oEb-oZ-PAY" id="Pky-5A-XbP"/>
                 <outlet property="PIDSelector" destination="aNI-h4-Zmd" id="ot1-Tw-No6"/>
                 <outlet property="ProgressBar" destination="ndP-55-QWh" id="Wbp-3z-pXH"/>
-                <outlet property="RevealTime" destination="Q1S-Ym-aBm" id="m3a-Ki-5by"/>
                 <outlet property="ShellScroller" destination="38G-Dc-okx" id="agK-sC-LSM"/>
                 <outlet property="ShellView" destination="E9w-dF-MJi" id="xZh-hR-SKU"/>
                 <outlet property="TabViews" destination="Ip1-8O-QCx" id="MIN-Yv-HUa"/>
@@ -733,7 +735,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="GimbalBtnClk:" target="Voe-Tx-rLC" id="FHK-4r-0sU"/>
+                                            <action selector="GimbalBtnClk:" target="Voe-Tx-rLC" id="xaL-JG-PVT"/>
                                             <outlet property="nextKeyView" destination="oBO-A9-zsR" id="cXX-Iq-PBl"/>
                                         </connections>
                                     </button>
@@ -751,7 +753,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="TerminalBtnClk:" target="Voe-Tx-rLC" id="g0T-jR-6nr"/>
+                                            <action selector="TerminalBtnClk:" target="Voe-Tx-rLC" id="vDV-Eg-LG4"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -768,7 +770,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="ChassisBtnClk:" target="Voe-Tx-rLC" id="NFm-KW-5SY"/>
+                                            <action selector="ChassisBtnClk:" target="Voe-Tx-rLC" id="EVF-MG-rlG"/>
                                             <outlet property="nextKeyView" destination="QZe-I9-Pcz" id="qce-kG-9Jg"/>
                                         </connections>
                                     </button>
@@ -782,7 +784,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="ConnectButtonClk:" target="Voe-Tx-rLC" id="6ts-VG-dJ7"/>
+                                    <action selector="ConnectButtonClk:" target="Voe-Tx-rLC" id="B99-ZK-Gkp"/>
                                     <binding destination="Voe-Tx-rLC" name="enabled" keyPath="serialPort" id="gyj-V9-vLf">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSIsNotNil</string>
@@ -843,12 +845,12 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Terminal" identifier="Terminal" id="Okh-Gv-lyC">
-                                <view key="view" id="Ix2-nd-ZH7">
-                                    <rect key="frame" x="0.0" y="0.0" width="404" height="700"/>
+                                <view key="view" ambiguous="YES" id="Ix2-nd-ZH7">
+                                    <rect key="frame" x="0.0" y="0.0" width="934" height="717"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9nm-Dz-UtH">
-                                            <rect key="frame" x="20" y="57" width="297" height="22"/>
+                                            <rect key="frame" x="20" y="57" width="827" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="I3Q-aC-jFj">
                                                 <font key="font" metaFont="system"/>
@@ -856,18 +858,18 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <action selector="ReturnPressedinTextField:" target="Voe-Tx-rLC" id="2Oj-tq-o5W"/>
+                                                <action selector="ReturnPressedinTextField:" target="Voe-Tx-rLC" id="qwm-5Y-qAI"/>
                                             </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rMC-gO-fkh">
-                                            <rect key="frame" x="319" y="51" width="71" height="32"/>
+                                            <rect key="frame" x="849" y="51" width="71" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="push" title="Send" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5Oo-zh-P7i">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="SendBtnClk:" target="Voe-Tx-rLC" id="WdC-jf-YM8"/>
+                                                <action selector="SendBtnClk:" target="Voe-Tx-rLC" id="fzw-kS-q7d"/>
                                             </connections>
                                         </button>
                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bzJ-Ls-69x">
@@ -881,7 +883,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="HelloBtnClk:" target="Voe-Tx-rLC" id="kXJ-Mj-MMM"/>
+                                                        <action selector="HelloBtnClk:" target="Voe-Tx-rLC" id="oKi-7K-YgB"/>
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c5g-gT-e6B">
@@ -891,7 +893,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="StatsBtnClk:" target="Voe-Tx-rLC" id="if6-Wd-4SX"/>
+                                                        <action selector="StatsBtnClk:" target="Voe-Tx-rLC" id="q56-s5-bWP"/>
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oIE-sw-K3g">
@@ -901,7 +903,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="MemBtnClk:" target="Voe-Tx-rLC" id="VXO-Gw-IZi"/>
+                                                        <action selector="MemBtnClk:" target="Voe-Tx-rLC" id="xmg-Q5-6cA"/>
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T9s-58-WiG">
@@ -911,7 +913,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="SystimeBtnClk:" target="Voe-Tx-rLC" id="7uX-KQ-yQn"/>
+                                                        <action selector="SystimeBtnClk:" target="Voe-Tx-rLC" id="n8y-V0-Gjn"/>
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rgz-jb-y4o">
@@ -921,7 +923,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="ThreadsBtnClk:" target="Voe-Tx-rLC" id="R6p-ui-Ujb"/>
+                                                        <action selector="ThreadsBtnClk:" target="Voe-Tx-rLC" id="Hhi-gk-ojM"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -941,28 +943,28 @@
                                             </customSpacing>
                                         </stackView>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mmf-Af-Lqs">
-                                            <rect key="frame" x="272" y="654" width="118" height="32"/>
+                                            <rect key="frame" x="802" y="671" width="118" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Clear Output" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="l3F-6O-G6Q">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="ShellClearBtnClk:" target="Voe-Tx-rLC" id="KG1-fO-VlX"/>
+                                                <action selector="ShellClearBtnClk:" target="Voe-Tx-rLC" id="VbV-IH-exk"/>
                                             </connections>
                                         </button>
                                         <scrollView fixedFrame="YES" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="38G-Dc-okx">
-                                            <rect key="frame" x="20" y="99" width="364" height="542"/>
+                                            <rect key="frame" x="20" y="99" width="894" height="559"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" ambiguous="YES" id="1jT-62-MHC">
-                                                <rect key="frame" x="1" y="1" width="347" height="540"/>
+                                                <rect key="frame" x="1" y="1" width="877" height="557"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="E9w-dF-MJi">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1272" height="540"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1802" height="557"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <size key="minSize" width="347" height="540"/>
+                                                        <size key="minSize" width="877" height="557"/>
                                                         <size key="maxSize" width="1835" height="10000000"/>
                                                         <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </textView>
@@ -974,7 +976,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="IHg-jd-hzn">
-                                                <rect key="frame" x="348" y="1" width="15" height="540"/>
+                                                <rect key="frame" x="878" y="1" width="15" height="557"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
@@ -982,7 +984,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Gimbal" identifier="Gimbal" id="gFG-2f-mPd">
-                                <view key="view" ambiguous="YES" id="K4P-ig-anV">
+                                <view key="view" id="K4P-ig-anV">
                                     <rect key="frame" x="0.0" y="0.0" width="934" height="717"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1001,7 +1003,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="MotorEnableBtnClk:" target="Voe-Tx-rLC" id="rUd-se-8Hi"/>
+                                                            <action selector="MotorEnableBtnClk:" target="Voe-Tx-rLC" id="7JR-5a-HRI"/>
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFd-OP-hmQ">
@@ -1012,7 +1014,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="SetFrontABtnClk:" target="Voe-Tx-rLC" id="H49-0c-zke"/>
+                                                            <action selector="GimbalSetRevealTime:" target="Voe-Tx-rLC" id="H49-0c-zke"/>
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lbC-LW-4nn">
@@ -1023,7 +1025,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="EnableAHRSBtnClk:" target="Voe-Tx-rLC" id="sgl-tc-3S2"/>
+                                                            <action selector="EnableAHRSBtnClk:" target="Voe-Tx-rLC" id="Cef-bH-DvZ"/>
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fZE-26-ahA">
@@ -1059,7 +1061,7 @@
                                                             </menu>
                                                         </popUpButtonCell>
                                                         <connections>
-                                                            <action selector="MotorSelect:" target="Voe-Tx-rLC" id="mzF-Fj-JvF"/>
+                                                            <action selector="MotorSelect:" target="Voe-Tx-rLC" id="Sq8-Ka-4R3"/>
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNI-h4-Zmd">
@@ -1079,7 +1081,7 @@
                                                             </menu>
                                                         </popUpButtonCell>
                                                         <connections>
-                                                            <action selector="PIDSelect:" target="Voe-Tx-rLC" id="OLS-jf-r63"/>
+                                                            <action selector="PIDSelect:" target="Voe-Tx-rLC" id="OsE-yE-dTl"/>
                                                         </connections>
                                                     </popUpButton>
                                                 </subviews>
@@ -1105,6 +1107,9 @@
                                                                 </items>
                                                             </menu>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <action selector="DisplayModeSelect:" target="Voe-Tx-rLC" id="RjM-Dn-2M5"/>
+                                                        </connections>
                                                     </popUpButton>
                                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q1S-Ym-aBm">
                                                         <rect key="frame" x="20" y="20" width="43" height="22"/>
@@ -1115,7 +1120,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="SetTime:" target="Voe-Tx-rLC" id="Lc4-Yu-3ng"/>
+                                                            <action selector="GimbalSetRevealTime:" target="Voe-Tx-rLC" id="Lc4-Yu-3ng"/>
                                                         </connections>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEF-QX-pp3">
@@ -1307,7 +1312,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="GimbalTargetTextFieldEnterPressed:" target="Voe-Tx-rLC" id="YjF-nm-gSa"/>
+                                                            <action selector="GimbalTargetTextFieldEnterPressed:" target="Voe-Tx-rLC" id="vgd-7F-jXg"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4NN-bJ-etg">
@@ -1319,7 +1324,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="GimbalTimeTextFieldEnterPressed:" target="Voe-Tx-rLC" id="1L1-br-NJj"/>
+                                                            <action selector="GimbalTimeTextFieldEnterPressed:" target="Voe-Tx-rLC" id="NYD-UF-1Uf"/>
                                                         </connections>
                                                     </textField>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4qk-kn-2Jm">
@@ -1330,7 +1335,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="addTargetBtnClk:" target="Voe-Tx-rLC" id="WYd-XU-jAT"/>
+                                                            <action selector="addTargetBtnClk:" target="Voe-Tx-rLC" id="LZp-w2-vkK"/>
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ym7-S1-ds2">
@@ -1341,7 +1346,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="GimbalRunBtnClk:" target="Voe-Tx-rLC" id="5kb-Af-M7L"/>
+                                                            <action selector="GimbalRunBtnClk:" target="Voe-Tx-rLC" id="bx1-h4-Ohb"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1363,7 +1368,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="GimbalkpTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="0ww-Lh-Flz"/>
+                                                            <action selector="GimbalkpTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="LK0-rc-HXF"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JPX-3Y-QFc">
@@ -1375,7 +1380,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="GimbalkiTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="zvf-64-bL1"/>
+                                                            <action selector="GimbalkiTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="fgF-tb-RQn"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Er9-D0-e7i">
@@ -1387,7 +1392,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="GimbalkdTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="emd-Lu-QEf"/>
+                                                            <action selector="GimbalkdTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="uii-6G-elU"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNJ-VW-2UR">
@@ -1399,7 +1404,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="Gimbali_limitTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="1RP-R6-bPr"/>
+                                                            <action selector="Gimbali_limitTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="xbN-km-oAf"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4x-jH-iGk">
@@ -1411,7 +1416,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="Gimbalout_limitTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="BEF-yx-BQe"/>
+                                                            <action selector="Gimbalout_limitTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="oZF-wc-shn"/>
                                                         </connections>
                                                     </textField>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fxH-sh-KHI">
@@ -1422,7 +1427,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="GimbalPIDSetBtnClk:" target="Voe-Tx-rLC" id="GGo-0V-st0"/>
+                                                            <action selector="GimbalPIDSetBtnClk:" target="Voe-Tx-rLC" id="now-bq-aGz"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
