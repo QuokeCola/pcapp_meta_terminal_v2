@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class TargetTableView: NSTableView {
+class GimbalTargetTableView: NSTableView {
     
     enum DataIdentifier_t {
         case YAWV
@@ -138,7 +138,7 @@ class TargetTableView: NSTableView {
     }
 }
     
-extension TargetTableView: NSTableViewDataSource {
+extension GimbalTargetTableView: NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         switch dataIdentifier {
@@ -187,7 +187,7 @@ extension TargetTableView: NSTableViewDataSource {
         return true
     }
 }
-extension TargetTableView: NSTableViewDelegate {
+extension GimbalTargetTableView: NSTableViewDelegate {
     fileprivate enum CellIdentifiers {
         static let TargetCell = "TargetCellID"
         static let TimeCell = "TimeCellID"

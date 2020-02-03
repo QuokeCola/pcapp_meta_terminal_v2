@@ -106,6 +106,7 @@ class MainController: NSWindow, ORSSerialPortDelegate {
         TabViews.selectTabViewItem(at: 2)
         
     }
+    @IBOutlet weak var statusInfo: NSTextField!
     
     /***--------------------Terminal Interface-----------------------***/
     
@@ -224,10 +225,10 @@ class MainController: NSWindow, ORSSerialPortDelegate {
         }
     }
     
-    var yawTargetAngleData = [TargetTableView.targetData_t]()
-    var yawTargetVelocityData = [TargetTableView.targetData_t]()
-    var pitchTargetAngleData = [TargetTableView.targetData_t]()
-    var pitchTargetVelocityData = [TargetTableView.targetData_t]()
+    var yawTargetAngleData = [GimbalTargetTableView.targetData_t]()
+    var yawTargetVelocityData = [GimbalTargetTableView.targetData_t]()
+    var pitchTargetAngleData = [GimbalTargetTableView.targetData_t]()
+    var pitchTargetVelocityData = [GimbalTargetTableView.targetData_t]()
     
     func selectGimbalViews() {
         if (MotorSelector.selectedItem == MotorSelector.item(at: 0)) {  // YAW
@@ -320,21 +321,21 @@ class MainController: NSWindow, ORSSerialPortDelegate {
         }
     }
     
-    @IBOutlet weak var targetContent: NSTextField!
-    @IBOutlet weak var targetTime: NSTextField!
+    @IBOutlet weak var GimbalTargetContent: NSTextField!
+    @IBOutlet weak var GimbalTargetTime: NSTextField!
     
-    @IBOutlet weak var targetTableView: TargetTableView!
-    @IBOutlet weak var DataEvaluateView: PIDnEvaluateTableView!
+    @IBOutlet weak var targetTableView: GimbalTargetTableView!
+    @IBOutlet weak var GimbalDataEvaluateView: PIDnEvaluateTableView!
     
     @IBAction func addTargetBtnClk(_ sender: Any) {
-        if let target = Float(targetContent.stringValue) {
-            if let maintaintime = Float(targetTime.stringValue) {
-                targetTableView.addData(DataItem: TargetTableView.targetData_t(Target: target, MaintainTime: maintaintime))
+        if let target = Float(GimbalTargetContent.stringValue) {
+            if let maintaintime = Float(GimbalTargetTime.stringValue) {
+                targetTableView.addData(DataItem: GimbalTargetTableView.targetData_t(Target: target, MaintainTime: maintaintime))
             } else {
-                print("Value illegal")
+                statusInfo.stringValue = "Value illegal"
             }
         } else {
-            print("Value illegal")
+            statusInfo.stringValue = "Value illegal"
         }
     }
     
@@ -360,17 +361,17 @@ class MainController: NSWindow, ORSSerialPortDelegate {
         }
     }
     
-    func setDataSource(Source: TargetTableView.DataIdentifier_t) {
+    func setDataSource(Source: GimbalTargetTableView.DataIdentifier_t) {
         targetTableView.switchDataSource(identifier: Source)
         switch Source {
         case .YAWV:
-            DataEvaluateView.switchDataSource(identifier: .YAWV)
+            GimbalDataEvaluateView.switchDataSource(identifier: .YAWV)
         case .YAWA:
-            DataEvaluateView.switchDataSource(identifier: .YAWA)
+            GimbalDataEvaluateView.switchDataSource(identifier: .YAWA)
         case .PITCHV:
-            DataEvaluateView.switchDataSource(identifier: .PITCHV)
+            GimbalDataEvaluateView.switchDataSource(identifier: .PITCHV)
         case .PITCHA:
-            DataEvaluateView.switchDataSource(identifier: .PITCHA)
+            GimbalDataEvaluateView.switchDataSource(identifier: .PITCHA)
         }
     }
     
@@ -381,6 +382,143 @@ class MainController: NSWindow, ORSSerialPortDelegate {
         var i_limit: Float
         var out_limit: Float
     }
+    
+    struct RunningTest {
+        var target = [GimbalTargetTableView.targetData_t]()
+        var PIDParam : PIDParams_t
+        var Result_AvgDiff : Float
+        var Result_StdDiff : Float
+        enum runStatus {
+            case notStartRunning
+            case waitForRunning
+            case isRunning
+            case RunFinished
+        }
+        var RunStatus: runStatus
+        var startTime: Int
+    }
+    var GimbalCurrentRunningTest: RunningTest? = nil
+    var GimbalRunningTag = 0
+    var GimbalRunningIndex = 1
+    @IBAction func GimbalTargetTextFieldEnterPressed(_ sender: Any) {
+        self.GimbalTargetTime.becomeFirstResponder()
+    }
+    
+    @IBAction func GimbalTimeTextFieldEnterPressed(_ sender: Any) {
+        addTargetBtnClk(sender)
+        self.GimbalTargetContent.becomeFirstResponder()
+    }
+    
+    @IBOutlet weak var GimbalkpTextField: NSTextField!
+    @IBAction func GimbalkpTextFieldEntrPrsd(_ sender: Any) {
+        self.GimbalkiTextField.becomeFirstResponder()
+    }
+    
+    @IBOutlet weak var GimbalkiTextField: NSTextField!
+    @IBAction func GimbalkiTextFieldEntrPrsd(_ sender: Any) {
+        self.GimbalkdTextField.becomeFirstResponder()
+    }
+    
+    @IBOutlet weak var GimbalkdTextField: NSTextField!
+    @IBAction func GimbalkdTextFieldEntrPrsd(_ sender: Any) {
+        self.Gimbali_limitTextField.becomeFirstResponder()
+    }
+    
+    @IBOutlet weak var Gimbali_limitTextField: NSTextField!
+    @IBAction func Gimbali_limitTextFieldEntrPrsd(_ sender: Any) {
+        self.Gimbalout_limitTestField.becomeFirstResponder()
+    }
+    
+    @IBOutlet weak var GimbalPIDSetButton: NSButton!
+    @IBOutlet weak var Gimbalout_limitTestField: NSTextField!
+    @IBAction func Gimbalout_limitTextFieldEntrPrsd(_ sender: Any) {
+        self.GimbalkpTextField.becomeFirstResponder()
+        GimbalPIDSetBtnClk(sender)
+    }
+    
+    @IBAction func GimbalPIDSetBtnClk(_ sender: Any) {
+        if let hasrunned = GimbalCurrentRunningTest?.RunStatus {
+            if hasrunned == .notStartRunning {
+                GimbalDataEvaluateView.addData(DataItem: PIDnEvaluateTableView.PIDnEvalData_t(pidparam: GimbalCurrentRunningTest!.PIDParam, StandardDifference: -1.0, AverageDifference: -1.0))
+            }
+        }
+        guard
+            let kp = Float(GimbalkpTextField.stringValue),
+            let ki = Float(GimbalkiTextField.stringValue),
+            let kd = Float(GimbalkdTextField.stringValue),
+            let i_limit = Float(Gimbali_limitTextField.stringValue),
+            let out_limit = Float(Gimbalout_limitTestField.stringValue)
+            else {statusInfo.stringValue = "PID Value Invalid"; return}
+        GimbalCurrentRunningTest = RunningTest(target: [GimbalTargetTableView.targetData_t](), PIDParam: MainController.PIDParams_t(kp: kp, ki: ki, kd: kd, i_limit: i_limit, out_limit: out_limit), Result_AvgDiff: -1.0, Result_StdDiff: -1.0, RunStatus: .notStartRunning, startTime: -1)
+        if let port = serialPort {
+            var string = "g_set_params "
+            switch targetTableView.dataIdentifier {
+            case .YAWV:
+                string += "0 1 "
+            case .YAWA:
+                string += "0 0 "
+            case .PITCHV:
+                string += "1 1 "
+            case .PITCHA:
+                string += "1 0 "
+            }
+            string += (GimbalkpTextField.stringValue + " " + GimbalkiTextField.stringValue + " " + GimbalkdTextField.stringValue + " " + Gimbali_limitTextField.stringValue + " " + Gimbalout_limitTestField.stringValue + "\r\n")
+            let command = string.data(using: String.Encoding.ascii)!
+            port.send(command)
+        }
+    }
+    @IBOutlet weak var GimbalMotorEnableButton: NSButton!
+    @IBAction func MotorEnableBtnClk(_ sender: Any) {
+        if GimbalMotorEnableButton.state == .off {
+            if let port = serialPort {
+                let command = "g_enable 0 0\r\n".data(using: String.Encoding.ascii)!
+                port.send(command)
+                GimbalRunBtn.isEnabled = true
+                MotorSelector.isEnabled = true
+                PIDSelector.isEnabled = true
+                GimbalTargetTime.isEnabled = true
+                GimbalTargetContent.isEnabled = true
+                GimbalCurrentRunningTest?.RunStatus = .RunFinished
+            }
+        } else {
+            GimbalMotorEnableButton.state = .off
+        }
+    }
+    
+    @IBOutlet weak var GimbalRunBtn: NSButton!
+    @IBAction func GimbalRunBtnClk(_ sender: Any) {
+        if (GimbalCurrentRunningTest != nil && targetTableView.returnData().count != 0) {
+            GimbalCurrentRunningTest?.RunStatus = .waitForRunning
+            if MotorSelector.selectedItem == MotorSelector.item(at: 0) {
+                if let port = serialPort {
+                    let command = "g_enable 1 0\r\n".data(using: String.Encoding.utf8)!
+                    port.send(command)
+                    GimbalMotorEnableButton.state = .on
+                    GimbalRunBtn.isEnabled = false
+                    MotorSelector.isEnabled = false
+                    PIDSelector.isEnabled = false
+                }
+            } else if MotorSelector.selectedItem == MotorSelector.item(at: 1) {
+                if let port = serialPort {
+                    let command = "g_enable 0 1\r\n".data(using: String.Encoding.utf8)!
+                    port.send(command)
+                    GimbalMotorEnableButton.state = .on
+                    GimbalRunBtn.isEnabled = false
+                    GimbalTargetTime.isEnabled = false
+                    GimbalTargetContent.isEnabled = false
+                }
+            }
+        } else {
+            if (GimbalCurrentRunningTest == nil) {
+                statusInfo.stringValue = "PIDParam Not Set!"
+            } else {
+                statusInfo.stringValue = "Target Not Set!"
+            }
+            
+        }
+    }
+    
+    
     /***--------------------Serial Config-----------------------***/
     @objc let serialPortManager = ORSSerialPortManager.shared()
     @objc dynamic var shouldAddLineEnding = false
@@ -418,17 +556,24 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                 var dividedData = rawline.split(separator: ",")
                 var isValidData = true
                 var index = 1
-                
+                print(rawline)
+                if rawline.contains("!ps") {
+                    statusInfo.stringValue = "PID Params Set"
+                }
                 // Check Data Validation
                 if(dividedData.count != 8) {
                     isValidData = false
                 }
-                while (index < dividedData.count - 1 && isValidData) {
+                while (index < dividedData.count && isValidData) {
                     if(index < 2 || index > 5) {
                         isValidData = isPureInt(string: String(dividedData[index]))
                     } else {
                         isValidData = isPureFloat(string: String(dividedData[index]))
                     }
+                    if (Float(dividedData[index]) == nil) {
+                        isValidData = false
+                    }
+                    print(index)
                     index += 1
                 }
                 // Add data to plot
@@ -436,11 +581,87 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                     if(dividedData[0] == "!gy") {
                         yawVelocityChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Int(dividedData[1])!)
                         yawAngleChart.AddData(RealData_: Float(dividedData[2])!, TargetData_: Float(dividedData[3])!, Time_: Int(dividedData[1])!)
+                        print("\(Float(dividedData[6])==nil) \(Float(dividedData[7])==nil)")
                         yawCurrentChart.AddData(RealData_: Float(dividedData[6])!, TargetData_: Float(dividedData[7])!, Time_: Int(dividedData[1])!)
                     } else if (dividedData[0] == "!gp") {
                         pitchVelocityChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Int(dividedData[1])!)
                         pitchAngleChart.AddData(RealData_: Float(dividedData[2])!, TargetData_: Float(dividedData[3])!, Time_: Int(dividedData[1])!)
-                        pitchCurrentChart.AddData(RealData_: Float(dividedData[6])!, TargetData_: Float(dividedData[7])!, Time_: Int(dividedData[1])!)
+                        pitchCurrentChart.AddData(RealData_: Float(Int(dividedData[6])!), TargetData_: Float(Int(dividedData[7])!), Time_: Int(dividedData[1])!)
+                    }
+                    if let gimbalrunningsession = GimbalCurrentRunningTest {
+                        switch gimbalrunningsession.RunStatus {
+                        case .waitForRunning:
+                            GimbalCurrentRunningTest?.RunStatus = .isRunning
+                            GimbalCurrentRunningTest?.startTime = Int(dividedData[1])!
+                            GimbalCurrentRunningTest?.target = targetTableView.returnData()
+                            if let port = self.serialPort {
+                                var commandString = "\r\n"
+                                switch targetTableView.dataIdentifier {
+                                case .YAWV:
+                                    commandString = "g_set_v \(GimbalCurrentRunningTest!.target[0].Target)  0\r\n"
+                                case .YAWA:
+                                    commandString = "g_set_angle \(GimbalCurrentRunningTest!.target[0].Target)  0\r\n"
+                                case .PITCHV:
+                                    commandString = "g_set_v 0 \(GimbalCurrentRunningTest!.target[0].Target)\r\n"
+                                case .PITCHA:
+                                    commandString = "g_set_angle 0 \(GimbalCurrentRunningTest!.target[0].Target)\r\n"
+                                }
+                                let command = commandString.data(using: String.Encoding.ascii)!
+                                port.send(command)
+                                GimbalRunningIndex = 0
+                                GimbalRunningTag = Int(dividedData[1])!
+                            }
+                        case .isRunning:
+                            let currentTime = Int(dividedData[1])!
+                            if (GimbalRunningIndex < (GimbalCurrentRunningTest?.target.count)!) {
+                                if(currentTime > GimbalRunningTag) {
+                                    GimbalRunningTag += Int(GimbalCurrentRunningTest!.target[GimbalRunningIndex].MaintainTime * 1000)
+                                    if let port = self.serialPort {
+                                        var commandString = "\r\n"
+                                        switch targetTableView.dataIdentifier {
+                                        case .YAWV:
+                                            commandString = "g_set_v \(GimbalCurrentRunningTest!.target[GimbalRunningIndex].Target) 0\r\n"
+                                        case .YAWA:
+                                            commandString = "g_set_angle \(GimbalCurrentRunningTest!.target[GimbalRunningIndex].Target) 0\r\n"
+                                        case .PITCHV:
+                                            commandString = "g_set_v 0 \(GimbalCurrentRunningTest!.target[GimbalRunningIndex].Target)\r\n"
+                                        case .PITCHA:
+                                            commandString = "g_set_angle 0 \(GimbalCurrentRunningTest!.target[GimbalRunningIndex].Target)\r\n"
+                                        }
+                                        let command = commandString.data(using: String.Encoding.ascii)!
+                                        port.send(command)
+                                    }
+                                    GimbalRunningIndex += 1
+                                }
+                            } else if(currentTime > GimbalRunningTag){
+                                GimbalCurrentRunningTest?.RunStatus = .RunFinished
+                                if let port = self.serialPort {
+                                    var commandString = "\r\n"
+                                    switch targetTableView.dataIdentifier {
+                                    case .YAWV:
+                                        commandString = "g_set_v 0 0\r\n"
+                                    case .YAWA:
+                                        commandString = "g_set_angle 0 0\r\n"
+                                    case .PITCHV:
+                                        commandString = "g_set_v 0 0\r\n"
+                                    case .PITCHA:
+                                        commandString = "g_set_angle 0 0\r\n"
+                                    }
+                                    let command = commandString.data(using: String.Encoding.ascii)!
+                                    let command2 = "g_enable 0 0\r\n".data(using: String.Encoding.ascii)!
+                                    port.send(command)
+                                    port.send(command2)
+                                    self.GimbalRunBtn.isEnabled = true
+                                    self.GimbalMotorEnableButton.state = .off
+                                    GimbalTargetTime.isEnabled = true
+                                    GimbalTargetContent.isEnabled = true
+                                    MotorSelector.isEnabled = true
+                                    PIDSelector.isEnabled = true
+                                    self.GimbalCurrentRunningTest?.RunStatus = .RunFinished
+                                }
+                            }
+                        default: ()
+                        }
                     }
                 }
             }
@@ -457,7 +678,7 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                 if(OverFlowCount>20) {
                     GimbalRXString = ""
                 }
-                return nil
+                return ""
             }
         } else {
             OverFlowCount = 0

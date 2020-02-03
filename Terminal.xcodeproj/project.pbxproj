@@ -19,7 +19,7 @@
 		D06964B023E06CB600D2E39B /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06964AF23E06CB600D2E39B /* MainController.swift */; };
 		D0AE298123E0AF960087CA92 /* ScreenShots-TerminalView.png in Resources */ = {isa = PBXBuildFile; fileRef = D0AE298023E0AF960087CA92 /* ScreenShots-TerminalView.png */; };
 		D0AE298323E0AFA30087CA92 /* ScreenShots-PortSelector.png in Resources */ = {isa = PBXBuildFile; fileRef = D0AE298223E0AFA30087CA92 /* ScreenShots-PortSelector.png */; };
-		D0D10E7C23E54CD900BCD73A /* TargetTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D10E7B23E54CD900BCD73A /* TargetTableView.swift */; };
+		D0D10E7C23E54CD900BCD73A /* GimbalTargetTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D10E7B23E54CD900BCD73A /* GimbalTargetTableView.swift */; };
 		D0FAB60523E5F98E00A985AA /* PIDnEvaluateTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FAB60423E5F98E00A985AA /* PIDnEvaluateTableView.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +65,7 @@
 		D06A8FE823E4054B00232FE4 /* ScreenShots-PlotViews.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-PlotViews.png"; sourceTree = "<group>"; };
 		D0AE298023E0AF960087CA92 /* ScreenShots-TerminalView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-TerminalView.png"; sourceTree = "<group>"; };
 		D0AE298223E0AFA30087CA92 /* ScreenShots-PortSelector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-PortSelector.png"; sourceTree = "<group>"; };
-		D0D10E7B23E54CD900BCD73A /* TargetTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetTableView.swift; sourceTree = "<group>"; };
+		D0D10E7B23E54CD900BCD73A /* GimbalTargetTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GimbalTargetTableView.swift; sourceTree = "<group>"; };
 		D0FAB60423E5F98E00A985AA /* PIDnEvaluateTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIDnEvaluateTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,7 +108,7 @@
 				D069648323E029D600D2E39B /* AppDelegate.swift */,
 				D069648523E029D600D2E39B /* Assets.xcassets */,
 				D069648723E029D600D2E39B /* MainMenu.xib */,
-				D0D10E7B23E54CD900BCD73A /* TargetTableView.swift */,
+				D0D10E7B23E54CD900BCD73A /* GimbalTargetTableView.swift */,
 				D0FAB60423E5F98E00A985AA /* PIDnEvaluateTableView.swift */,
 				D06964AF23E06CB600D2E39B /* MainController.swift */,
 				D069649923E02FAC00D2E39B /* Icon-chassis.png */,
@@ -249,7 +249,7 @@
 			files = (
 				D06964B023E06CB600D2E39B /* MainController.swift in Sources */,
 				D059372D23E29BBB00B530B0 /* PlotChart.swift in Sources */,
-				D0D10E7C23E54CD900BCD73A /* TargetTableView.swift in Sources */,
+				D0D10E7C23E54CD900BCD73A /* GimbalTargetTableView.swift in Sources */,
 				D0FAB60523E5F98E00A985AA /* PIDnEvaluateTableView.swift in Sources */,
 				D069648423E029D600D2E39B /* AppDelegate.swift in Sources */,
 			);
