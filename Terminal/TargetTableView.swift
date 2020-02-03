@@ -143,7 +143,6 @@ extension TargetTableView: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         switch dataIdentifier {
         case .YAWV:
-            print(self.yawVelocityData.count)
             return self.yawVelocityData.count
         case .YAWA:
             return self.yawAngleData.count
