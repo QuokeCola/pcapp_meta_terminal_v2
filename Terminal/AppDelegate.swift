@@ -509,6 +509,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                 GimbalAddTargetButton.isEnabled = true
                 GimbalRunBtn.isEnabled = true
                 GimbalCurrentRunningTest?.RunStatus = .RunFinished
+                
+                GimbalCurrentRunningTest?.Result_AvgDiff = AvgDiff(Data: current_running_data)
+                GimbalCurrentRunningTest?.Result_StdDiff = StdDev(Data: current_running_data)
+                GimbalDataEvaluateView.addData(DataItem: PIDnEvaluateTableView.PIDnEvalData_t(pidparam: GimbalCurrentRunningTest!.PIDParam, StandardDifference: (GimbalCurrentRunningTest?.Result_StdDiff)!, AverageDifference: (GimbalCurrentRunningTest?.Result_AvgDiff)!))
             }
         } else {
             GimbalMotorEnableButton.state = .off
@@ -640,10 +644,32 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                 if (isValidData) {
                     if ((DisplayMode == .Continuous)||((DisplayMode == .Auto) && (GimbalCurrentRunningTest?.RunStatus == .isRunning))) {
                         if(dividedData[0] == "!gy") {
+                            if (GimbalCurrentRunningTest?.RunStatus == .isRunning) {
+                                switch targetTableView.dataIdentifier {
+                                case .YAWA:
+                                    current_running_data.append(Float(dividedData[2])!-Float(dividedData[3])!)
+                                case .YAWV:
+                                    current_running_data.append(Float(dividedData[4])!-Float(dividedData[5])!)
+                                case .PITCHV:
+                                    ()
+                                case .PITCHA:
+                                    ()
+                                }
+                            }
                             yawVelocityChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Int(dividedData[1])!)
                             yawAngleChart.AddData(RealData_: Float(dividedData[2])!, TargetData_: Float(dividedData[3])!, Time_: Int(dividedData[1])!)
                             yawCurrentChart.AddData(RealData_: Float(dividedData[6])!, TargetData_: Float(dividedData[7])!, Time_: Int(dividedData[1])!)
                         } else if (dividedData[0] == "!gp") {
+                            if (GimbalCurrentRunningTest?.RunStatus == .isRunning) {
+                                switch targetTableView.dataIdentifier {
+                                case .YAWA:()
+                                case .YAWV:()
+                                case .PITCHA:
+                                    current_running_data.append(Float(dividedData[2])!-Float(dividedData[3])!)
+                                case .PITCHV:
+                                    current_running_data.append(Float(dividedData[4])!-Float(dividedData[5])!)
+                                }
+                            }
                             pitchVelocityChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Int(dividedData[1])!)
                             pitchAngleChart.AddData(RealData_: Float(dividedData[2])!, TargetData_: Float(dividedData[3])!, Time_: Int(dividedData[1])!)
                             pitchCurrentChart.AddData(RealData_: Float(Int(dividedData[6])!), TargetData_: Float(Int(dividedData[7])!), Time_: Int(dividedData[1])!)
@@ -656,6 +682,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                             GimbalCurrentRunningTest?.startTime = Int(dividedData[1])!
                             GimbalCurrentRunningTest?.target = targetTableView.returnData()
                             GimbalRunFullTime = (GimbalCurrentRunningTest?.fullTime())!
+                            current_running_data.removeAll()
                             if(DisplayMode == .Auto) {
                                 GimbalRevealTime.stringValue = String(Int(GimbalRunFullTime/1000))
                                 GimbalSetRevealTime(Any?.self)
@@ -680,6 +707,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                         case .isRunning:
                             let currentTime = Int(dividedData[1])!
                             ProgressBar.doubleValue = Double(Float(currentTime - (GimbalCurrentRunningTest?.startTime)!)/Float(GimbalRunFullTime)) * 100.0
+
                             if (GimbalRunningIndex < (GimbalCurrentRunningTest?.target.count)!) {
                                 if(currentTime > GimbalRunningTag) {
                                     GimbalRunningTag += Int(GimbalCurrentRunningTest!.target[GimbalRunningIndex].MaintainTime * 1000.0)
@@ -698,10 +726,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                                         let command = commandString.data(using: String.Encoding.ascii)!
                                         port.send(command)
                                     }
-                                    //                                    ProgressBar.increment(by: Double(1.0/Float((GimbalCurrentRunningTest?.target.count)!)*100.0))
                                     GimbalRunningIndex += 1
                                 }
-                            } else if(currentTime > GimbalRunningTag){
+                            } else if(currentTime > GimbalRunningTag) { // Finished Running
+                                // Disable Motors
                                 GimbalCurrentRunningTest?.RunStatus = .RunFinished
                                 if let port = self.serialPort {
                                     var commandString = "\r\n"
@@ -719,6 +747,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                                     let command2 = "g_enable 0 0\r\n".data(using: String.Encoding.ascii)!
                                     port.send(command)
                                     port.send(command2)
+                                    
+                                    // Enable GimbalView Components
                                     self.GimbalRunBtn.isEnabled = true
                                     self.GimbalMotorEnableButton.state = .off
                                     GimbalTargetTime.isEnabled = true
@@ -733,6 +763,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                                     Gimbalout_limitTestField.isEnabled = true
                                     GimbalAddTargetButton.isEnabled = true
                                     self.GimbalCurrentRunningTest?.RunStatus = .RunFinished
+                                    
+                                    // Perform result calculation
+                                    GimbalCurrentRunningTest?.Result_AvgDiff = AvgDiff(Data: current_running_data)
+                                    GimbalCurrentRunningTest?.Result_StdDiff = StdDev(Data: current_running_data)
+                                    GimbalDataEvaluateView.addData(DataItem: PIDnEvaluateTableView.PIDnEvalData_t(pidparam: GimbalCurrentRunningTest!.PIDParam, StandardDifference: (GimbalCurrentRunningTest?.Result_StdDiff)!, AverageDifference: (GimbalCurrentRunningTest?.Result_AvgDiff)!))
                                 }
                             }
                         default: ()
@@ -770,6 +805,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         }
         return nil
     }
+    
     // Data Validation
     func isPureFloat(string: String) -> Bool {
         
@@ -789,6 +825,28 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         
         return scan.scanInt(&val) && scan.isAtEnd
         
+    }
+    
+    // Data Process Method
+    func StdDev(Data: Array<Float>) -> Float{
+        if(Data.count == 0) {
+            return 0.0
+        }
+        var squarsum: Float = 0.0
+        for item in Data{
+            squarsum += Float(pow(Double(item), 2.0))
+        }
+        return squarsum/Float(Data.count)
+    }
+    func AvgDiff(Data: Array<Float>) -> Float {
+        if(Data.count == 0) {
+            return 0.0
+        }
+        var sum: Float = 0.0
+        for item in Data {
+            sum += item
+        }
+        return sum/Float(Data.count)
     }
     
     func serialPortWasRemovedFromSystem(_ serialPort: ORSSerialPort) {

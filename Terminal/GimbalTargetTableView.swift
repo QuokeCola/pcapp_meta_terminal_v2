@@ -136,6 +136,23 @@ class GimbalTargetTableView: NSTableView {
         self.registerForDraggedTypes([dataPasteBoardType])
         // Drawing code here.
     }
+    
+    override func keyDown(with event: NSEvent) {
+        if event.keyCode == 51 {
+            switch dataIdentifier {
+            case .YAWV:
+                self.yawVelocityData.remove(at: self.selectedRow)
+            case .YAWA:
+                self.yawAngleData.remove(at: self.selectedRow)
+            case .PITCHV:
+                self.pitchVelocityData.remove(at: self.selectedRow)
+            case .PITCHA:
+                self.pitchAngleData.remove(at: self.selectedRow)
+            }
+            reloadData()
+        }
+        
+    }
 }
     
 extension GimbalTargetTableView: NSTableViewDataSource {

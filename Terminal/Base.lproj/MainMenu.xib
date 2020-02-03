@@ -845,7 +845,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Terminal" identifier="Terminal" id="Okh-Gv-lyC">
-                                <view key="view" ambiguous="YES" id="Ix2-nd-ZH7">
+                                <view key="view" id="Ix2-nd-ZH7">
                                     <rect key="frame" x="0.0" y="0.0" width="934" height="717"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1729,8 +1729,8 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Chassis" identifier="Chassis" id="zb0-Te-ORf">
-                                <view key="view" id="lcc-qx-Slz">
-                                    <rect key="frame" x="0.0" y="0.0" width="955" height="700"/>
+                                <view key="view" ambiguous="YES" id="lcc-qx-Slz">
+                                    <rect key="frame" x="0.0" y="0.0" width="934" height="717"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>

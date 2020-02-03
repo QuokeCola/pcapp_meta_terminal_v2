@@ -230,14 +230,14 @@ extension PIDnEvaluateTableView: NSTableViewDelegate {
         } else if (tableColumn == tableView.tableColumns[5]) {
             cellIdentifier = CellIdentifiers.stddiffCell
             if (Data[row].StandardDifference > 0.0) { // let standard difference is negative to show it's not valid.
-                string = String(Data[row].StandardDifference)
+                string = String(format: "%.2f", Data[row].StandardDifference)
             } else {
                 string = "null"
             }
         } else if (tableColumn == tableView.tableColumns[6]) {
             cellIdentifier = CellIdentifiers.avgdiffCell
             if (Data[row].StandardDifference > 0.0 ) {
-                string = String(Data[row].AverageDifference)
+                string = String(format: "%.2f", Data[row].AverageDifference)
             } else {
                 string = "null"
             }
