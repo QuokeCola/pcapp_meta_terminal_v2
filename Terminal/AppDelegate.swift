@@ -12,7 +12,7 @@ import SpriteKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
-    @IBOutlet weak var window: MainController!
+    @IBOutlet weak var window: NSWindow!
     /***--------------------Initialzie-----------------------***/
     func applicationDidFinishLaunching(_ aNotification: Notification) {
     }
@@ -59,6 +59,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
             let command = "g_enable_fb 0 0\r".data(using: String.Encoding.ascii)!
             port.send(command)
         }
+        
+        let oldFrame = window.frame
+        let newFrameSize = NSSize(width: 647, height: 720)
+        window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true, animate: true)
     }
     
     @IBAction func GimbalBtnClk(_ sender: Any) {
@@ -82,7 +86,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         pitchAngleChart.title = "Angle"
         pitchCurrentChart.title = "Current"
         
-        
+        let oldFrame = window.frame
+        let newFrameSize = NSSize(width: 1175, height: 720)
+        window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true, animate: true)
         // Start the Gimbal Chart View.
         GimbalMainChartView.isPaused = false
         GimbalSecondChartView.isPaused = false
@@ -515,6 +521,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                     MotorSelector.isEnabled = false
                     PIDSelector.isEnabled = false
                     ProgressBar.doubleValue = 0.0
+                    GimbalPIDSetButton.isEnabled = false
                 }
             } else if MotorSelector.selectedItem == MotorSelector.item(at: 1) {
                 if let port = serialPort {
@@ -524,6 +531,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                     GimbalRunBtn.isEnabled = false
                     GimbalTargetTime.isEnabled = false
                     GimbalTargetContent.isEnabled = false
+                    GimbalPIDSetButton.isEnabled = false
                 }
             }
         } else {
@@ -676,6 +684,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                                     GimbalTargetContent.isEnabled = true
                                     MotorSelector.isEnabled = true
                                     PIDSelector.isEnabled = true
+                                    GimbalPIDSetButton.isEnabled = true
                                     self.GimbalCurrentRunningTest?.RunStatus = .RunFinished
                                 }
                             }
