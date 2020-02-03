@@ -22,7 +22,7 @@ class PIDnEvaluateTableView: NSTableView {
     var dataIdentifier: DataIdentifier_t = DataIdentifier_t.YAWV
     
     struct PIDnEvalData_t {
-        var pidparam: MainController.PIDParams_t
+        var pidparam: AppDelegate.PIDParams_t
         var StandardDifference: Float
         var AverageDifference: Float
     }

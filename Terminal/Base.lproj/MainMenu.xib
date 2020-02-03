@@ -12,43 +12,40 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Terminal" customModuleProvider="target">
             <connections>
+                <outlet property="ChassisBackGround" destination="QZe-I9-Pcz" id="wOc-rW-VFe"/>
+                <outlet property="CommandTextField" destination="9nm-Dz-UtH" id="Wd1-zS-BDK"/>
+                <outlet property="ConnectButton" destination="AYb-88-C1G" id="pBm-oO-12h"/>
+                <outlet property="EnableAHRSBtn" destination="lbC-LW-4nn" id="rU0-aT-9rt"/>
+                <outlet property="GimbalBackGround" destination="oBO-A9-zsR" id="kxD-jW-pN4"/>
+                <outlet property="GimbalDataEvaluateView" destination="BNo-j3-mHh" id="wHu-ZL-F72"/>
+                <outlet property="GimbalMainChartView" destination="4rd-d5-Gqr" id="o7o-ic-fxm"/>
+                <outlet property="GimbalMotorEnableButton" destination="ELk-qh-8d4" id="E5t-SJ-YUG"/>
+                <outlet property="GimbalPIDSetButton" destination="fxH-sh-KHI" id="4iV-Y4-5pj"/>
+                <outlet property="GimbalRunBtn" destination="Ym7-S1-ds2" id="TnM-vO-QHS"/>
+                <outlet property="GimbalSecondChartView" destination="eJ2-xR-eYe" id="her-b1-oGa"/>
+                <outlet property="GimbalTargetContent" destination="p3a-xJ-Goq" id="vnz-OE-zN8"/>
+                <outlet property="GimbalTargetTime" destination="4NN-bJ-etg" id="nKa-io-Fxw"/>
+                <outlet property="GimbalThirdChartView" destination="fs5-YG-j7C" id="dsR-0b-rxK"/>
+                <outlet property="Gimbali_limitTextField" destination="RNJ-VW-2UR" id="5Da-Wu-Dm1"/>
+                <outlet property="GimbalkdTextField" destination="Er9-D0-e7i" id="orP-Jq-iWy"/>
+                <outlet property="GimbalkiTextField" destination="JPX-3Y-QFc" id="Neh-w8-aL9"/>
+                <outlet property="GimbalkpTextField" destination="28a-nl-yK8" id="5OR-bf-uR6"/>
+                <outlet property="Gimbalout_limitTestField" destination="F4x-jH-iGk" id="2Wg-jx-UWP"/>
+                <outlet property="MotorSelector" destination="oEb-oZ-PAY" id="Pky-5A-XbP"/>
+                <outlet property="PIDSelector" destination="aNI-h4-Zmd" id="ot1-Tw-No6"/>
+                <outlet property="ProgressBar" destination="ndP-55-QWh" id="Wbp-3z-pXH"/>
+                <outlet property="RevealTime" destination="Q1S-Ym-aBm" id="m3a-Ki-5by"/>
+                <outlet property="ShellScroller" destination="38G-Dc-okx" id="agK-sC-LSM"/>
+                <outlet property="ShellView" destination="E9w-dF-MJi" id="xZh-hR-SKU"/>
+                <outlet property="TabViews" destination="Ip1-8O-QCx" id="MIN-Yv-HUa"/>
+                <outlet property="TerminalBackGround" destination="H8e-lL-Jr4" id="apq-Fy-dLz"/>
+                <outlet property="statusInfo" destination="MmW-rI-opE" id="GAe-uC-rlK"/>
+                <outlet property="targetTableView" destination="Jel-gg-wOh" id="UxG-OA-Wch"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="Fsv-vd-qMw"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <customObject id="njD-zZ-H8I" customClass="MainController" customModule="Terminal" customModuleProvider="target">
-            <connections>
-                <outlet property="ChassisBackGround" destination="QZe-I9-Pcz" id="gdV-MJ-4p4"/>
-                <outlet property="CommandTextField" destination="9nm-Dz-UtH" id="kby-BW-2Q7"/>
-                <outlet property="ConnectButton" destination="AYb-88-C1G" id="ssi-Uh-Y4v"/>
-                <outlet property="EnableAHRSBtn" destination="lbC-LW-4nn" id="fPI-A0-mhu"/>
-                <outlet property="GimbalBackGround" destination="oBO-A9-zsR" id="eDO-Xo-H1L"/>
-                <outlet property="GimbalDataEvaluateView" destination="BNo-j3-mHh" id="iEQ-GA-ri3"/>
-                <outlet property="GimbalMainChartView" destination="4rd-d5-Gqr" id="0bg-Oh-e4T"/>
-                <outlet property="GimbalMotorEnableButton" destination="ELk-qh-8d4" id="gOG-iF-vRV"/>
-                <outlet property="GimbalPIDSetButton" destination="fxH-sh-KHI" id="CZy-75-9ih"/>
-                <outlet property="GimbalRunBtn" destination="Ym7-S1-ds2" id="Laq-34-SPJ"/>
-                <outlet property="GimbalSecondChartView" destination="eJ2-xR-eYe" id="tYA-lt-2at"/>
-                <outlet property="GimbalTargetContent" destination="p3a-xJ-Goq" id="bUz-H9-pzI"/>
-                <outlet property="GimbalTargetTime" destination="4NN-bJ-etg" id="XKg-cw-IFL"/>
-                <outlet property="GimbalThirdChartView" destination="fs5-YG-j7C" id="eBv-CZ-kvp"/>
-                <outlet property="Gimbali_limitTextField" destination="RNJ-VW-2UR" id="d1W-YN-6Nr"/>
-                <outlet property="GimbalkdTextField" destination="Er9-D0-e7i" id="TwO-qr-xXu"/>
-                <outlet property="GimbalkiTextField" destination="JPX-3Y-QFc" id="Ggt-yU-lC3"/>
-                <outlet property="GimbalkpTextField" destination="28a-nl-yK8" id="nw3-eb-wUD"/>
-                <outlet property="Gimbalout_limitTestField" destination="F4x-jH-iGk" id="xbG-vt-1Ss"/>
-                <outlet property="MotorSelector" destination="oEb-oZ-PAY" id="wRW-Cb-TeX"/>
-                <outlet property="PIDSelector" destination="aNI-h4-Zmd" id="1r9-b7-mTw"/>
-                <outlet property="ProgressBar" destination="ndP-55-QWh" id="CKU-AH-vNV"/>
-                <outlet property="RevealTime" destination="Q1S-Ym-aBm" id="72l-6o-5KI"/>
-                <outlet property="ShellScroller" destination="38G-Dc-okx" id="osN-Cs-eNm"/>
-                <outlet property="ShellView" destination="E9w-dF-MJi" id="Y1w-cR-Uzb"/>
-                <outlet property="TabViews" destination="Ip1-8O-QCx" id="rLe-1U-qks"/>
-                <outlet property="TerminalBackGround" destination="H8e-lL-Jr4" id="tYs-e2-stz"/>
-                <outlet property="statusInfo" destination="MmW-rI-opE" id="50v-GL-pCb"/>
-                <outlet property="targetTableView" destination="Jel-gg-wOh" id="u1e-P5-K3u"/>
-            </connections>
-        </customObject>
+        <customObject id="njD-zZ-H8I" customClass="MainController" customModule="Terminal" customModuleProvider="target"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="Terminal" id="1Xt-HY-uBw">
@@ -737,7 +734,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="GimbalBtnClk:" target="njD-zZ-H8I" id="J1y-n8-U1W"/>
+                                            <action selector="GimbalBtnClk:" target="Voe-Tx-rLC" id="FHK-4r-0sU"/>
                                             <outlet property="nextKeyView" destination="oBO-A9-zsR" id="cXX-Iq-PBl"/>
                                         </connections>
                                     </button>
@@ -755,7 +752,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="TerminalBtnClk:" target="njD-zZ-H8I" id="9tt-hL-Bnx"/>
+                                            <action selector="TerminalBtnClk:" target="Voe-Tx-rLC" id="g0T-jR-6nr"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -772,7 +769,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="ChassisBtnClk:" target="njD-zZ-H8I" id="x3a-nN-rtr"/>
+                                            <action selector="ChassisBtnClk:" target="Voe-Tx-rLC" id="NFm-KW-5SY"/>
                                             <outlet property="nextKeyView" destination="QZe-I9-Pcz" id="qce-kG-9Jg"/>
                                         </connections>
                                     </button>
@@ -786,8 +783,8 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="ConnectButtonClk:" target="njD-zZ-H8I" id="doD-XM-SMZ"/>
-                                    <binding destination="njD-zZ-H8I" name="enabled" keyPath="serialPort" id="va2-l5-ZFw">
+                                    <action selector="ConnectButtonClk:" target="Voe-Tx-rLC" id="6ts-VG-dJ7"/>
+                                    <binding destination="Voe-Tx-rLC" name="enabled" keyPath="serialPort" id="gyj-V9-vLf">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSIsNotNil</string>
                                         </dictionary>
@@ -807,14 +804,11 @@
                                             <menuItem title="Bluetooth" id="nm5-Dz-bXy"/>
                                         </items>
                                     </menu>
-                                    <connections>
-                                        <binding destination="njD-zZ-H8I" name="selectedObject" keyPath="serialPort" id="zaF-OL-pAZ"/>
-                                    </connections>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="njD-zZ-H8I" name="selectedObject" keyPath="serialPort" previousBinding="TUK-OT-vVp" id="ds1-zb-UP9"/>
-                                    <binding destination="njD-zZ-H8I" name="content" keyPath="serialPortManager.availablePorts" id="Ipf-vr-vn3"/>
-                                    <binding destination="njD-zZ-H8I" name="contentValues" keyPath="serialPortManager.availablePorts.name" previousBinding="Ipf-vr-vn3" id="TUK-OT-vVp"/>
+                                    <binding destination="Voe-Tx-rLC" name="content" keyPath="serialPortManager.availablePorts" id="voZ-gT-13m"/>
+                                    <binding destination="Voe-Tx-rLC" name="contentValues" keyPath="serialPortManager.availablePorts.name" previousBinding="voZ-gT-13m" id="kNN-me-eNp"/>
+                                    <binding destination="Voe-Tx-rLC" name="selectedObject" keyPath="serialPort" previousBinding="kNN-me-eNp" id="Tew-nZ-tlu"/>
                                 </connections>
                             </popUpButton>
                             <progressIndicator wantsLayer="YES" fixedFrame="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="ndP-55-QWh">
@@ -851,10 +845,11 @@
                         <tabViewItems>
                             <tabViewItem label="Terminal" identifier="Terminal" id="Okh-Gv-lyC">
                                 <view key="view" id="Ix2-nd-ZH7">
+                                    <rect key="frame" x="0.0" y="0.0" width="934" height="699"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9nm-Dz-UtH">
-                                            <rect key="frame" x="20" y="57" width="0.0" height="22"/>
+                                            <rect key="frame" x="20" y="57" width="827" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="I3Q-aC-jFj">
                                                 <font key="font" metaFont="system"/>
@@ -862,18 +857,18 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <action selector="ReturnPressedinTextField:" target="njD-zZ-H8I" id="g2O-8R-fIz"/>
+                                                <action selector="ReturnPressedinTextField:" target="Voe-Tx-rLC" id="2Oj-tq-o5W"/>
                                             </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rMC-gO-fkh">
-                                            <rect key="frame" x="-85" y="51" width="71" height="32"/>
+                                            <rect key="frame" x="849" y="51" width="71" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="push" title="Send" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5Oo-zh-P7i">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="SendBtnClk:" target="njD-zZ-H8I" id="gw5-6d-Kd8"/>
+                                                <action selector="SendBtnClk:" target="Voe-Tx-rLC" id="WdC-jf-YM8"/>
                                             </connections>
                                         </button>
                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bzJ-Ls-69x">
@@ -887,7 +882,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="HelloBtnClk:" target="njD-zZ-H8I" id="q4F-Gg-RIc"/>
+                                                        <action selector="HelloBtnClk:" target="Voe-Tx-rLC" id="kXJ-Mj-MMM"/>
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c5g-gT-e6B">
@@ -897,7 +892,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="StatsBtnClk:" target="njD-zZ-H8I" id="LNe-Pp-1VV"/>
+                                                        <action selector="StatsBtnClk:" target="Voe-Tx-rLC" id="if6-Wd-4SX"/>
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oIE-sw-K3g">
@@ -907,7 +902,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="MemBtnClk:" target="njD-zZ-H8I" id="YwO-IZ-ieh"/>
+                                                        <action selector="MemBtnClk:" target="Voe-Tx-rLC" id="VXO-Gw-IZi"/>
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T9s-58-WiG">
@@ -917,7 +912,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="SystimeBtnClk:" target="njD-zZ-H8I" id="5JC-dV-zZr"/>
+                                                        <action selector="SystimeBtnClk:" target="Voe-Tx-rLC" id="7uX-KQ-yQn"/>
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rgz-jb-y4o">
@@ -927,7 +922,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="ThreadsBtnClk:" target="njD-zZ-H8I" id="7jk-Ca-qyF"/>
+                                                        <action selector="ThreadsBtnClk:" target="Voe-Tx-rLC" id="R6p-ui-Ujb"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -947,29 +942,29 @@
                                             </customSpacing>
                                         </stackView>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mmf-Af-Lqs">
-                                            <rect key="frame" x="-132" y="-46" width="118" height="32"/>
+                                            <rect key="frame" x="802" y="653" width="118" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Clear Output" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="l3F-6O-G6Q">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="ShellClearBtnClk:" target="njD-zZ-H8I" id="OVc-gC-kwp"/>
+                                                <action selector="ShellClearBtnClk:" target="Voe-Tx-rLC" id="KG1-fO-VlX"/>
                                             </connections>
                                         </button>
                                         <scrollView fixedFrame="YES" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="38G-Dc-okx">
-                                            <rect key="frame" x="20" y="99" width="0.0" height="0.0"/>
+                                            <rect key="frame" x="20" y="99" width="894" height="541"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" ambiguous="YES" id="1jT-62-MHC">
-                                                <rect key="frame" x="1" y="1" width="0.0" height="1"/>
+                                                <rect key="frame" x="1" y="1" width="877" height="539"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="E9w-dF-MJi">
-                                                        <rect key="frame" x="0.0" y="0.0" width="14" height="14"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1802" height="539"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <size key="minSize" width="0.0" height="1"/>
-                                                        <size key="maxSize" width="948" height="10000000"/>
+                                                        <size key="minSize" width="877" height="539"/>
+                                                        <size key="maxSize" width="1835" height="10000000"/>
                                                         <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </textView>
                                                 </subviews>
@@ -980,7 +975,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="IHg-jd-hzn">
-                                                <rect key="frame" x="-15" y="1" width="15" height="-1"/>
+                                                <rect key="frame" x="878" y="1" width="15" height="539"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
@@ -1007,7 +1002,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="MotorEnableBtnClk:" target="njD-zZ-H8I" id="ZBW-Nc-CHs"/>
+                                                            <action selector="MotorEnableBtnClk:" target="Voe-Tx-rLC" id="rUd-se-8Hi"/>
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFd-OP-hmQ">
@@ -1018,7 +1013,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="SetFrontABtnClk:" target="njD-zZ-H8I" id="cB1-Y9-jiw"/>
+                                                            <action selector="SetFrontABtnClk:" target="Voe-Tx-rLC" id="H49-0c-zke"/>
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lbC-LW-4nn">
@@ -1029,7 +1024,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="EnableAHRSBtnClk:" target="njD-zZ-H8I" id="PM7-eF-v0b"/>
+                                                            <action selector="EnableAHRSBtnClk:" target="Voe-Tx-rLC" id="sgl-tc-3S2"/>
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fZE-26-ahA">
@@ -1065,7 +1060,7 @@
                                                             </menu>
                                                         </popUpButtonCell>
                                                         <connections>
-                                                            <action selector="MotorSelect:" target="njD-zZ-H8I" id="nqg-oj-ZEb"/>
+                                                            <action selector="MotorSelect:" target="Voe-Tx-rLC" id="mzF-Fj-JvF"/>
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNI-h4-Zmd">
@@ -1085,7 +1080,7 @@
                                                             </menu>
                                                         </popUpButtonCell>
                                                         <connections>
-                                                            <action selector="PIDSelect:" target="njD-zZ-H8I" id="Wdl-gm-wIB"/>
+                                                            <action selector="PIDSelect:" target="Voe-Tx-rLC" id="OLS-jf-r63"/>
                                                         </connections>
                                                     </popUpButton>
                                                 </subviews>
@@ -1121,7 +1116,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="SetTime:" target="njD-zZ-H8I" id="9U2-eN-Mnp"/>
+                                                            <action selector="SetTime:" target="Voe-Tx-rLC" id="Lc4-Yu-3ng"/>
                                                         </connections>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEF-QX-pp3">
@@ -1137,49 +1132,49 @@
                                             </view>
                                         </box>
                                         <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="1Wg-s5-d1R">
-                                            <rect key="frame" x="27" y="191" width="887" height="360"/>
+                                            <rect key="frame" x="27" y="191" width="884" height="365"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <view key="contentView" ambiguous="YES" id="RJW-SD-Bh5">
-                                                <rect key="frame" x="1" y="1" width="885" height="358"/>
+                                                <rect key="frame" x="1" y="1" width="882" height="363"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="SecondViewBox" translatesAutoresizingMaskIntoConstraints="NO" id="Bxm-Dm-a39">
-                                                        <rect key="frame" x="605" y="187" width="279" height="171"/>
+                                                        <rect key="frame" x="466" y="185" width="416" height="178"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                                         <view key="contentView" ambiguous="YES" id="CrZ-ZJ-b0M">
-                                                            <rect key="frame" x="1" y="1" width="277" height="169"/>
+                                                            <rect key="frame" x="1" y="1" width="414" height="176"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eJ2-xR-eYe" customClass="SKView">
-                                                                    <rect key="frame" x="-1" y="-1" width="279" height="171"/>
+                                                                    <rect key="frame" x="-1" y="-1" width="416" height="178"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 </customView>
                                                             </subviews>
                                                         </view>
                                                     </box>
                                                     <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="MainViewBox" translatesAutoresizingMaskIntoConstraints="NO" id="YuG-jM-7ub">
-                                                        <rect key="frame" x="0.0" y="0.0" width="587" height="358"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="449" height="363"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                                         <view key="contentView" ambiguous="YES" id="VPA-1Y-HGR">
-                                                            <rect key="frame" x="1" y="1" width="585" height="356"/>
+                                                            <rect key="frame" x="1" y="1" width="447" height="361"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4rd-d5-Gqr" customClass="SKView">
-                                                                    <rect key="frame" x="-1" y="-1" width="587" height="358"/>
+                                                                    <rect key="frame" x="-1" y="-1" width="449" height="363"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 </customView>
                                                             </subviews>
                                                         </view>
                                                     </box>
                                                     <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="ThirdViewBox" translatesAutoresizingMaskIntoConstraints="NO" id="lhj-Ck-KqN">
-                                                        <rect key="frame" x="605" y="0.0" width="279" height="171"/>
+                                                        <rect key="frame" x="466" y="0.0" width="416" height="169"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" ambiguous="YES" id="HIH-yA-b3i">
-                                                            <rect key="frame" x="1" y="1" width="277" height="169"/>
+                                                            <rect key="frame" x="1" y="1" width="414" height="167"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fs5-YG-j7C" customClass="SKView">
-                                                                    <rect key="frame" x="-1" y="-1" width="279" height="171"/>
+                                                                    <rect key="frame" x="-1" y="-1" width="415" height="168"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 </customView>
                                                             </subviews>
@@ -1289,7 +1284,7 @@
                                                                         </subviews>
                                                                     </clipView>
                                                                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Ifr-uS-hHp">
-                                                                        <rect key="frame" x="1" y="8" width="0.0" height="15"/>
+                                                                        <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                     </scroller>
                                                                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="7Ez-i1-Hgs">
@@ -1313,7 +1308,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="GimbalTargetTextFieldEnterPressed:" target="njD-zZ-H8I" id="U4o-Tv-b2v"/>
+                                                            <action selector="GimbalTargetTextFieldEnterPressed:" target="Voe-Tx-rLC" id="YjF-nm-gSa"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4NN-bJ-etg">
@@ -1325,7 +1320,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="GimbalTimeTextFieldEnterPressed:" target="njD-zZ-H8I" id="FYk-DO-NKH"/>
+                                                            <action selector="GimbalTimeTextFieldEnterPressed:" target="Voe-Tx-rLC" id="1L1-br-NJj"/>
                                                         </connections>
                                                     </textField>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4qk-kn-2Jm">
@@ -1336,7 +1331,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="addTargetBtnClk:" target="njD-zZ-H8I" id="yY7-o6-G8W"/>
+                                                            <action selector="addTargetBtnClk:" target="Voe-Tx-rLC" id="WYd-XU-jAT"/>
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ym7-S1-ds2">
@@ -1347,7 +1342,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="GimbalRunBtnClk:" target="njD-zZ-H8I" id="GtK-xp-4SD"/>
+                                                            <action selector="GimbalRunBtnClk:" target="Voe-Tx-rLC" id="5kb-Af-M7L"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1369,7 +1364,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="GimbalkpTextFieldEntrPrsd:" target="njD-zZ-H8I" id="C9G-Ht-J5a"/>
+                                                            <action selector="GimbalkpTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="0ww-Lh-Flz"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JPX-3Y-QFc">
@@ -1381,7 +1376,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="GimbalkiTextFieldEntrPrsd:" target="njD-zZ-H8I" id="tEn-Da-NmG"/>
+                                                            <action selector="GimbalkiTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="zvf-64-bL1"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Er9-D0-e7i">
@@ -1393,7 +1388,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="GimbalkdTextFieldEntrPrsd:" target="njD-zZ-H8I" id="MGo-T7-K8s"/>
+                                                            <action selector="GimbalkdTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="emd-Lu-QEf"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNJ-VW-2UR">
@@ -1405,7 +1400,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="Gimbali_limitTextFieldEntrPrsd:" target="njD-zZ-H8I" id="Jv1-py-KgZ"/>
+                                                            <action selector="Gimbali_limitTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="1RP-R6-bPr"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4x-jH-iGk">
@@ -1417,7 +1412,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <action selector="Gimbalout_limitTextFieldEntrPrsd:" target="njD-zZ-H8I" id="KZI-sQ-U94"/>
+                                                            <action selector="Gimbalout_limitTextFieldEntrPrsd:" target="Voe-Tx-rLC" id="BEF-yx-BQe"/>
                                                         </connections>
                                                     </textField>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fxH-sh-KHI">
@@ -1428,7 +1423,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="GimbalPIDSetBtnClk:" target="njD-zZ-H8I" id="jP0-Im-9Ec"/>
+                                                            <action selector="GimbalPIDSetBtnClk:" target="Voe-Tx-rLC" id="GGo-0V-st0"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1693,7 +1688,7 @@
                                                             <color key="backgroundColor" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
                                                         </clipView>
                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="eqb-fP-SBz">
-                                                            <rect key="frame" x="0.0" y="8" width="0.0" height="15"/>
+                                                            <rect key="frame" x="0.0" y="7" width="0.0" height="16"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="h3b-cC-smD">
@@ -1731,7 +1726,7 @@
                             </tabViewItem>
                             <tabViewItem label="Chassis" identifier="Chassis" id="zb0-Te-ORf">
                                 <view key="view" id="lcc-qx-Slz">
-                                    <rect key="frame" x="0.0" y="0.0" width="906" height="699"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="934" height="699"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
