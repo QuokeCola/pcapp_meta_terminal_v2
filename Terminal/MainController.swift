@@ -396,6 +396,13 @@ class MainController: NSWindow, ORSSerialPortDelegate {
         }
         var RunStatus: runStatus
         var startTime: Int
+        func fullTime() -> Int {
+            var fulltime = 0
+            for targetItem in target{
+                fulltime += Int(targetItem.MaintainTime*1000)
+            }
+            return fulltime
+        }
     }
     var GimbalCurrentRunningTest: RunningTest? = nil
     var GimbalRunningTag = 0
@@ -467,6 +474,7 @@ class MainController: NSWindow, ORSSerialPortDelegate {
             port.send(command)
         }
     }
+
     @IBOutlet weak var GimbalMotorEnableButton: NSButton!
     @IBAction func MotorEnableBtnClk(_ sender: Any) {
         if GimbalMotorEnableButton.state == .off {
@@ -485,6 +493,7 @@ class MainController: NSWindow, ORSSerialPortDelegate {
         }
     }
     
+    var GimbalRunFullTime = 100
     @IBOutlet weak var GimbalRunBtn: NSButton!
     @IBAction func GimbalRunBtnClk(_ sender: Any) {
         if (GimbalCurrentRunningTest != nil && targetTableView.returnData().count != 0) {
@@ -497,6 +506,7 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                     GimbalRunBtn.isEnabled = false
                     MotorSelector.isEnabled = false
                     PIDSelector.isEnabled = false
+                    ProgressBar.doubleValue = 0.0
                 }
             } else if MotorSelector.selectedItem == MotorSelector.item(at: 1) {
                 if let port = serialPort {
@@ -518,6 +528,7 @@ class MainController: NSWindow, ORSSerialPortDelegate {
         }
     }
     
+    @IBOutlet weak var ProgressBar: NSProgressIndicator!
     
     /***--------------------Serial Config-----------------------***/
     @objc let serialPortManager = ORSSerialPortManager.shared()
@@ -556,7 +567,6 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                 var dividedData = rawline.split(separator: ",")
                 var isValidData = true
                 var index = 1
-                print(rawline)
                 if rawline.contains("!ps") {
                     statusInfo.stringValue = "PID Params Set"
                 }
@@ -573,7 +583,6 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                     if (Float(dividedData[index]) == nil) {
                         isValidData = false
                     }
-                    print(index)
                     index += 1
                 }
                 // Add data to plot
@@ -581,7 +590,6 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                     if(dividedData[0] == "!gy") {
                         yawVelocityChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Int(dividedData[1])!)
                         yawAngleChart.AddData(RealData_: Float(dividedData[2])!, TargetData_: Float(dividedData[3])!, Time_: Int(dividedData[1])!)
-                        print("\(Float(dividedData[6])==nil) \(Float(dividedData[7])==nil)")
                         yawCurrentChart.AddData(RealData_: Float(dividedData[6])!, TargetData_: Float(dividedData[7])!, Time_: Int(dividedData[1])!)
                     } else if (dividedData[0] == "!gp") {
                         pitchVelocityChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Int(dividedData[1])!)
@@ -594,6 +602,7 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                             GimbalCurrentRunningTest?.RunStatus = .isRunning
                             GimbalCurrentRunningTest?.startTime = Int(dividedData[1])!
                             GimbalCurrentRunningTest?.target = targetTableView.returnData()
+                            GimbalRunFullTime = (GimbalCurrentRunningTest?.fullTime())!
                             if let port = self.serialPort {
                                 var commandString = "\r\n"
                                 switch targetTableView.dataIdentifier {
@@ -613,9 +622,10 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                             }
                         case .isRunning:
                             let currentTime = Int(dividedData[1])!
+                            ProgressBar.doubleValue = Double(Float(currentTime - (GimbalCurrentRunningTest?.startTime)!)/Float(GimbalRunFullTime)) * 100.0
                             if (GimbalRunningIndex < (GimbalCurrentRunningTest?.target.count)!) {
                                 if(currentTime > GimbalRunningTag) {
-                                    GimbalRunningTag += Int(GimbalCurrentRunningTest!.target[GimbalRunningIndex].MaintainTime * 1000)
+                                    GimbalRunningTag += Int(GimbalCurrentRunningTest!.target[GimbalRunningIndex].MaintainTime * 1000.0)
                                     if let port = self.serialPort {
                                         var commandString = "\r\n"
                                         switch targetTableView.dataIdentifier {
@@ -631,6 +641,7 @@ class MainController: NSWindow, ORSSerialPortDelegate {
                                         let command = commandString.data(using: String.Encoding.ascii)!
                                         port.send(command)
                                     }
+//                                    ProgressBar.increment(by: Double(1.0/Float((GimbalCurrentRunningTest?.target.count)!)*100.0))
                                     GimbalRunningIndex += 1
                                 }
                             } else if(currentTime > GimbalRunningTag){
