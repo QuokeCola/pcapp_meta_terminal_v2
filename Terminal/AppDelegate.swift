@@ -63,6 +63,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         let oldFrame = window.frame
         let newFrameSize = NSSize(width: 647, height: 720)
         window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true, animate: true)
+        window.minSize = NSSize(width: 647, height: 720)
     }
     
     @IBAction func GimbalBtnClk(_ sender: Any) {
@@ -89,6 +90,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         let oldFrame = window.frame
         let newFrameSize = NSSize(width: 1175, height: 720)
         window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true, animate: true)
+        window.minSize = NSSize(width: 1175, height: 720)
         // Start the Gimbal Chart View.
         GimbalMainChartView.isPaused = false
         GimbalSecondChartView.isPaused = false
