@@ -61,9 +61,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         }
         
         let oldFrame = window.frame
-        let newFrameSize = NSSize(width: 1000, height: 720)
+        let newFrameSize = NSSize(width: 840, height: 740)
         window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true, animate: true)
-        window.minSize = NSSize(width: 1000, height: 720)
+        window.minSize = NSSize(width: 840, height: 740)
+        window.maxSize = NSSize(width: 840, height: 740)
     }
     
     @IBAction func GimbalBtnClk(_ sender: Any) {

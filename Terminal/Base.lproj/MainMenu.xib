@@ -845,13 +845,13 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Terminal" identifier="Terminal" id="Okh-Gv-lyC">
-                                <view key="view" id="Ix2-nd-ZH7">
+                                <view key="view" ambiguous="YES" id="Ix2-nd-ZH7">
                                     <rect key="frame" x="0.0" y="0.0" width="934" height="717"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9nm-Dz-UtH">
-                                            <rect key="frame" x="20" y="57" width="827" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="20" y="57" width="481" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="I3Q-aC-jFj">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -862,8 +862,8 @@
                                             </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rMC-gO-fkh">
-                                            <rect key="frame" x="849" y="51" width="71" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="503" y="51" width="71" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Send" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5Oo-zh-P7i">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -872,20 +872,9 @@
                                                 <action selector="SendBtnClk:" target="Voe-Tx-rLC" id="fzw-kS-q7d"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mmf-Af-Lqs">
-                                            <rect key="frame" x="802" y="671" width="118" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Clear Output" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="l3F-6O-G6Q">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="ShellClearBtnClk:" target="Voe-Tx-rLC" id="VbV-IH-exk"/>
-                                            </connections>
-                                        </button>
                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bzJ-Ls-69x">
-                                            <rect key="frame" x="553" y="20" width="361" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="207" y="20" width="361" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <subviews>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VY2-Rm-ecu">
                                                     <rect key="frame" x="-6" y="-7" width="71" height="32"/>
@@ -954,17 +943,17 @@
                                             </customSpacing>
                                         </stackView>
                                         <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jo3-DM-S6R">
-                                            <rect key="frame" x="20" y="98" width="894" height="560"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <rect key="frame" x="20" y="98" width="548" height="560"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <clipView key="contentView" ambiguous="YES" id="Eai-hN-YhW">
-                                                <rect key="frame" x="1" y="1" width="892" height="558"/>
+                                                <rect key="frame" x="1" y="1" width="546" height="558"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="qMq-yK-ld0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="892" height="558"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="546" height="558"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <size key="minSize" width="892" height="558"/>
+                                                        <size key="minSize" width="546" height="558"/>
                                                         <size key="maxSize" width="905" height="10000000"/>
                                                         <attributedString key="textStorage">
                                                             <fragment content=" ">
@@ -984,15 +973,26 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="r62-Md-Ok2">
-                                                <rect key="frame" x="877" y="1" width="16" height="558"/>
+                                                <rect key="frame" x="531" y="1" width="16" height="558"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mmf-Af-Lqs">
+                                            <rect key="frame" x="456" y="669" width="118" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Clear Output" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="l3F-6O-G6Q">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="ShellClearBtnClk:" target="Voe-Tx-rLC" id="VbV-IH-exk"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Gimbal" identifier="Gimbal" id="gFG-2f-mPd">
-                                <view key="view" ambiguous="YES" id="K4P-ig-anV">
+                                <view key="view" id="K4P-ig-anV">
                                     <rect key="frame" x="0.0" y="0.0" width="934" height="717"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
