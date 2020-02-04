@@ -134,6 +134,7 @@ class PIDnEvaluateTableView: NSTableView {
         self.registerForDraggedTypes([dataPasteBoardType])
         // Drawing code here.
     }
+
 }
 
 extension PIDnEvaluateTableView: NSTableViewDataSource {

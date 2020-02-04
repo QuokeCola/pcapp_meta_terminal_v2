@@ -585,6 +585,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         case Continuous
         case Auto
     }
+    @IBAction func GimbalDataAnalysisClk(_ sender: Any) {
+        if (GimbalDataEvaluateView.returnData().count > 0 && GimbalDataEvaluateView.selectedRow >= 0 && GimbalDataEvaluateView.selectedRow < GimbalDataEvaluateView.returnData().count) {
+            let data = GimbalDataEvaluateView.returnData()[GimbalDataEvaluateView.selectedRow]
+            GimbalkpTextField.stringValue = String(format: "%.2f", data.pidparam.kp)
+            GimbalkiTextField.stringValue = String(format: "%.2f", data.pidparam.ki)
+            GimbalkdTextField.stringValue = String(format: "%.2f", data.pidparam.kd)
+            Gimbali_limitTextField.stringValue = String(format: "%.2f", data.pidparam.i_limit)
+            Gimbalout_limitTestField.stringValue = String(format: "%.2f", data.pidparam.out_limit)
+        }
+        
+        
+    }
     var DisplayMode: displayMode = .Continuous
     var current_running_data = [Float]()
     /***--------------------Serial Config-----------------------***/

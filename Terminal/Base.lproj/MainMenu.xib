@@ -845,7 +845,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Terminal" identifier="Terminal" id="Okh-Gv-lyC">
-                                <view key="view" ambiguous="YES" id="Ix2-nd-ZH7">
+                                <view key="view" id="Ix2-nd-ZH7">
                                     <rect key="frame" x="0.0" y="0.0" width="934" height="717"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -992,7 +992,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Gimbal" identifier="Gimbal" id="gFG-2f-mPd">
-                                <view key="view" id="K4P-ig-anV">
+                                <view key="view" ambiguous="YES" id="K4P-ig-anV">
                                     <rect key="frame" x="0.0" y="0.0" width="934" height="717"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1216,7 +1216,7 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                                                     <clipView key="contentView" ambiguous="YES" id="LHh-bJ-hWe">
                                                                         <rect key="frame" x="1" y="0.0" width="118" height="109"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
+                                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="zoT-7p-TNB" viewBased="YES" id="Jel-gg-wOh" customClass="GimbalTargetTableView" customModule="Terminal" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="118" height="86"/>
@@ -1453,7 +1453,7 @@
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="ABf-Bi-M2N">
                                                             <rect key="frame" x="0.0" y="0.0" width="366" height="142"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="i71-jl-4jq" viewBased="YES" id="BNo-j3-mHh" customClass="PIDnEvaluateTableView" customModule="Terminal" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="366" height="119"/>
@@ -1695,6 +1695,9 @@
                                                                             </prototypeCellViews>
                                                                         </tableColumn>
                                                                     </tableColumns>
+                                                                    <connections>
+                                                                        <action selector="GimbalDataAnalysisClk:" target="Voe-Tx-rLC" id="Nz5-B5-bhe"/>
+                                                                    </connections>
                                                                 </tableView>
                                                             </subviews>
                                                             <color key="backgroundColor" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
