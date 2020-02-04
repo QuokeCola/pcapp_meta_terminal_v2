@@ -16,7 +16,6 @@
 		D069649D23E02FAC00D2E39B /* Icon-Gimbal.png in Resources */ = {isa = PBXBuildFile; fileRef = D069649A23E02FAC00D2E39B /* Icon-Gimbal.png */; };
 		D069649E23E02FAC00D2E39B /* Icon-Terminal.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D069649B23E02FAC00D2E39B /* Icon-Terminal.tiff */; };
 		D06964AD23E041EF00D2E39B /* ORSSerial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06964A723E041DF00D2E39B /* ORSSerial.framework */; };
-		D06964B023E06CB600D2E39B /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06964AF23E06CB600D2E39B /* MainController.swift */; };
 		D0AE298123E0AF960087CA92 /* ScreenShots-TerminalView.png in Resources */ = {isa = PBXBuildFile; fileRef = D0AE298023E0AF960087CA92 /* ScreenShots-TerminalView.png */; };
 		D0AE298323E0AFA30087CA92 /* ScreenShots-PortSelector.png in Resources */ = {isa = PBXBuildFile; fileRef = D0AE298223E0AFA30087CA92 /* ScreenShots-PortSelector.png */; };
 		D0D10E7C23E54CD900BCD73A /* GimbalTargetTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D10E7B23E54CD900BCD73A /* GimbalTargetTableView.swift */; };
@@ -61,7 +60,6 @@
 		D069649A23E02FAC00D2E39B /* Icon-Gimbal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Gimbal.png"; sourceTree = "<group>"; };
 		D069649B23E02FAC00D2E39B /* Icon-Terminal.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Icon-Terminal.tiff"; sourceTree = "<group>"; };
 		D06964A123E041DF00D2E39B /* ORSSerialPort.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ORSSerialPort.xcodeproj; path = "Frameworks/ORSSerialPort/Framework Project/ORSSerialPort.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		D06964AF23E06CB600D2E39B /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		D06A8FE823E4054B00232FE4 /* ScreenShots-PlotViews.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-PlotViews.png"; sourceTree = "<group>"; };
 		D0AE298023E0AF960087CA92 /* ScreenShots-TerminalView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-TerminalView.png"; sourceTree = "<group>"; };
 		D0AE298223E0AFA30087CA92 /* ScreenShots-PortSelector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-PortSelector.png"; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 				D069648723E029D600D2E39B /* MainMenu.xib */,
 				D0D10E7B23E54CD900BCD73A /* GimbalTargetTableView.swift */,
 				D0FAB60423E5F98E00A985AA /* PIDnEvaluateTableView.swift */,
-				D06964AF23E06CB600D2E39B /* MainController.swift */,
 				D069649923E02FAC00D2E39B /* Icon-chassis.png */,
 				D069649A23E02FAC00D2E39B /* Icon-Gimbal.png */,
 				D069649B23E02FAC00D2E39B /* Icon-Terminal.tiff */,
@@ -247,7 +244,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D06964B023E06CB600D2E39B /* MainController.swift in Sources */,
 				D059372D23E29BBB00B530B0 /* PlotChart.swift in Sources */,
 				D0D10E7C23E54CD900BCD73A /* GimbalTargetTableView.swift in Sources */,
 				D0FAB60523E5F98E00A985AA /* PIDnEvaluateTableView.swift in Sources */,

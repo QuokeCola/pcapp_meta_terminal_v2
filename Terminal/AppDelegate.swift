@@ -15,9 +15,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
     @IBOutlet weak var window: NSWindow!
     /***--------------------Initialzie-----------------------***/
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        let oldFrame = window.frame
+        let newFrameSize = NSSize(width: 840, height: 740)
+        window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true)
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
+    }
+    
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if !flag{
+            window.makeKeyAndOrderFront(self)
+        }
+        return true
     }
     
     @IBOutlet weak var ConnectButton: NSButton!
@@ -124,9 +135,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         TabViews.selectTabViewItem(at: 2)
         
         let oldFrame = window.frame
-        let newFrameSize = NSSize(width: 1250, height: 770)
+        let newFrameSize = NSSize(width: 1440, height: 770)
         window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true, animate: true)
-        window.minSize = NSSize(width: 1250, height: 770)
+        window.minSize = NSSize(width: 1300, height: 770)
         window.maxSize = NSSize(width: 1700, height: 1500)
         
         GimbalMainChartView.isPaused = true
@@ -524,8 +535,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                 GimbalRunBtn.isEnabled = true
                 GimbalCurrentRunningTest?.RunStatus = .RunFinished
                 
-                GimbalCurrentRunningTest?.Result_AvgDiff = AvgDiff(Data: current_running_data)
-                GimbalCurrentRunningTest?.Result_StdDiff = StdDev(Data: current_running_data)
+                GimbalCurrentRunningTest?.Result_AvgDiff = AvgDiff(Data: GimbalCurrentRunningErrorData)
+                GimbalCurrentRunningTest?.Result_StdDiff = StdDev(Data: GimbalCurrentRunningErrorData)
                 GimbalDataEvaluateView.addData(DataItem: PIDnEvaluateTableView.PIDnEvalData_t(pidparam: GimbalCurrentRunningTest!.PIDParam, StandardDifference: (GimbalCurrentRunningTest?.Result_StdDiff)!, AverageDifference: (GimbalCurrentRunningTest?.Result_AvgDiff)!))
             }
         } else {
@@ -610,7 +621,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         
     }
     var DisplayMode: displayMode = .Continuous
-    var current_running_data = [Float]()
+    var GimbalCurrentRunningErrorData = [Float]()
     /***--------------------Serial Config-----------------------***/
     @objc let serialPortManager = ORSSerialPortManager.shared()
     @objc dynamic var shouldAddLineEnding = false
@@ -673,9 +684,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                             if (GimbalCurrentRunningTest?.RunStatus == .isRunning) {
                                 switch targetTableView.dataIdentifier {
                                 case .YAWA:
-                                    current_running_data.append(Float(dividedData[2])!-Float(dividedData[3])!)
+                                    GimbalCurrentRunningErrorData.append(Float(dividedData[2])!-Float(dividedData[3])!)
                                 case .YAWV:
-                                    current_running_data.append(Float(dividedData[4])!-Float(dividedData[5])!)
+                                    GimbalCurrentRunningErrorData.append(Float(dividedData[4])!-Float(dividedData[5])!)
                                 case .PITCHV:
                                     ()
                                 case .PITCHA:
@@ -691,9 +702,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                                 case .YAWA:()
                                 case .YAWV:()
                                 case .PITCHA:
-                                    current_running_data.append(Float(dividedData[2])!-Float(dividedData[3])!)
+                                    GimbalCurrentRunningErrorData.append(Float(dividedData[2])!-Float(dividedData[3])!)
                                 case .PITCHV:
-                                    current_running_data.append(Float(dividedData[4])!-Float(dividedData[5])!)
+                                    GimbalCurrentRunningErrorData.append(Float(dividedData[4])!-Float(dividedData[5])!)
                                 }
                             }
                             pitchVelocityChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Int(dividedData[1])!)
@@ -708,7 +719,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                             GimbalCurrentRunningTest?.startTime = Int(dividedData[1])!
                             GimbalCurrentRunningTest?.target = targetTableView.returnData()
                             GimbalRunFullTime = (GimbalCurrentRunningTest?.fullTime())!
-                            current_running_data.removeAll()
+                            GimbalCurrentRunningErrorData.removeAll()
                             if(DisplayMode == .Auto) {
                                 GimbalRevealTime.stringValue = String(Int(GimbalRunFullTime/1000))
                                 GimbalSetRevealTime(Any?.self)
@@ -791,8 +802,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                                     self.GimbalCurrentRunningTest?.RunStatus = .RunFinished
                                     
                                     // Perform result calculation
-                                    GimbalCurrentRunningTest?.Result_AvgDiff = AvgDiff(Data: current_running_data)
-                                    GimbalCurrentRunningTest?.Result_StdDiff = StdDev(Data: current_running_data)
+                                    GimbalCurrentRunningTest?.Result_AvgDiff = AvgDiff(Data: GimbalCurrentRunningErrorData)
+                                    GimbalCurrentRunningTest?.Result_StdDiff = StdDev(Data: GimbalCurrentRunningErrorData)
                                     GimbalDataEvaluateView.addData(DataItem: PIDnEvaluateTableView.PIDnEvalData_t(pidparam: GimbalCurrentRunningTest!.PIDParam, StandardDifference: (GimbalCurrentRunningTest?.Result_StdDiff)!, AverageDifference: (GimbalCurrentRunningTest?.Result_AvgDiff)!))
                                 }
                             }
