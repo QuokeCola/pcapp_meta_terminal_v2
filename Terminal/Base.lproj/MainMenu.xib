@@ -712,19 +712,19 @@
         <window title="Terminal" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="1177" height="737"/>
+            <rect key="contentRect" x="335" y="390" width="1211" height="770"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <value key="minSize" type="size" width="647" height="720"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="1177" height="737"/>
+                <rect key="frame" x="0.0" y="0.0" width="1211" height="770"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <visualEffectView appearanceType="vibrantDark" fixedFrame="YES" blendingMode="behindWindow" material="ultraDark" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="Rrt-JP-8fP">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="737"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="770"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView appearanceType="vibrantDark" fixedFrame="YES" blendingMode="behindWindow" material="ultraDark" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="oBO-A9-zsR" userLabel="GimbalBackGround">
-                                <rect key="frame" x="0.0" y="538" width="235" height="60"/>
+                                <rect key="frame" x="0.0" y="571" width="235" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QKv-kV-hjj">
@@ -742,7 +742,7 @@
                                 </subviews>
                             </visualEffectView>
                             <visualEffectView appearanceType="vibrantDark" fixedFrame="YES" blendingMode="behindWindow" material="dark" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="H8e-lL-Jr4" userLabel="TerminalBackGround">
-                                <rect key="frame" x="0.0" y="598" width="235" height="60"/>
+                                <rect key="frame" x="0.0" y="631" width="235" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gvh-j5-8Sc" userLabel="Terminal">
@@ -759,7 +759,7 @@
                                 </subviews>
                             </visualEffectView>
                             <visualEffectView appearanceType="vibrantDark" fixedFrame="YES" blendingMode="behindWindow" material="ultraDark" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="QZe-I9-Pcz" userLabel="ChassisBackGround">
-                                <rect key="frame" x="0.0" y="478" width="235" height="60"/>
+                                <rect key="frame" x="0.0" y="511" width="235" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qhu-81-qX5">
@@ -777,7 +777,7 @@
                                 </subviews>
                             </visualEffectView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AYb-88-C1G">
-                                <rect key="frame" x="127" y="671" width="99" height="32"/>
+                                <rect key="frame" x="127" y="704" width="99" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bJd-wG-9pt">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -793,7 +793,7 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6UE-Cu-qbL">
-                                <rect key="frame" x="11" y="675" width="111" height="26"/>
+                                <rect key="frame" x="11" y="708" width="111" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="I9S-1a-Crn" id="sTe-no-2je">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -817,8 +817,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressIndicator>
                             <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="pSg-rR-FiY">
-                                <rect key="frame" x="33" y="76" width="169" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="33" y="58" width="169" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" ambiguous="YES" id="cFU-Gu-vvH">
                                     <rect key="frame" x="1" y="1" width="167" height="50"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -840,12 +840,12 @@
                         </subviews>
                     </visualEffectView>
                     <tabView fixedFrame="YES" type="noTabsNoBorder" initialItem="Okh-Gv-lyC" translatesAutoresizingMaskIntoConstraints="NO" id="Ip1-8O-QCx">
-                        <rect key="frame" x="243" y="0.0" width="934" height="717"/>
+                        <rect key="frame" x="243" y="-6" width="968" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Terminal" identifier="Terminal" id="Okh-Gv-lyC">
-                                <view key="view" ambiguous="YES" id="Ix2-nd-ZH7">
+                                <view key="view" id="Ix2-nd-ZH7">
                                     <rect key="frame" x="0.0" y="0.0" width="934" height="717"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1296,7 +1296,7 @@
                                                                         </subviews>
                                                                     </clipView>
                                                                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Ifr-uS-hHp">
-                                                                        <rect key="frame" x="1" y="7" width="0.0" height="16"/>
+                                                                        <rect key="frame" x="1" y="8" width="0.0" height="15"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                     </scroller>
                                                                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="7Ez-i1-Hgs">
@@ -1703,7 +1703,7 @@
                                                             <color key="backgroundColor" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
                                                         </clipView>
                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="eqb-fP-SBz">
-                                                            <rect key="frame" x="0.0" y="7" width="0.0" height="16"/>
+                                                            <rect key="frame" x="0.0" y="8" width="0.0" height="15"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="h3b-cC-smD">
@@ -1740,16 +1740,74 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Chassis" identifier="Chassis" id="zb0-Te-ORf">
-                                <view key="view" id="lcc-qx-Slz">
-                                    <rect key="frame" x="0.0" y="0.0" width="934" height="717"/>
+                                <view key="view" ambiguous="YES" id="lcc-qx-Slz">
+                                    <rect key="frame" x="0.0" y="0.0" width="968" height="750"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="LT5-ne-wVS">
+                                            <rect key="frame" x="19" y="448" width="455" height="282"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                            <view key="contentView" ambiguous="YES" id="AlR-Xj-P5W">
+                                                <rect key="frame" x="1" y="1" width="453" height="280"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="90K-k4-4cm" customClass="SKView">
+                                                        <rect key="frame" x="0.0" y="0.0" width="453" height="280"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    </customView>
+                                                </subviews>
+                                            </view>
+                                        </box>
+                                        <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="DXd-hP-h9S">
+                                            <rect key="frame" x="494" y="448" width="455" height="282"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                            <view key="contentView" ambiguous="YES" id="fwG-e9-xUD">
+                                                <rect key="frame" x="1" y="1" width="453" height="280"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JYy-f5-gwy" customClass="SKView">
+                                                        <rect key="frame" x="0.0" y="0.0" width="453" height="280"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    </customView>
+                                                </subviews>
+                                            </view>
+                                        </box>
+                                        <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="qFR-FO-rJf">
+                                            <rect key="frame" x="19" y="143" width="455" height="285"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            <view key="contentView" ambiguous="YES" id="UP7-tq-j4n">
+                                                <rect key="frame" x="1" y="1" width="453" height="283"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAv-L9-pss" customClass="SKView">
+                                                        <rect key="frame" x="0.0" y="0.0" width="453" height="283"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    </customView>
+                                                </subviews>
+                                            </view>
+                                        </box>
+                                        <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="0bf-5n-7T9">
+                                            <rect key="frame" x="494" y="143" width="455" height="285"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            <view key="contentView" ambiguous="YES" id="AD9-zw-tEg">
+                                                <rect key="frame" x="1" y="1" width="453" height="283"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xho-ka-vP6" customClass="SKView">
+                                                        <rect key="frame" x="0.0" y="0.0" width="453" height="283"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    </customView>
+                                                </subviews>
+                                            </view>
+                                        </box>
+                                    </subviews>
                                 </view>
                             </tabViewItem>
                         </tabViewItems>
                     </tabView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="477.5" y="-99.5"/>
+            <point key="canvasLocation" x="494.5" y="-83"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="5AG-bE-WYJ"/>
         <button verticalHuggingPriority="750" id="Kgc-5R-N8j">

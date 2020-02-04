@@ -92,6 +92,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         let newFrameSize = NSSize(width: 1175, height: 720)
         window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true, animate: true)
         window.minSize = NSSize(width: 1175, height: 720)
+        window.maxSize = NSSize(width: 1700, height: 1500)
         // Start the Gimbal Chart View.
         GimbalMainChartView.isPaused = false
         GimbalSecondChartView.isPaused = false
@@ -121,6 +122,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         GimbalBackGround.material = NSVisualEffectView.Material.ultraDark
         ChassisBackGround.material = NSVisualEffectView.Material.dark
         TabViews.selectTabViewItem(at: 2)
+        
+        let oldFrame = window.frame
+        let newFrameSize = NSSize(width: 1250, height: 770)
+        window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true, animate: true)
+        window.minSize = NSSize(width: 1250, height: 770)
+        window.maxSize = NSSize(width: 1700, height: 1500)
+        
+        GimbalMainChartView.isPaused = true
+        GimbalSecondChartView.isPaused = true
+        GimbalThirdChartView.isPaused = true
         
     }
     @IBOutlet weak var statusInfo: NSTextField!
