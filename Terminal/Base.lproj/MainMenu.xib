@@ -37,8 +37,8 @@
                 <outlet property="MotorSelector" destination="oEb-oZ-PAY" id="Pky-5A-XbP"/>
                 <outlet property="PIDSelector" destination="aNI-h4-Zmd" id="ot1-Tw-No6"/>
                 <outlet property="ProgressBar" destination="ndP-55-QWh" id="Wbp-3z-pXH"/>
-                <outlet property="ShellScroller" destination="38G-Dc-okx" id="agK-sC-LSM"/>
-                <outlet property="ShellView" destination="E9w-dF-MJi" id="xZh-hR-SKU"/>
+                <outlet property="ShellScroller" destination="jo3-DM-S6R" id="hjB-Ev-zCf"/>
+                <outlet property="ShellView" destination="qMq-yK-ld0" id="37S-vL-4xO"/>
                 <outlet property="TabViews" destination="Ip1-8O-QCx" id="MIN-Yv-HUa"/>
                 <outlet property="TerminalBackGround" destination="H8e-lL-Jr4" id="apq-Fy-dLz"/>
                 <outlet property="statusInfo" destination="MmW-rI-opE" id="GAe-uC-rlK"/>
@@ -883,41 +883,6 @@
                                                 <action selector="ShellClearBtnClk:" target="Voe-Tx-rLC" id="VbV-IH-exk"/>
                                             </connections>
                                         </button>
-                                        <scrollView fixedFrame="YES" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="38G-Dc-okx">
-                                            <rect key="frame" x="20" y="99" width="894" height="559"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <clipView key="contentView" ambiguous="YES" id="1jT-62-MHC">
-                                                <rect key="frame" x="1" y="1" width="892" height="557"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="E9w-dF-MJi">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1817" height="557"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <size key="minSize" width="892" height="557"/>
-                                                        <size key="maxSize" width="1842" height="10000000"/>
-                                                        <attributedString key="textStorage">
-                                                            <fragment content=" ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="11" name="Courier"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                        <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </textView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="VIG-8Q-mol">
-                                                <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </scroller>
-                                            <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="IHg-jd-hzn">
-                                                <rect key="frame" x="877" y="1" width="16" height="557"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </scroller>
-                                        </scrollView>
                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bzJ-Ls-69x">
                                             <rect key="frame" x="553" y="20" width="361" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -988,6 +953,41 @@
                                                 <real value="3.4028234663852886e+38"/>
                                             </customSpacing>
                                         </stackView>
+                                        <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jo3-DM-S6R">
+                                            <rect key="frame" x="20" y="98" width="894" height="560"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <clipView key="contentView" ambiguous="YES" id="Eai-hN-YhW">
+                                                <rect key="frame" x="1" y="1" width="892" height="558"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="qMq-yK-ld0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="892" height="558"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <size key="minSize" width="892" height="558"/>
+                                                        <size key="maxSize" width="905" height="10000000"/>
+                                                        <attributedString key="textStorage">
+                                                            <fragment content=" ">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="11" name="Courier"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                        <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </textView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </clipView>
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="LsG-sk-5Pc">
+                                                <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="r62-Md-Ok2">
+                                                <rect key="frame" x="877" y="1" width="16" height="558"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                        </scrollView>
                                     </subviews>
                                 </view>
                             </tabViewItem>
