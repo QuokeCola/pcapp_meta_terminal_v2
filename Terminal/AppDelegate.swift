@@ -66,6 +66,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         GimbalSecondChartView.isPaused = true
         GimbalThirdChartView.isPaused = true
         
+        ChassisFLView.isPaused = true
+        ChassisFRView.isPaused = true
+        ChassisRLView.isPaused = true
+        ChassisRRView.isPaused = true
+        
         if let port = self.serialPort {
             let command = "g_enable_fb 0 0\r".data(using: String.Encoding.ascii)!
             port.send(command)
@@ -109,6 +114,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         GimbalSecondChartView.isPaused = false
         GimbalThirdChartView.isPaused = false
         
+        ChassisFLView.isPaused = true
+        ChassisFRView.isPaused = true
+        ChassisRLView.isPaused = true
+        ChassisRRView.isPaused = true
+        
         selectGimbalViews()
         if let port = self.serialPort {
             var commandString = "g_enable_fb 0 0\r"
@@ -134,15 +144,26 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         ChassisBackGround.material = NSVisualEffectView.Material.dark
         TabViews.selectTabViewItem(at: 2)
         
+        ChassisFLView.presentScene(ChassisFLChart)
+        ChassisFRView.presentScene(ChassisFRChart)
+        ChassisRLView.presentScene(ChassisRLChart)
+        ChassisRRView.presentScene(ChassisRRChart)
+        
+        ChassisFLView.isPaused = false
+        ChassisFRView.isPaused = false
+        ChassisRLView.isPaused = false
+        ChassisRRView.isPaused = false
+        
         let oldFrame = window.frame
         let newFrameSize = NSSize(width: 1440, height: 770)
         window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true, animate: true)
-        window.minSize = NSSize(width: 1300, height: 770)
+        window.minSize = NSSize(width: 1440, height: 770)
         window.maxSize = NSSize(width: 1700, height: 1500)
         
-        GimbalMainChartView.isPaused = true
-        GimbalSecondChartView.isPaused = true
-        GimbalThirdChartView.isPaused = true
+        ChassisFLChart.size = ChassisFLView.bounds.size
+        ChassisFRChart.size = ChassisFRView.bounds.size
+        ChassisRLChart.size = ChassisRLView.bounds.size
+        ChassisRRChart.size = ChassisRRView.bounds.size
         
     }
     @IBOutlet weak var statusInfo: NSTextField!
@@ -447,6 +468,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
     var GimbalCurrentRunningTest: RunningTest? = nil
     var GimbalRunningTag = 0
     var GimbalRunningIndex = 1
+    var ChassisFRRunningError = [Float]()
+    var ChassisFLRunningError = [Float]()
+    var ChassisRLRunningError = [Float]()
+    var ChassisRRRunningError = [Float]()
     @IBAction func GimbalTargetTextFieldEnterPressed(_ sender: Any) {
         self.GimbalTargetTime.becomeFirstResponder()
     }
@@ -622,6 +647,165 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
     }
     var DisplayMode: displayMode = .Continuous
     var GimbalCurrentRunningErrorData = [Float]()
+    
+    /***--------------------Chassis Interface--------------------***/
+    @IBOutlet weak var ChassisFLView: SKView!
+    @IBOutlet weak var ChassisFRView: SKView!
+    @IBOutlet weak var ChassisRLView: SKView!
+    @IBOutlet weak var ChassisRRView: SKView!
+    
+    lazy var ChassisFLChart = PlotChart(size: ChassisFLView.bounds.size)
+    lazy var ChassisFRChart = PlotChart(size: ChassisFRView.bounds.size)
+    lazy var ChassisRLChart = PlotChart(size: ChassisRLView.bounds.size)
+    lazy var ChassisRRChart = PlotChart(size: ChassisRRView.bounds.size)
+    
+    struct chassisRunningTrial {
+        var PIDParam: PIDParams_t
+        var targetVx: Float
+        var targetVy: Float
+        var targetW: Float
+        var startTime: Int
+        var MaintainTime : Int
+        enum runStatus {
+            case WaitForRunning
+            case isRunning
+            case FinishRunning
+            case NotStartRunning
+        }
+        var RunStatus: runStatus
+        
+        var FLResult: ChassisPIDnEvaluateTableView.MotorAnalysis_t
+        var FRResult: ChassisPIDnEvaluateTableView.MotorAnalysis_t
+        var RLResult: ChassisPIDnEvaluateTableView.MotorAnalysis_t
+        var RRResult: ChassisPIDnEvaluateTableView.MotorAnalysis_t
+    }
+    
+    var ChassisRunningTrial : chassisRunningTrial? = nil
+    @IBOutlet weak var ChassisTargetVx: NSTextField!
+    @IBAction func ChassisVxEnterPressed(_ sender: Any) {
+        self.ChassisTargetVy.becomeFirstResponder()
+    }
+    @IBOutlet weak var ChassisTargetVy: NSTextField!
+    @IBAction func ChassisVyEnterPressed(_ sender: Any) {
+        self.ChassisTargetOmega.becomeFirstResponder()
+    }
+    @IBOutlet weak var ChassisTargetOmega: NSTextField!
+    @IBAction func ChassisWEnterPressed(_ sender: Any) {
+        self.ChassisRunTime.becomeFirstResponder()
+    }
+    @IBOutlet weak var ChassisRunTime: NSTextField!
+    @IBAction func ChassisRuntimeEnterPressed(_ sender: Any) {
+        self.ChassisTargetVx.becomeFirstResponder()
+    }
+    @IBAction func ChassisReversBtnClk(_ sender: Any) {
+        if let Vx = Float(ChassisTargetVx.stringValue) {
+            ChassisTargetVx.stringValue = String(format:"%.2f", -Vx)
+        }
+        if let Vy = Float(ChassisTargetVy.stringValue) {
+            ChassisTargetVy.stringValue = String(format: "%.2f", -Vy)
+        }
+        if let w  = Float(ChassisTargetOmega.stringValue) {
+            ChassisTargetOmega.stringValue = String(format: "%.2f", -w)
+        }
+    }
+    @IBAction func ChassisRunBtnClk(_ sender: Any) {
+        if(ChassisRunningTrial == nil) {
+            statusInfo.stringValue = "PID Params not set"
+        } else {
+            guard
+                let Vx = Float(ChassisTargetVx.stringValue),
+                let Vy = Float(ChassisTargetVy.stringValue),
+                let w  = Float(ChassisTargetOmega.stringValue),
+                let Time = Float(ChassisRunTime.stringValue)
+                else {statusInfo.stringValue = "Invalid Target"; return}
+            
+            ChassisRunningTrial?.targetVx = Vx
+            ChassisRunningTrial?.targetVy = Vy
+            ChassisRunningTrial?.targetW  = w
+            ChassisRunningTrial?.MaintainTime = Int(Time*1000)
+            ChassisRunningTrial?.RunStatus = .WaitForRunning
+            
+            if let port = self.serialPort {
+                let command = "c_set_target \(Vx) \(Vy) \(w) \(Int(Time*1000))\r\n".data(using: String.Encoding.ascii)!
+                port.send(command)
+            }
+        }
+    }
+    @IBOutlet weak var ChassiskpTextField: NSTextField!
+    @IBAction func ChassiskpTextFieldEnterPressed(_ sender: Any) {
+        self.ChassiskiTextField.becomeFirstResponder()
+    }
+    @IBOutlet weak var ChassiskiTextField: NSTextField!
+    @IBAction func ChassiskiTextFieldEnterPressed(_ sender: Any) {
+        self.ChassiskdTextField.becomeFirstResponder()
+    }
+    @IBOutlet weak var ChassiskdTextField: NSTextField!
+    @IBAction func ChassiskdTextFieldEnterPressed(_ sender: Any) {
+        self.Chassisi_limitTextField.becomeFirstResponder()
+    }
+    @IBOutlet weak var Chassisi_limitTextField: NSTextField!
+    @IBAction func Chassisi_limitTextFieldEnterPressed(_ sender: Any) {
+        self.Chassisout_limitTextField.becomeFirstResponder()
+    }
+    @IBOutlet weak var Chassisout_limitTextField: NSTextField!
+    @IBAction func Chassisout_limitTextFieldEnterPressed(_ sender: Any) {
+        self.ChassisPIDSetBtnClk(sender)
+        self.ChassiskpTextField.becomeFirstResponder()
+    }
+    @IBAction func ChassisPIDSetBtnClk(_ sender: Any) {
+        guard
+            let kp = Float(ChassiskpTextField.stringValue),
+            let ki = Float(ChassiskiTextField.stringValue),
+            let kd = Float(ChassiskdTextField.stringValue),
+            let i_limit = Float(Chassisi_limitTextField.stringValue),
+            let out_limit = Float(Chassisout_limitTextField.stringValue)
+            else {statusInfo.stringValue = "Invalid Value"; return}
+        let PIDParam = PIDParams_t(kp: kp, ki: ki, kd: kd, i_limit: i_limit, out_limit: out_limit)
+        
+        if let port = self.serialPort {
+            let command = "c_set_params \(kp) \(ki) \(kd) \(i_limit) \(out_limit)\r\n".data(using: String.Encoding.ascii)!
+            port.send(command)
+        }
+        
+        if(ChassisRunningTrial == nil) {
+            ChassisRunningTrial = chassisRunningTrial(PIDParam: PIDParam, targetVx: 0.0, targetVy: 0.0, targetW: 0.0, startTime: 0, MaintainTime: 0, RunStatus: .NotStartRunning, FLResult: ChassisPIDnEvaluateTableView.MotorAnalysis_t(StdDiff: -1.0, AvgDiff: -1.0), FRResult: ChassisPIDnEvaluateTableView.MotorAnalysis_t(StdDiff: -1.0, AvgDiff: -1.0), RLResult: ChassisPIDnEvaluateTableView.MotorAnalysis_t(StdDiff: -1.0, AvgDiff: -1.0), RRResult: ChassisPIDnEvaluateTableView.MotorAnalysis_t(StdDiff: -1.0, AvgDiff: -1.0))
+        } else if (ChassisRunningTrial?.RunStatus == .NotStartRunning) {
+            // Add the PID Param that has not Runned
+            ChassisDataAnalysisView.addData(Item: ChassisPIDnEvaluateTableView.PIDnEvalData_t(pidparam: (ChassisRunningTrial?.PIDParam)!, FLAnalysis: ChassisPIDnEvaluateTableView.MotorAnalysis_t(StdDiff: -1.0, AvgDiff: -1.0), FRAnalysis: ChassisPIDnEvaluateTableView.MotorAnalysis_t(StdDiff: -1.0, AvgDiff: -1.0), RLAnalysis: ChassisPIDnEvaluateTableView.MotorAnalysis_t(StdDiff: -1.0, AvgDiff: -1.0), RRAnalysis: ChassisPIDnEvaluateTableView.MotorAnalysis_t(StdDiff: -1.0, AvgDiff: -1.0)))
+            ChassisRunningTrial?.PIDParam = PIDParam
+        } else {
+            ChassisRunningTrial?.PIDParam = PIDParam
+            ChassisRunningTrial?.RunStatus = .NotStartRunning
+        }
+    }
+    var ChassisRevealTime = 20.0
+    enum chassisRevealMode {
+        case Continuous
+        case Auto
+    }
+    var ChassisRevealMode = chassisRevealMode.Continuous
+    @IBOutlet weak var ChassisModeSelector: NSPopUpButton!
+    @IBAction func ChassisModeSelectorSet(_ sender: Any) {
+        if ChassisModeSelector.selectedItem == ChassisModeSelector.item(at: 0) {
+            ChassisRevealMode = .Continuous
+        } else {
+            ChassisRevealMode = .Auto
+        }
+    }
+    @IBOutlet weak var ChassisRevealTimeTextField: NSTextField!
+    @IBAction func ChassisRevealTimeSet(_ sender: Any) {
+        if isPureFloat(string: ChassisRevealTimeTextField.stringValue) {
+            if let timereveal = Int(ChassisRevealTimeTextField.stringValue) {
+                ChassisFLChart.time_reveal = timereveal * 1000
+                ChassisFRChart.time_reveal = timereveal * 1000
+                ChassisRLChart.time_reveal = timereveal * 1000
+                ChassisRRChart.time_reveal = timereveal * 1000
+            }
+        }
+    }
+    
+    @IBOutlet weak var ChassisDataAnalysisView: ChassisPIDnEvaluateTableView!
+    
     /***--------------------Serial Config-----------------------***/
     @objc let serialPortManager = ORSSerialPortManager.shared()
     @objc dynamic var shouldAddLineEnding = false
@@ -665,6 +849,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                 // Check Data Validation
                 if(dividedData.count != 8) {
                     isValidData = false
+                } else {
+                    print(dividedData[0])
+                    if(dividedData[0] != "!gy" && dividedData[0] != "!gp") {
+                        isValidData = false
+                    }
+                    print(isValidData)
                 }
                 while (index < dividedData.count && isValidData) {
                     if(index < 2 || index > 5) {
@@ -811,7 +1001,85 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                         }
                     }
                 }
+            } // End of Gimbal
+        } else if TabViews.selectedTabViewItem == TabViews.tabViewItem(at: 2) { // Chassis View
+            if let rawline = getrawline(data: data) {
+                var dividedData = rawline.split(separator: ",")
+                var isValidData = true
+                var index = 1
+                if rawline.contains("!cps") {
+                    statusInfo.stringValue = "PID Params Set"
+                }
+                // Check Data Validation
+                if(dividedData.count != 10) {
+                    isValidData = false
+                } else {
+                    if(dividedData[0] != "!cv") {
+                        isValidData = false
+                    }
+                }
+
+                while (index < dividedData.count && isValidData) {
+                    if(index < 2) {
+                        isValidData = isPureInt(string: String(dividedData[index]))
+                    } else {
+                        isValidData = isPureFloat(string: String(dividedData[index]))
+                    }
+                    if (Float(dividedData[index]) == nil) {
+                        isValidData = false
+                    }
+                    index += 1
+                }
+                if(isValidData) {
+                    let Time = Int(dividedData[1])!
+                    if (ChassisRevealMode == .Continuous || (ChassisRevealMode == .Auto && ChassisRunningTrial?.RunStatus == .isRunning)) {
+                        ChassisFLChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Time)
+                        ChassisFRChart.AddData(RealData_: Float(dividedData[2])!, TargetData_: Float(dividedData[3])!, Time_: Time)
+                        ChassisRLChart.AddData(RealData_: Float(dividedData[6])!, TargetData_: Float(dividedData[7])!, Time_: Time)
+                        ChassisRRChart.AddData(RealData_: Float(dividedData[8])!, TargetData_: Float(dividedData[9])!, Time_: Time)
+                    }
+                   
+                    
+                    if let chassisRunningSession = ChassisRunningTrial {
+                        switch chassisRunningSession.RunStatus {
+                        case .WaitForRunning:
+                            ChassisRunningTrial?.startTime = Int(dividedData[1])!
+                            ChassisRunningTrial?.RunStatus = .isRunning
+                            ChassisRLRunningError.removeAll()
+                            ChassisRRRunningError.removeAll()
+                            ChassisFLRunningError.removeAll()
+                            ChassisFRRunningError.removeAll()
+                            if ChassisRevealMode == .Auto {
+                                ChassisRevealTimeTextField.stringValue = String(format: "%.2f", Float((ChassisRunningTrial?.MaintainTime)!)/1000.0)
+                                ChassisRevealTimeSet(Any?.self)
+                            }
+                        case .isRunning:
+                            ProgressBar.doubleValue = Double(Time-chassisRunningSession.startTime)/Double(chassisRunningSession.MaintainTime) * 100.0
+                            if Time < chassisRunningSession.startTime + chassisRunningSession.MaintainTime {
+                                ChassisFRRunningError.append(Float(dividedData[2])!-Float(dividedData[3])!)
+                                ChassisFLRunningError.append(Float(dividedData[4])!-Float(dividedData[5])!)
+                                ChassisRLRunningError.append(Float(dividedData[6])!-Float(dividedData[7])!)
+                                ChassisRRRunningError.append(Float(dividedData[8])!-Float(dividedData[9])!)
+                            } else {
+                                ChassisRunningTrial?.FRResult.AvgDiff = AvgDiff(Data: ChassisFRRunningError)
+                                ChassisRunningTrial?.FRResult.StdDiff = StdDev(Data: ChassisFRRunningError)
+                                ChassisRunningTrial?.FLResult.AvgDiff = AvgDiff(Data: ChassisFLRunningError)
+                                ChassisRunningTrial?.FLResult.StdDiff = StdDev(Data: ChassisFLRunningError)
+                                ChassisRunningTrial?.RLResult.AvgDiff = AvgDiff(Data: ChassisRLRunningError)
+                                ChassisRunningTrial?.RLResult.StdDiff = StdDev(Data: ChassisRLRunningError)
+                                ChassisRunningTrial?.RRResult.AvgDiff = AvgDiff(Data: ChassisRRRunningError)
+                                ChassisRunningTrial?.RRResult.StdDiff = StdDev(Data: ChassisRRRunningError)
+                                ChassisDataAnalysisView.addData(Item: ChassisPIDnEvaluateTableView.PIDnEvalData_t(pidparam: (ChassisRunningTrial?.PIDParam)!, FLAnalysis: (ChassisRunningTrial?.FLResult)!, FRAnalysis: (ChassisRunningTrial?.FRResult)!, RLAnalysis: (ChassisRunningTrial?.RLResult)!, RRAnalysis: (ChassisRunningTrial?.RRResult)!))
+                                ChassisRunningTrial?.RunStatus = .FinishRunning
+                            }
+                        case .FinishRunning:()
+                        case .NotStartRunning:()
+                        }
+                        
+                    }
+                }
             }
+            
         }
     }
     
