@@ -867,11 +867,12 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Terminal" identifier="Terminal" id="Okh-Gv-lyC">
-                                <view key="view" id="Ix2-nd-ZH7">
+                                <view key="view" ambiguous="YES" id="Ix2-nd-ZH7">
+                                    <rect key="frame" x="0.0" y="0.0" width="1197" height="750"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9nm-Dz-UtH">
-                                            <rect key="frame" x="20" y="-660" width="481" height="22"/>
+                                            <rect key="frame" x="20" y="90" width="481" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="I3Q-aC-jFj">
                                                 <font key="font" metaFont="system"/>
@@ -883,7 +884,7 @@
                                             </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rMC-gO-fkh">
-                                            <rect key="frame" x="503" y="-666" width="71" height="32"/>
+                                            <rect key="frame" x="503" y="84" width="71" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Send" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5Oo-zh-P7i">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -894,7 +895,7 @@
                                             </connections>
                                         </button>
                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bzJ-Ls-69x">
-                                            <rect key="frame" x="207" y="-697" width="361" height="21"/>
+                                            <rect key="frame" x="207" y="53" width="361" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <subviews>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VY2-Rm-ecu">
@@ -964,7 +965,7 @@
                                             </customSpacing>
                                         </stackView>
                                         <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jo3-DM-S6R">
-                                            <rect key="frame" x="20" y="-619" width="548" height="560"/>
+                                            <rect key="frame" x="20" y="131" width="548" height="560"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <clipView key="contentView" ambiguous="YES" id="Eai-hN-YhW">
                                                 <rect key="frame" x="1" y="1" width="546" height="558"/>
@@ -999,7 +1000,7 @@
                                             </scroller>
                                         </scrollView>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mmf-Af-Lqs">
-                                            <rect key="frame" x="456" y="-48" width="118" height="32"/>
+                                            <rect key="frame" x="456" y="702" width="118" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Clear Output" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="l3F-6O-G6Q">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1761,7 +1762,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Chassis" identifier="Chassis" id="zb0-Te-ORf">
-                                <view key="view" ambiguous="YES" id="lcc-qx-Slz">
+                                <view key="view" id="lcc-qx-Slz">
                                     <rect key="frame" x="0.0" y="0.0" width="1197" height="750"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>

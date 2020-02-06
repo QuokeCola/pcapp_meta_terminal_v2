@@ -171,7 +171,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
     /***--------------------Terminal Interface-----------------------***/
     
     @IBAction func ShellClearBtnClk(_ sender: Any) {
-        ShellView.string = ""
+        
+        ShellView.string = " "
+        ShellView.font = NSFont(name: "Courier", size: 11.0)
         yawAngleChart.ClearData()
         yawVelocityChart.ClearData()
         yawCurrentChart.ClearData()
