@@ -24,6 +24,8 @@
                 <outlet property="ChassisRLView" destination="GAv-L9-pss" id="1Tw-RS-cZD"/>
                 <outlet property="ChassisRRView" destination="Xho-ka-vP6" id="dGX-bf-cV4"/>
                 <outlet property="ChassisRevealTimeTextField" destination="99j-Ix-cU1" id="TOi-0L-A58"/>
+                <outlet property="ChassisReverseButton" destination="PAX-22-YLL" id="DsX-9G-9Us"/>
+                <outlet property="ChassisRunButton" destination="HcX-Dh-S6o" id="5NL-SC-Rsf"/>
                 <outlet property="ChassisRunTime" destination="A5G-pb-vPx" id="mHe-yM-jBF"/>
                 <outlet property="ChassisTargetOmega" destination="GVa-Bh-QV8" id="qIS-4n-Rhe"/>
                 <outlet property="ChassisTargetVx" destination="r7Q-6x-1yy" id="TU9-7C-oeZ"/>
@@ -1764,42 +1766,42 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="LT5-ne-wVS">
-                                            <rect key="frame" x="19" y="448" width="390" height="281"/>
+                                            <rect key="frame" x="19" y="448" width="390" height="282"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <view key="contentView" ambiguous="YES" id="AlR-Xj-P5W">
-                                                <rect key="frame" x="1" y="1" width="388" height="279"/>
+                                                <rect key="frame" x="1" y="1" width="388" height="280"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="90K-k4-4cm" customClass="SKView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="388" height="279"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="388" height="280"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </customView>
                                                 </subviews>
                                             </view>
                                         </box>
                                         <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="qFR-FO-rJf">
-                                            <rect key="frame" x="19" y="143" width="390" height="284"/>
+                                            <rect key="frame" x="19" y="143" width="390" height="285"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <view key="contentView" ambiguous="YES" id="UP7-tq-j4n">
-                                                <rect key="frame" x="1" y="1" width="388" height="282"/>
+                                                <rect key="frame" x="1" y="1" width="388" height="283"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAv-L9-pss" customClass="SKView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="388" height="282"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="388" height="283"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </customView>
                                                 </subviews>
                                             </view>
                                         </box>
                                         <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="0bf-5n-7T9">
-                                            <rect key="frame" x="425" y="143" width="390" height="284"/>
+                                            <rect key="frame" x="425" y="143" width="390" height="285"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <view key="contentView" ambiguous="YES" id="AD9-zw-tEg">
-                                                <rect key="frame" x="1" y="1" width="388" height="282"/>
+                                                <rect key="frame" x="1" y="1" width="388" height="283"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xho-ka-vP6" customClass="SKView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="388" height="282"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="388" height="283"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </customView>
                                                 </subviews>

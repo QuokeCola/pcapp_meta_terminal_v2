@@ -697,6 +697,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
     @IBAction func ChassisRuntimeEnterPressed(_ sender: Any) {
         self.ChassisTargetVx.becomeFirstResponder()
     }
+    @IBOutlet weak var ChassisReverseButton: NSButton!
     @IBAction func ChassisReversBtnClk(_ sender: Any) {
         if let Vx = Float(ChassisTargetVx.stringValue) {
             ChassisTargetVx.stringValue = String(format:"%.2f", -Vx)
@@ -708,6 +709,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
             ChassisTargetOmega.stringValue = String(format: "%.2f", -w)
         }
     }
+    @IBOutlet weak var ChassisRunButton: NSButton!
     @IBAction func ChassisRunBtnClk(_ sender: Any) {
         if(ChassisRunningTrial == nil) {
             statusInfo.stringValue = "PID Params not set"
@@ -729,6 +731,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                 let command = "c_set_target \(Vx) \(Vy) \(w) \(Int(Time*1000))\r\n".data(using: String.Encoding.ascii)!
                 port.send(command)
             }
+            self.ChassisDisableAllPanel()
         }
     }
     @IBOutlet weak var ChassiskpTextField: NSTextField!
@@ -802,6 +805,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                 ChassisRRChart.time_reveal = timereveal * 1000
             }
         }
+    }
+    
+    func ChassisDisableAllPanel(){
+        ChassisTargetVx.isEnabled = false
+        ChassisTargetVy.isEnabled = false
+        ChassisTargetOmega.isEnabled = false
+        ChassisRunTime.isEnabled = false
+        ChassisRunButton.isEnabled = false
+    }
+    func ChassisEnableAllPanel(){
+        ChassisTargetVx.isEnabled = true
+        ChassisTargetVy.isEnabled = true
+        ChassisTargetOmega.isEnabled = true
+        ChassisRunTime.isEnabled = true
+        ChassisRunButton.isEnabled = true
     }
     
     @IBOutlet weak var ChassisDataAnalysisView: ChassisPIDnEvaluateTableView!
@@ -1031,6 +1049,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                     index += 1
                 }
                 if(isValidData) {
+                    print(rawline)
                     let Time = Int(dividedData[1])!
                     if (ChassisRevealMode == .Continuous || (ChassisRevealMode == .Auto && ChassisRunningTrial?.RunStatus == .isRunning)) {
                         ChassisFLChart.AddData(RealData_: Float(dividedData[4])!, TargetData_: Float(dividedData[5])!, Time_: Time)
@@ -1050,7 +1069,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                             ChassisFLRunningError.removeAll()
                             ChassisFRRunningError.removeAll()
                             if ChassisRevealMode == .Auto {
-                                ChassisRevealTimeTextField.stringValue = String(format: "%.2f", Float((ChassisRunningTrial?.MaintainTime)!)/1000.0)
+                                ChassisRevealTimeTextField.stringValue = String(Int((ChassisRunningTrial?.MaintainTime)!)/1000)
                                 ChassisRevealTimeSet(Any?.self)
                             }
                         case .isRunning:
@@ -1061,6 +1080,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
                                 ChassisRLRunningError.append(Float(dividedData[6])!-Float(dividedData[7])!)
                                 ChassisRRRunningError.append(Float(dividedData[8])!-Float(dividedData[9])!)
                             } else {
+                                self.ChassisEnableAllPanel()
                                 ChassisRunningTrial?.FRResult.AvgDiff = AvgDiff(Data: ChassisFRRunningError)
                                 ChassisRunningTrial?.FRResult.StdDiff = StdDev(Data: ChassisFRRunningError)
                                 ChassisRunningTrial?.FLResult.AvgDiff = AvgDiff(Data: ChassisFLRunningError)
