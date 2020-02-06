@@ -60,7 +60,7 @@ class PlotChart: SKScene {
                     if(realdata[index].Data < targetdata[index].Data) {
                         minData = realdata[index].Data
                     } else {
-                        minData = realdata[index].Data
+                        minData = targetdata[index].Data
                     }
                 }
                 

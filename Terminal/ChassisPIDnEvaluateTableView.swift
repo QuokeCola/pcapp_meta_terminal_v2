@@ -36,6 +36,13 @@ class ChassisPIDnEvaluateTableView: NSOutlineView {
         return selectedDataSet
     }
     
+    func getSelectedRowPID() -> AppDelegate.PIDParams_t {
+        let selectedItem = self.item(atRow: self.selectedRow)
+        guard let selectedPIDParams = selectedItem as? PIDnEvalData_t
+            else {return ((self.parent(forItem: selectedItem) as? PIDnEvalData_t)?.pidparam)!}
+        return selectedPIDParams.pidparam
+    }
+    
     func addData(Item: PIDnEvalData_t){
         Data.append(Item)
         self.reloadData()

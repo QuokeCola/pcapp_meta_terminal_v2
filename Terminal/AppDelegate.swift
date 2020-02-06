@@ -821,6 +821,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         ChassisRunTime.isEnabled = true
         ChassisRunButton.isEnabled = true
     }
+    @IBAction func ChassisPIDnEvaluateViewClk(_ sender: Any) {
+        var PIDParam = ChassisDataAnalysisView.getSelectedRowPID()
+        ChassiskpTextField.stringValue = String(format: "%.2f", PIDParam.kp)
+        ChassiskiTextField.stringValue = String(format: "%.2f", PIDParam.ki)
+        ChassiskdTextField.stringValue = String(format: "%.2f", PIDParam.kd)
+        Chassisi_limitTextField.stringValue = String(format: "%.2f", PIDParam.i_limit)
+        Chassisout_limitTextField.stringValue = String(format: "%.2f", PIDParam.out_limit)
+    }
     
     @IBOutlet weak var ChassisDataAnalysisView: ChassisPIDnEvaluateTableView!
     

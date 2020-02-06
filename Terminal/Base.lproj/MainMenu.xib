@@ -2096,6 +2096,9 @@
                                                                             </prototypeCellViews>
                                                                         </tableColumn>
                                                                     </tableColumns>
+                                                                    <connections>
+                                                                        <action selector="ChassisPIDnEvaluateViewClk:" target="Voe-Tx-rLC" id="cu3-eh-LHO"/>
+                                                                    </connections>
                                                                 </outlineView>
                                                             </subviews>
                                                         </clipView>
