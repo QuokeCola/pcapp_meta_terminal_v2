@@ -2,6 +2,9 @@
 Using Xcode with Swift to rebuild the original meta_terminal (Matlab)
 With Apple's Spritekit, the plot render speed is faster. Now meta-terminal could plot the data at `60 fps`.
 
+## [Thanks to armadsen and his ORSSerialPort Module]❤️
+[Thanks to armadsen and his ORSSerialPort Module]: https://github.com/armadsen/ORSSerialPort "Thanks to armadsen and his ORSSerialPort Module"
+The project is based on his serial module.
 remember `git submodule update --init --recursive` to get ORSSerial Module
 
 ## ScreenShots
