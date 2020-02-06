@@ -18,7 +18,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         let oldFrame = window.frame
         let newFrameSize = NSSize(width: 840, height: 740)
         window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true)
-        
+//        self.GimbalMainChartView.showsFPS = true
+//        self.GimbalSecondChartView.showsFPS = true
+//        self.GimbalThirdChartView.showsFPS = true
+//        self.ChassisFLView.showsFPS = true
+//        self.ChassisFRView.showsFPS = true
+//        self.ChassisRLView.showsFPS = true
+//        self.ChassisRRView.showsFPS = true
+        self.ChassisFLChart.title = "Front Left"
+        self.ChassisFRChart.title = "Front Right"
+        self.ChassisRLChart.title = "Rear Left"
+        self.ChassisRRChart.title = "Rear Right"
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
