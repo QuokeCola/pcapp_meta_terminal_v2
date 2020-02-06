@@ -63,6 +63,9 @@
 		D069649B23E02FAC00D2E39B /* Icon-Terminal.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Icon-Terminal.tiff"; sourceTree = "<group>"; };
 		D06964A123E041DF00D2E39B /* ORSSerialPort.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ORSSerialPort.xcodeproj; path = "Frameworks/ORSSerialPort/Framework Project/ORSSerialPort.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		D06A8FE823E4054B00232FE4 /* ScreenShots-PlotViews.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-PlotViews.png"; sourceTree = "<group>"; };
+		D0A596F123EC6C4000B243C1 /* ScreenShot-ChassisView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShot-ChassisView.png"; sourceTree = "<group>"; };
+		D0A596F323EC6C4000B243C1 /* ScreenShot-ChassisPIDSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShot-ChassisPIDSelect.png"; sourceTree = "<group>"; };
+		D0A596F423EC6D6700B243C1 /* ScreenShot-GimbalView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShot-GimbalView.png"; sourceTree = "<group>"; };
 		D0AE298023E0AF960087CA92 /* ScreenShots-TerminalView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-TerminalView.png"; sourceTree = "<group>"; };
 		D0AE298223E0AFA30087CA92 /* ScreenShots-PortSelector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScreenShots-PortSelector.png"; sourceTree = "<group>"; };
 		D0D10E7B23E54CD900BCD73A /* GimbalTargetTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GimbalTargetTableView.swift; sourceTree = "<group>"; };
@@ -140,9 +143,12 @@
 		D0AE297C23E0AEAF0087CA92 /* ScreenShots */ = {
 			isa = PBXGroup;
 			children = (
+				D0A596F423EC6D6700B243C1 /* ScreenShot-GimbalView.png */,
+				D0A596F123EC6C4000B243C1 /* ScreenShot-ChassisView.png */,
+				D0A596F323EC6C4000B243C1 /* ScreenShot-ChassisPIDSelect.png */,
 				D0AE298023E0AF960087CA92 /* ScreenShots-TerminalView.png */,
-				D0AE298223E0AFA30087CA92 /* ScreenShots-PortSelector.png */,
 				D06A8FE823E4054B00232FE4 /* ScreenShots-PlotViews.png */,
+				D0AE298223E0AFA30087CA92 /* ScreenShots-PortSelector.png */,
 			);
 			path = ScreenShots;
 			sourceTree = "<group>";
