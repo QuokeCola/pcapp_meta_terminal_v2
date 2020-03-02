@@ -18,6 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         let oldFrame = window.frame
         let newFrameSize = NSSize(width: 840, height: 740)
         window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true)
+        window.minSize = NSSize(width: 840, height: 740)
+        window.maxSize = NSSize(width: 840, height: 740)
 //        self.GimbalMainChartView.showsFPS = true
 //        self.GimbalSecondChartView.showsFPS = true
 //        self.GimbalThirdChartView.showsFPS = true
@@ -70,7 +72,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         GimbalBackGround.material = NSVisualEffectView.Material.ultraDark
         ChassisBackGround.material = NSVisualEffectView.Material.ultraDark
         TabViews.selectTabViewItem(at: 0)
-        
         // Stop the Gimbal Chart View.
         GimbalMainChartView.isPaused = true
         GimbalSecondChartView.isPaused = true
