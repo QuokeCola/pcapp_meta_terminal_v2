@@ -41,6 +41,9 @@ class ChassisPIDnEvaluateTableView: NSOutlineView {
             return nil
         } else {
             let selectedItem = self.item(atRow: self.selectedRow)
+            if selectedItem == nil {
+                return nil
+            }
             guard let selectedPIDParams = selectedItem as? PIDnEvalData_t
                 else {return ((self.parent(forItem: selectedItem) as? PIDnEvalData_t)?.pidparam)!}
             return selectedPIDParams.pidparam

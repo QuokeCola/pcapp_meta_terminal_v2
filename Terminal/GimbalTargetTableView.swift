@@ -141,12 +141,24 @@ class GimbalTargetTableView: NSTableView {
         if event.keyCode == 51 {
             switch dataIdentifier {
             case .YAWV:
+                if selectedRow >= self.yawVelocityData.count {
+                    return
+                }
                 self.yawVelocityData.remove(at: self.selectedRow)
             case .YAWA:
+                if selectedRow >= self.yawAngleData.count {
+                    return
+                }
                 self.yawAngleData.remove(at: self.selectedRow)
             case .PITCHV:
+                if selectedRow >= self.pitchVelocityData.count {
+                    return
+                }
                 self.pitchVelocityData.remove(at: self.selectedRow)
             case .PITCHA:
+                if selectedRow >= self.pitchAngleData.count {
+                    return
+                }
                 self.pitchAngleData.remove(at: self.selectedRow)
             }
             reloadData()

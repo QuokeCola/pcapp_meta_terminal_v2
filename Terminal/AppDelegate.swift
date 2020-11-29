@@ -116,9 +116,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         pitchCurrentChart.title = "Current"
         
         let oldFrame = window.frame
-        let newFrameSize = NSSize(width: 1175, height: 720)
+        let newFrameSize = NSSize(width: 1280, height: 720)
         window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true, animate: true)
-        window.minSize = NSSize(width: 1175, height: 720)
+        window.minSize = NSSize(width: 1280, height: 720)
         window.maxSize = NSSize(width: 1700, height: 1500)
         // Start the Gimbal Chart View.
         GimbalMainChartView.isPaused = false
@@ -166,9 +166,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
         ChassisRRView.isPaused = false
         
         let oldFrame = window.frame
-        let newFrameSize = NSSize(width: 1440, height: 770)
+        let newFrameSize = NSSize(width: 1400, height: 790)
         window.setFrame(NSRect(x: oldFrame.origin.x, y: oldFrame.origin.y + oldFrame.size.height - newFrameSize.height, width: newFrameSize.width, height: newFrameSize.height), display: true, animate: true)
-        window.minSize = NSSize(width: 1440, height: 770)
+        window.minSize = NSSize(width: 1400, height: 790)
         window.maxSize = NSSize(width: 1700, height: 1500)
         
         ChassisFLChart.size = ChassisFLView.bounds.size
@@ -547,7 +547,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ORSSerialPortDelegate {
             case .PITCHA:
                 string += "1 0 "
             }
-            string += (GimbalkpTextField.stringValue + " " + GimbalkiTextField.stringValue + " " + GimbalkdTextField.stringValue + " " + Gimbali_limitTextField.stringValue + " " + Gimbalout_limitTestField.stringValue + "\r\n")
+            let dataString1 = GimbalkpTextField.stringValue + " " + GimbalkiTextField.stringValue + " " + GimbalkdTextField.stringValue + " "
+            let dataString2 = Gimbali_limitTextField.stringValue + " " + Gimbalout_limitTestField.stringValue + "\r\n"
+            string += (dataString1+dataString2)
             let command = string.data(using: String.Encoding.ascii)!
             port.send(command)
         }
